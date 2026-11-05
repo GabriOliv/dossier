@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "promote_threshold": 2,
+  "window_days": 45,
+  "quarantine_threshold": 2,
+  "next_id": 8,
+  "lessons": [
+    {
+      "id": "L-001",
+      "key": "weak_test::when testing a github actions workflow assert failure guards continue on error status functions on every step not only on jobs",
+      "text": "When testing a GitHub Actions workflow, assert failure guards (continue-on-error, status functions) on every step, not only on jobs",
+      "signal": "weak_test",
+      "scope": "workflows",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C5 (workflows)"
+      ],
+      "created": "2026-11-05T04:52:11Z",
+      "last_seen": "2026-11-05T04:52:11Z"
+    },
+    {
+      "id": "L-002",
+      "key": "weak_test::a workflow step that must stop on the first failing command needs an explicit set euo pipefail and a test that forbids a shell override",
+      "text": "A workflow step that must stop on the first failing command needs an explicit set -euo pipefail and a test that forbids a shell override",
+      "signal": "weak_test",
+      "scope": "workflows",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C9 (workflows)"
+      ],
+      "created": "2026-11-05T04:52:11Z",
+      "last_seen": "2026-11-05T04:52:11Z"
+    },
+    {
+      "id": "L-003",
+      "key": "weak_test::to prove a later job reuses a built artifact forbid every command that could rebuild it not only the literal pack command",
+      "text": "To prove a later job reuses a built artifact, forbid every command that could rebuild it, not only the literal pack command",
+      "signal": "weak_test",
+      "scope": "workflows",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C3 (workflows)"
+      ],
+      "created": "2026-11-05T04:52:11Z",
+      "last_seen": "2026-11-05T04:52:11Z"
+    },
+    {
+      "id": "L-004",
+      "key": "ac_gap::a documented procedure must be checked step by step against the guard that enforces it such as a remote branch check",
+      "text": "A documented procedure must be checked step by step against the guard that enforces it, such as a remote-branch check",
+      "signal": "ac_gap",
+      "scope": "docs",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C14 (docs)"
+      ],
+      "created": "2026-11-05T04:52:12Z",
+      "last_seen": "2026-11-05T04:52:12Z"
+    },
+    {
+      "id": "L-005",
+      "key": "weak_test::a test for a required note asserts each fact the criterion names not only the reference it cites",
+      "text": "A test for a required note asserts each fact the criterion names, not only the reference it cites",
+      "signal": "weak_test",
+      "scope": "docs",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C15 (docs)"
+      ],
+      "created": "2026-11-05T04:52:12Z",
+      "last_seen": "2026-11-05T04:52:12Z"
+    },
+    {
+      "id": "L-006",
+      "key": "weak_test::compare a license file with the full canonical text not with a few fragments",
+      "text": "Compare a license file with the full canonical text, not with a few fragments",
+      "signal": "weak_test",
+      "scope": "docs",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C16 (docs)"
+      ],
+      "created": "2026-11-05T04:52:12Z",
+      "last_seen": "2026-11-05T04:52:12Z"
+    },
+    {
+      "id": "L-007",
+      "key": "gate_fail::keep markdown special characters such as asterisks out of test titles that proofs quote because prettier escapes them",
+      "text": "Keep Markdown-special characters such as asterisks out of test titles that proofs quote, because Prettier escapes them",
+      "signal": "gate_fail",
+      "scope": "specs",
+      "status": "candidate",
+      "features": [
+        "release-0-1-0"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "C1 (specs)"
+      ],
+      "created": "2026-11-05T04:52:12Z",
+      "last_seen": "2026-11-05T04:52:12Z"
+    }
+  ]
+}
