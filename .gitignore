@@ -1,0 +1,16 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tgz
+.pack/
+fixtures/*/node_modules/
+fixtures/*/dist/
+fixtures/*/build/
+fixtures/*/build-plain/
+fixtures/*/.docusaurus/
+dossier-handoff.zip
+tests/react19/node_modules/
+gallery/dist/
+.claude/
+.env

@@ -1,0 +1,62 @@
+{
+  "name": "@gabrioliv/dossier",
+  "version": "0.1.0",
+  "description": "Dossier design system for React: components, tokens and ready-made CSS.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabriOliv/dossier.git"
+  },
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./base.css": "./dist/base.css",
+    "./docusaurus.css": "./dist/docusaurus.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./assets/*": "./dist/assets/*",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && node scripts/clean.mjs && vite build && tsc -p tsconfig.build.json && node scripts/build-css.mjs",
+    "test": "npm run build && npm run setup:react19 && playwright test --project unit",
+    "test:unit": "playwright test --project unit",
+    "test:consumer": "node scripts/fixtures.mjs && PW_CONSUMER=1 playwright test --project consumer",
+    "build:gallery": "npm run build && vite build --config gallery/vite.config.ts",
+    "test:gallery": "PW_GALLERY=1 playwright test --project gallery --project gallery-phone",
+    "format": "prettier --check . --print-width 120 --tab-width 2 --no-use-tabs",
+    "lint:package": "publint",
+    "setup:react19": "npm ci --prefix tests/react19 --no-audit --no-fund"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@fontsource/ibm-plex-sans-condensed": "5.3.0",
+    "@playwright/test": "1.64.1",
+    "@types/node": "24.19.2",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "5.2.0",
+    "prettier": "3.6.2",
+    "publint": "0.3.25",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.7",
+    "yaml": "2.9.1"
+  }
+}
