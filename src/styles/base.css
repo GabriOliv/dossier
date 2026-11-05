@@ -1,0 +1,6 @@
+/* Dossier base: page-wide rules for an app built only on Dossier. Optional; import after styles.css. */
+body { margin: 0; font-family: var(--font-sans); background: var(--paper); color: var(--ink); }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+/* From the portfolio page.css: native controls and scrollbars follow the dark themes. */
+[data-theme="void"],
+[data-theme="blueprint"] { color-scheme: dark; }

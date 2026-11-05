@@ -1,0 +1,18 @@
+/* Docusaurus bridge: Infima variables follow the Dossier tokens.
+   html[data-theme] matches Infima's own html[data-theme='dark'] block and comes later, so it wins in both modes. */
+html[data-theme] {
+  --ifm-background-color: var(--paper);
+  --ifm-font-color-base: var(--ink);
+  --ifm-color-primary: var(--signal);
+  --ifm-color-primary-dark: color-mix(in srgb, var(--signal) 90%, #000);
+  --ifm-color-primary-darker: color-mix(in srgb, var(--signal) 85%, #000);
+  --ifm-color-primary-darkest: color-mix(in srgb, var(--signal) 70%, #000);
+  --ifm-color-primary-light: color-mix(in srgb, var(--signal) 90%, #fff);
+  --ifm-color-primary-lighter: color-mix(in srgb, var(--signal) 85%, #fff);
+  --ifm-color-primary-lightest: color-mix(in srgb, var(--signal) 70%, #fff);
+  --ifm-font-family-base: var(--font-sans);
+  --ifm-heading-font-family: var(--font-display);
+  --ifm-font-family-monospace: var(--font-mono);
+  --ifm-global-radius: var(--radius-none);
+  --ifm-table-stripe-background: transparent;
+}
