@@ -1,0 +1,3 @@
+/* Demo layout from Dossier's bundle.css, for the gallery only (not shipped). */
+.ds-demo { padding: var(--space-6); }
+.ds-row { display: flex; gap: var(--space-6); align-items: flex-start; flex-wrap: wrap; }
