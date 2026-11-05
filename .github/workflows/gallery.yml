@@ -1,0 +1,48 @@
+name: Gallery
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install
+        run: npm ci
+      - name: Install React 19 test deps
+        run: npm ci --prefix tests/react19
+      - name: Build library and gallery
+        run: npm run build:gallery
+      - name: Unit tests
+        run: npx playwright test --project unit
+      - name: Gallery tests
+        run: npm run test:gallery
+      - name: Upload the gallery
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: gallery/dist
+
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
