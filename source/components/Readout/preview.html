@@ -1,0 +1,15 @@
+<!-- @dsCard group="Data" height=360 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Readout — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>.stack{display:grid;gap:var(--space-8)}</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'stack' }, h('div', { className: 'ds-row' }, h(D.Readout, { label: 'Population', value: '1,204', unit: 'units', trend: 'up', delta: '+3.1% vs last cycle' }), h(D.Readout, { label: 'Stability', value: '98.6', unit: '%', tone: 'signal', note: 'Above target for 9 cycles' }), h(D.Readout, { label: 'Drift', value: '0.04', unit: 'σ', trend: 'down', delta: '−0.01' })), h(D.Readout, { size: 'hero', label: 'Models deployed', value: '64k', tone: 'signal', trend: 'up', delta: '+18% vs last cycle' })));
+</script>
+</body>
+</html>

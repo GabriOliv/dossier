@@ -1,0 +1,15 @@
+<!-- @dsCard group="Status" height=300 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CheckLog — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.CheckLog, { title: 'Checkout suite', checks: [{ id: 'CHK-101', label: 'Cart totals match line items', result: 'pass', duration: '0.4 s' }, { id: 'CHK-114', label: 'Checkout returns 200 under load', result: 'fail', detail: '500 Internal Server Error at 120 rps', duration: '2.1 s' }, { id: 'CHK-117', label: 'Payment token refresh', result: 'pass', duration: '0.9 s' }, { id: 'CHK-130', label: 'Coupon stacking rules', result: 'skip', detail: 'Blocked by CHK-114' }, { id: 'CHK-142', label: 'Order confirmation email', result: 'pending', detail: 'Queued' }] }));
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Status" height=380 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ToleranceBar — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>.stack{display:grid;gap:var(--space-6)}</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'stack' }, h(D.ToleranceBar, { label: 'p95 latency', value: 1.84, max: 1.2, scaleMax: 2.4, unit: 's', format: function (v) { return v.toFixed(2); } }), h(D.ToleranceBar, { label: 'Error rate', value: 0.3, max: 1, scaleMax: 2, unit: '%' }), h(D.ToleranceBar, { label: 'Battery voltage', value: 3.1, min: 3.3, max: 4.2, scaleMin: 3, scaleMax: 4.5, unit: 'V' })));
+</script>
+</body>
+</html>

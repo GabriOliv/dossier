@@ -1,0 +1,15 @@
+<!-- @dsCard group="Diagrams" height=400 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ProportionDial — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.ProportionDial, { value: 90, label: 'Deep learning', title: 'Models by architecture', segments: [{ angle: -25, label: 'Forecasting' }, { angle: 35, label: 'Ranking' }, { angle: 150, label: 'Personalization' }] }));
+</script>
+</body>
+</html>

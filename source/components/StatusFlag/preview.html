@@ -1,0 +1,15 @@
+<!-- @dsCard group="Status" height=80 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>StatusFlag — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'ds-row' }, h(D.StatusFlag, { status: 'pass' }), h(D.StatusFlag, { status: 'fail' }), h(D.StatusFlag, { status: 'skip' }), h(D.StatusFlag, { status: 'pending' })));
+</script>
+</body>
+</html>

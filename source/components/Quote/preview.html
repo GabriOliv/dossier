@@ -1,0 +1,15 @@
+<!-- @dsCard group="Text" height=470 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Quote — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>.stack{display:grid;gap:var(--space-8)}</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'stack' }, h(D.Quote, { source: 'Archive directive', code: 'File 0001' }, 'The record is complete only when every line can be traced to its source.'), h(D.Quote, { variant: 'statement', kicker: 'Data visualization', note: 'Share of active models by architecture, sampled across 1,200 units.' }, h(React.Fragment, null, h('span', { className: 'ds-hl' }, '90%'), ' of active models run on the central core.'))));
+</script>
+</body>
+</html>
