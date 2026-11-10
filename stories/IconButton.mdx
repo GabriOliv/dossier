@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./IconButton.stories";
+
+<Meta of={Stories} />
+
+# IconButton
+
+A square Button that shows only an icon and is named by `label`.
+
+## Usage
+
+`label` is required: it is the accessible name, since nothing else says what the button does. Put an icon in `children`, in general an Icon. `variant`, `tone`, `size`, `loading` and the native button attributes work as in Button.
+
+```tsx
+import { IconButton } from "@gabrioliv/dossier";
+
+<IconButton label="Copy link" variant="text" onClick={copy}>
+  <Icon name="copy" />
+</IconButton>;
+```
+
+## Do and don't
+
+- Do: write `label` as the action, such as Copy link, not the icon's name.
+- Do: wrap it in a Tooltip when the icon alone may not be clear.
+- Do: use the `text` variant for a quiet action in a toolbar or a header.
+- Don't: pass `aria-hidden` or leave the label out: an unnamed button is unusable by a screen reader.
+- Don't: use `loading` from a Server Component, for the same reason as Button: it passes a function to `<button onClick>`. Use `loading` from a Client Component.
+
+## Accessibility
+
+The root is a native `<button>` with `aria-label` set to `label`. The icon inside is decoration. Keys are those of the native element:
+
+- `Tab` moves focus to the button and `Shift+Tab` away from it.
+- `Enter` and `Space` press it.
+
+With `loading` it behaves as Button does: `aria-busy="true"`, still focusable, and a click, `Enter` or `Space` does nothing. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<button>` pass through to the root `<button>`.
+
+<ArgTypes />

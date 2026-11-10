@@ -1,0 +1,51 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Tabs.stories";
+
+<Meta of={Stories} />
+
+# Tabs
+
+Tabs with automatic activation: one panel shows at a time.
+
+## Usage
+
+Pass `tabs`, each with a `value`, a `label`, `content` and optionally `disabled`, and a `label` that names the list. Without `value` the component holds the selection, starting on `defaultValue` or the first enabled tab. With `value` and `onChange` you hold it. Every panel is rendered; only the selected one shows.
+
+```tsx
+import { Tabs } from "@gabrioliv/dossier";
+
+<Tabs
+  label="Run views"
+  tabs={[
+    { value: "summary", label: "Summary", content: "12 checks ran: 11 passed, 1 failed." },
+    { value: "logs", label: "Logs", content: "02:14:11 timeout after 4000 ms." },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: give the list a `label` that says what the tabs switch.
+- Do: keep each tab label to one or two words.
+- Do: use `value` and `onChange` when the selection must live in the URL or in other state.
+- Don't: point `defaultValue` at a disabled tab: that tab is selected anyway, and its panel shows. Point it at an enabled tab, or leave `defaultValue` out to start on the first enabled one.
+- Don't: use tabs to move between pages; use links.
+- Don't: use it from a Server Component: it holds the selection, so use it from a Client Component.
+
+## Accessibility
+
+The tab list is `role="tablist"`, named by `label`. Each tab is a `<button role="tab">` with `aria-selected` and `aria-controls`, and each panel a `role="tabpanel"` with `aria-labelledby` pointing to its tab. A disabled tab stays in the list with `aria-disabled`.
+
+Only the selected tab is in the tab order. Keys:
+
+- `Tab` moves focus to the selected tab, then to its panel; `Shift+Tab` goes back.
+- `ArrowRight` and `ArrowLeft` move to the next and previous enabled tab and show its panel, and wrap at the ends.
+- `Home` and `End` go to the first and last enabled tab.
+
+The panels take focus (`tabIndex={0}`). It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

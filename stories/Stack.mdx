@@ -1,0 +1,40 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Stack.stories";
+
+<Meta of={Stories} />
+
+# Stack
+
+Items in a line, spaced by the Dossier scale: a flex `<div>`.
+
+## Usage
+
+`direction` is `column` (the default) or `row`. `gap` is a step of the scale: 1, 2, 3, 4, 6, 8 or 12; the default and the fallback is 3. `align` and `justify` set `align-items` and `justify-content`, and `wrap` lets the items wrap.
+
+```tsx
+import { Stack } from "@gabrioliv/dossier";
+
+<Stack direction="row" gap={4} align="center" wrap>
+  <Tag>Draft</Tag>
+  <span>Run 0427</span>
+</Stack>;
+```
+
+## Do and don't
+
+- Do: use it for one line or one column of items, and nest it for more.
+- Do: use the same gap steps across a page, so spacing looks regular.
+- Don't: put `<Divider />` directly in a `<Stack align="center">`: the Divider has zero width there, so nothing shows. Leave `align` at its default, or give the Divider `style={{ alignSelf: "stretch" }}`.
+- Don't: pass a gap that is not in the scale, such as 5: it falls back to 3.
+
+## Accessibility
+
+The root is a plain `<div>` with no role. Items keep their order in the page: `direction` has only `column` and `row`, so the visual order is the order in the markup.
+
+It is not interactive: it takes no focus and accepts no keys. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

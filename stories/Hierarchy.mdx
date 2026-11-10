@@ -1,0 +1,53 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Hierarchy.stories";
+
+<Meta of={Stories} />
+
+# Hierarchy
+
+A top-down tree: the root on the inverse fill, every other node a square outlined box, joined by orthogonal connectors.
+
+## Usage
+
+Pass `root`, a node with a `label` and optionally a `code`, `active` and `children`, nested as deep as needed. Without a `root` nothing renders. `title` names the tree.
+
+```tsx
+import { Hierarchy } from "@gabrioliv/dossier";
+
+<Hierarchy
+  title="Dossier structure"
+  root={{
+    label: "Dossier",
+    code: "root",
+    children: [
+      { label: "Tokens", code: "T", children: [{ label: "Colour" }, { label: "Type", active: true }] },
+      { label: "Components", code: "C" },
+    ],
+  }}
+/>;
+```
+
+## Do and don't
+
+- Do: mark one node `active`, the one the text talks about.
+- Do: keep it to three levels and about twelve nodes. Split a larger structure.
+- Do: pass a `title` in the language of the page.
+- Don't: use diagonal connectors or rounded boxes; the component draws neither.
+- Don't: build a deep tree for a menu or navigation: it is a diagram, and its nodes are not links.
+
+## Accessibility
+
+The root is a `<div>` named by `title` (`aria-label`), or by the word Hierarchy without it. The nodes are nested lists (`<ul>` and `<li>`), so the structure is available to assistive tech.
+
+The container has `tabIndex={0}`, because the tree scrolls sideways when it is wider than its parent and a keyboard can scroll only what it can focus. Keys:
+
+- `Tab` moves focus to the tree and `Shift+Tab` away from it.
+- `ArrowLeft` and `ArrowRight` scroll it sideways when it overflows.
+
+The nodes themselves take no focus. `labels` changes the fallback name: `labels={ptBR.Hierarchy}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

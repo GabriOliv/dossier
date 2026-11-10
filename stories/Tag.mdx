@@ -1,0 +1,37 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Tag.stories";
+
+<Meta of={Stories} />
+
+# Tag
+
+A square, outlined label in mono capitals, for a status, a revision or a classification.
+
+## Usage
+
+Pass one or two words as `children`. `variant` is `outline` (neutral, the default), `solid` (the active or current state) or `inverse` (archived, restricted, closed). Any other variant renders as `outline`.
+
+```tsx
+import { Tag } from "@gabrioliv/dossier";
+
+<Tag variant="solid">Current</Tag>;
+```
+
+## Do and don't
+
+- Do: use at most one `solid` tag per group; it is the first thing the eye lands on.
+- Do: pair the variant with a word that says the state: the colour is never the only cue.
+- Don't: use it as a button; it is not interactive.
+- Don't: use it for a check result; StatusFlag does that.
+
+## Accessibility
+
+The root is a `<span>` that holds your text. The variant changes the look only, not the markup, so the meaning has to be in the word.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<span>` pass through to the root `<span>`.
+
+<ArgTypes />

@@ -1,0 +1,54 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Select.stories";
+
+<Meta of={Stories} />
+
+# Select
+
+A square native select with its label, hint and error state, and an arrow drawn in CSS.
+
+## Usage
+
+Set `label` and `options`, each with a `value`, a `label` and optionally `disabled`. `placeholder` adds a first, empty and disabled option, selected while there is no `value` or `defaultValue`. Native attributes such as `value`, `defaultValue`, `onChange` and `name` go to the `<select>`.
+
+```tsx
+import { Select } from "@gabrioliv/dossier";
+
+<Select
+  label="Suite"
+  name="suite"
+  placeholder="Choose a suite"
+  options={[
+    { value: "checkout", label: "Checkout" },
+    { value: "search", label: "Search" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: use a `placeholder` when no option is a safe default, and set `required` so the person chooses.
+- Do: use it for long lists; the browser's own list handles them and the keyboard.
+- Don't: use it for two or three options the person should compare; that is a RadioGroup.
+- Don't: expect to style the open list: it is the browser's own.
+
+## Accessibility
+
+The control is a native `<select>` named by a real `<label>`: clicking the label focuses the select. With `required` the label writes the word Required.
+
+With `error` the select gets `aria-invalid="true"` and the message is tied to it by `aria-describedby`; the hint is tied the same way when there is no error. The arrow is hidden from assistive tech.
+
+Keys are those of the native control, and the browser draws the list, so the details vary a little:
+
+- `Tab` moves focus to the select and `Shift+Tab` away from it.
+- `ArrowDown` and `ArrowUp` change the option.
+- `Enter` and `Space` open the list in most browsers, and `Escape` closes it.
+- Typing letters jumps to a matching option.
+
+`labels` changes the word Required: `labels={ptBR.Select}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<select>` go to the `<select>` (`value`, `onChange` and `name` among them); `className` goes to the outer `<div>`.
+
+<ArgTypes />

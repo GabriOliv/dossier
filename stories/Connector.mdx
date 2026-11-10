@@ -1,0 +1,37 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Connector.stories";
+
+<Meta of={Stories} />
+
+# Connector
+
+An orthogonal arrow from one corner of its box to the opposite corner, ending in a triangle pointer.
+
+## Usage
+
+Set `width` and `height` in px (defaults 160 and 64), the start corner with `from` and the leg that runs first with `first`. Set one side to `0` for a straight arrow. The SVG adds 6 px on each side for the pointer, so position it yourself between the blocks it links.
+
+```tsx
+import { Connector } from "@gabrioliv/dossier";
+
+<Connector from="top-left" first="horizontal" width={120} height={48} />;
+```
+
+## Do and don't
+
+- Do: use it to show sequence or cause between two or three blocks.
+- Do: mark one connector `active` per composition, on the step under discussion.
+- Don't: cross text with it, or use diagonal or curved arrows.
+- Don't: rely on it alone to say what comes next: it carries no text, so write the order in the blocks it joins.
+
+## Accessibility
+
+The root is an `<svg>` with `aria-hidden="true"`: it is decoration, and assistive tech skips it. Anything it shows has to be in the text of the blocks it links.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

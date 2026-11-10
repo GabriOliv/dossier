@@ -1,0 +1,48 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./CheckLog.stories";
+
+<Meta of={Stories} />
+
+# CheckLog
+
+A list of checks with their results: a heading with a summary count, then one row per check.
+
+## Usage
+
+Pass `checks`, each with a `label` and a `result` (`pass`, `fail`, `skip` or `pending`), and optionally an `id`, a `detail` and a `duration`. The summary counts each result in that order, and only the results that occur.
+
+```tsx
+import { CheckLog } from "@gabrioliv/dossier";
+
+<CheckLog
+  title="Regression run 0427"
+  checks={[
+    { id: "CHK-101", label: "Cart total", result: "pass", duration: "0.4 s" },
+    { id: "CHK-114", label: "Status code", result: "fail", detail: "Expected 200, got 500", duration: "1.2 s" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: put the failure reason or the measured value in `detail`, so a failed row explains itself.
+- Do: keep the run order. If the list is long and you sort failures to the top, say so in the title.
+- Do: link to the full run when there are more than about 20 rows.
+- Don't: use it for a single check; that is an Assertion.
+- Don't: use `result` for anything that is not a check result, such as draft or archived; those are Tags.
+
+## Accessibility
+
+The root is a `<div>`. The title is a `<span>`, not a heading element. The rows are an ordered list (`<ol>`), one `<li>` per check, in the order you gave.
+
+Every row ends with a StatusFlag that writes the result as a word, and the summary writes the same words with their counts, so a result never depends on colour.
+
+`labels` changes the title (Checks) and the four result words (Pass, Fail, Skipped, Pending), in the summary and in the rows alike: `labels={ptBR.CheckLog}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

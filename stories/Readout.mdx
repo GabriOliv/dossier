@@ -1,0 +1,42 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Readout.stories";
+
+<Meta of={Stories} />
+
+# Readout
+
+One labelled figure: a mono label over a number with its unit, ruled on top, with an optional trend line.
+
+## Usage
+
+Set `label` and `value`, already formatted. `unit`, `note`, `trend` (`up`, `down` or `flat`) and `delta` are optional. `size="hero"` sets the figure large, for the one number a page is about, and `tone="signal"` colours it.
+
+```tsx
+import { Readout } from "@gabrioliv/dossier";
+
+<Readout label="Pass rate" value="94.2" unit="%" trend="up" delta="+2.1 vs last run" note="Staging build" />;
+```
+
+## Do and don't
+
+- Do: use `tone="signal"` on the one figure that matters most; the rest stay ink.
+- Do: always pair `trend` with `delta`: the triangle never carries meaning alone.
+- Do: use one hero per page or slide, alone or beside a short Quote statement.
+- Don't: use it for values that are not numbers; that is a Tag or plain text.
+- Don't: put more than six readouts in a row.
+
+## Accessibility
+
+The root is a `<div>` with no role; the label, the figure, the unit and the note are plain text.
+
+The trend triangle is an `<svg role="img">` named up, down or no change, so the direction is read as words. The `delta` is text beside it.
+
+`labels` changes the three trend names: `labels={ptBR.Readout}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

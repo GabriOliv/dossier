@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Divider.stories";
+
+<Meta of={Stories} />
+
+# Divider
+
+A line between two groups: an `<hr>`.
+
+## Usage
+
+`weight` is `hair` (the default, a hairline in the soft rule colour, decoration), `rule` or `heavy` (structure). `orientation` is `horizontal` (the default) or `vertical`. A vertical Divider takes its height from a row flex container, a grid or a container of definite height; in an auto-height block it has no height.
+
+```tsx
+import { Divider } from "@gabrioliv/dossier";
+
+<Divider />
+
+<div style={{ display: "flex", gap: 16, height: 48 }}>
+  <span>Intake</span>
+  <Divider orientation="vertical" weight="rule" />
+  <span>Review</span>
+</div>
+```
+
+## Do and don't
+
+- Do: use `hair` between items of one group and `rule` or `heavy` between sections.
+- Do: put a vertical Divider in a row flex container, a grid or a container of set height.
+- Don't: put `<Divider />` inside a `<Stack align="center">`: it has zero width there, so nothing shows. Leave `align` at its default, or give the Divider `style={{ alignSelf: "stretch" }}`.
+- Don't: use it for spacing; use `gap` on a Stack or a Grid.
+
+## Accessibility
+
+The root is an `<hr>`, so assistive tech announces it as a separator. A vertical one also gets `aria-orientation="vertical"`.
+
+It is not interactive: it takes no focus and accepts no keys. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<hr>` pass through to the root `<hr>`.
+
+<ArgTypes />

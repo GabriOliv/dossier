@@ -1,0 +1,51 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ErrorNotice.stories";
+
+<Meta of={Stories} />
+
+# ErrorNotice
+
+A blocking error at the top of a page or module: the error mark, a title, an explanation, the specific failures and the next step.
+
+## Usage
+
+Give a `title` that says what failed and what it blocks. `children` is the explanation, `items` lists the failures one per line, `action` is the next step and `code` and `meta` fill the head line.
+
+```tsx
+import { ErrorNotice } from "@gabrioliv/dossier";
+
+<ErrorNotice
+  title="Regression run failed: release is blocked"
+  code="RUN-0427"
+  meta="9 Nov 2026 · 02:14"
+  items={["CHK-114 status code", "CHK-120 latency"]}
+  action="Rerun after fix #1182"
+  live
+>
+  Two checks failed on the staging build.
+</ErrorNotice>;
+```
+
+## Do and don't
+
+- Do: show one ErrorNotice per page, directly under the header and before any data.
+- Do: end with the next step in `action`, not only the problem.
+- Do: set `live` only when the notice appears after a user action.
+- Don't: use it for warnings or information. If nothing is blocked, it is not an ErrorNotice.
+- Don't: set `live` on a notice that is already there when the page loads: it would be announced for no reason.
+
+## Accessibility
+
+The root is a `<section>` named by the word Error (`aria-label`). The title is a heading: `<h3>` by default, or the level you set with `level` (1 to 6). The failures in `items` are an unordered list.
+
+With `live` the root gets `role="alert"`, so a screen reader announces the notice when it renders. Without it there is no live region. The error mark is hidden from assistive tech, and the head line writes the word Error and the `code`, so the state never depends on colour.
+
+`labels` changes the word Error, in the accessible name and in the head line: `labels={ptBR.ErrorNotice}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<section>` pass through to the root `<section>`.
+
+<ArgTypes />

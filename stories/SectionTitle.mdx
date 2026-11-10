@@ -1,0 +1,39 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./SectionTitle.stories";
+
+<Meta of={Stories} />
+
+# SectionTitle
+
+Opens a section: a signal bar and a section number, then the title over a rule.
+
+## Usage
+
+Set the `title`, and optionally an `index` (shown as Section 02) and `meta` on the right. The heading level defaults to 2; set `level` from 1 to 6 to fit the outline of the page.
+
+```tsx
+import { SectionTitle } from "@gabrioliv/dossier";
+
+<SectionTitle index="02" title="Results" meta="12 checks" />;
+```
+
+## Do and don't
+
+- Do: number sections in page order with two digits: 01, 02, 03.
+- Do: set `level` so the heading outline stays in order under the page title.
+- Don't: use it for subheads inside a section.
+- Don't: pass the word Section in `index`: the component adds it.
+
+## Accessibility
+
+The root is a `<div>`, and the title is a real heading: `<h2>` by default, or the level you set with `level`. The signal bar is hidden from assistive tech. The index is plain text, such as Section 02.
+
+`labels` changes the word Section: `labels={ptBR.SectionTitle}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

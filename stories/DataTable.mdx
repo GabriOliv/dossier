@@ -1,0 +1,51 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./DataTable.stories";
+
+<Meta of={Stories} />
+
+# DataTable
+
+A ruled data table with mono heads, hairline row separators and numeric columns in tabular figures.
+
+## Usage
+
+Pass `columns` (`key`, `label`, and `numeric` for numbers) and `rows`, an array of objects keyed by column. `caption` titles the table; `highlightRows` takes row indexes to mark.
+
+```tsx
+import { DataTable } from "@gabrioliv/dossier";
+
+<DataTable
+  caption="Run times"
+  columns={[
+    { key: "suite", label: "Suite" },
+    { key: "time", label: "Time (s)", numeric: true },
+  ]}
+  rows={[
+    { suite: "Checkout", time: "12.4" },
+    { suite: "Search", time: "3.1" },
+  ]}
+  highlightRows={[0]}
+/>;
+```
+
+## Do and don't
+
+- Do: set `numeric` on every column of numbers or codes, so they align on tabular figures.
+- Do: highlight one or two rows at most.
+- Do: give the table a `caption` when it stands alone on the page.
+- Don't: add zebra stripes, vertical rules or cell backgrounds.
+- Don't: use it for two or three options weighed on criteria; that is a Comparison.
+
+## Accessibility
+
+The root is a native `<table>`. `caption` becomes its `<caption>`, which names the table. Every column head is a `<th scope="col">`, and each cell is read with its head.
+
+A highlighted row is marked by a tint and a heavier bar only, which assistive tech does not announce: say in a column or in the caption why the row stands out.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<table>` pass through to the root `<table>`.
+
+<ArgTypes />

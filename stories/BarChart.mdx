@@ -1,0 +1,48 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./BarChart.stories";
+
+<Meta of={Stories} />
+
+# BarChart
+
+Horizontal bars on one axis, with the value printed at the end of each bar and a scale row of 0, half and max.
+
+## Usage
+
+Pass `data` with a `label` and a `value` for each bar. Mark the one bar the text talks about `active`. `max` defaults to the largest value, `unit` follows each value and `format` formats the values and the scale.
+
+```tsx
+import { BarChart } from "@gabrioliv/dossier";
+
+<BarChart
+  title="Failures by suite"
+  unit="runs"
+  data={[
+    { label: "Checkout", value: 14, active: true },
+    { label: "Search", value: 9 },
+    { label: "Profile", value: 4 },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark one bar `active`, the one the text talks about.
+- Do: sort the bars by value or by a meaningful order, never at random.
+- Do: set `max` when several charts must share one scale.
+- Don't: add gridlines, rounded bar ends or more than 8 bars.
+- Don't: expect a value above `max` to run past the bar: the bar stops at full width, but the printed value stays as given.
+
+## Accessibility
+
+The root is a `<div role="list">`, and each bar is a `role="listitem"` that holds its label and its value as text. The list is named by `title`; without `title` the name is Bar chart. The scale row is hidden from assistive tech, so the values are read once, from the bars.
+
+`labels` changes only that fallback name: `labels={ptBR.BarChart}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

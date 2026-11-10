@@ -1,0 +1,45 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Checkbox.stories";
+
+<Meta of={Stories} />
+
+# Checkbox
+
+A square checkbox with its label, hint and error state, on a native `<input type="checkbox">`.
+
+## Usage
+
+Set `label`. Native attributes such as `checked`, `defaultChecked`, `onChange` and `name` go to the input. `hint` shows under the box; `error` replaces the hint and sets the error state.
+
+```tsx
+import { Checkbox } from "@gabrioliv/dossier";
+
+<Checkbox label="Notify me when a run fails" name="notify" hint="One e-mail per failed run." />;
+```
+
+## Do and don't
+
+- Do: use it for choices that are submitted later, with a form.
+- Do: write `error` as the fix: Accept the terms to continue.
+- Do: set `required` for a box that must be checked, so the label says so.
+- Don't: use it for a setting that applies at once; that is a Switch.
+- Don't: leave the label out and rely on the text around it: the label is what names the box.
+
+## Accessibility
+
+The control is a native `<input type="checkbox">` inside a `<label>`, so clicking the text toggles the box and the text names it. With `required` the label writes the word Required after a dot, and the input is `required`.
+
+With `error` the input gets `aria-invalid="true"`, and the message is tied to it by `aria-describedby`; the hint is tied the same way when there is no error. The error mark is hidden from assistive tech, so the message carries the error.
+
+Keys are those of the native element:
+
+- `Tab` moves focus to the box and `Shift+Tab` away from it.
+- `Space` toggles it.
+
+`labels` changes the word Required: `labels={ptBR.Checkbox}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<input>` go to the `<input>` (`checked`, `onChange` and `name` among them); `className` goes to the outer `<div>`.
+
+<ArgTypes />

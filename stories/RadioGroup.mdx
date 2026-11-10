@@ -1,0 +1,53 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./RadioGroup.stories";
+
+<Meta of={Stories} />
+
+# RadioGroup
+
+A group of exclusive options with a legend, a hint and an error state, on native radios in a `<fieldset>`.
+
+## Usage
+
+Set `label` (the legend) and `options`, each with a `value`, a `label` and optionally `disabled`. Use `value` with `onChange` for a controlled group, or `defaultValue` for an uncontrolled one. `onChange` gets the change event of the radio picked: `e.target.value` is the option's `value`.
+
+```tsx
+import { RadioGroup } from "@gabrioliv/dossier";
+
+<RadioGroup
+  label="Environment"
+  name="env"
+  defaultValue="staging"
+  options={[
+    { value: "staging", label: "Staging" },
+    { value: "prod", label: "Production" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: use it when the options fit on screen and the person should compare them.
+- Do: pick a `defaultValue` that is safe, or leave it out and use `required` so the person chooses.
+- Don't: use it for more than about six options; that is a Select.
+- Don't: use it for yes or no with a long label; that is a Checkbox or a Switch.
+
+## Accessibility
+
+The root is a `<fieldset>` and the label is its `<legend>`, so a screen reader reads the legend when focus enters the group. Each option is a native `<input type="radio">` inside a `<label>`, all sharing one `name` (generated when you do not pass one). With `required` the legend writes the word Required.
+
+With `error` the radios get `aria-invalid="true"`; the message is tied to the group by `aria-describedby`, as the hint is when there is no error. `disabled` on the group disables every radio, and `disabled` on an option disables that one.
+
+Keys are those of native radios:
+
+- `Tab` moves focus into the group, to the checked radio or the first one, and `Shift+Tab` out of it.
+- `ArrowDown` and `ArrowUp` move to the next and previous radio and check it; `ArrowRight` and `ArrowLeft` do the same.
+- `Space` checks the focused radio.
+
+`labels` changes the word Required: `labels={ptBR.RadioGroup}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref`, `className` and the native attributes of `<fieldset>` (`disabled` and `id` among them) go to the `<fieldset>`.
+
+<ArgTypes />

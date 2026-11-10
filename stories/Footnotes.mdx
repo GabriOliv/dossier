@@ -1,0 +1,42 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Footnotes.stories";
+
+<Meta of={Stories} />
+
+# Footnotes
+
+Numbered notes under a short rule, in small muted text.
+
+## Usage
+
+Pass `notes`, each with `text` and optionally an `id`. The ids default to 01, 02 and so on, in order. Mark the reference in the running text yourself, with the same number.
+
+```tsx
+import { Footnotes } from "@gabrioliv/dossier";
+
+<Footnotes
+  notes={[
+    { text: "Latency is the 95th percentile over three runs." },
+    { id: "02", text: "Load profile: 200 users, 10 minutes." },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: keep the ids in the order they appear in the text.
+- Do: place the notes at the foot of the page or the section they belong to.
+- Don't: use more than six notes per page.
+- Don't: expect links between the reference and the note: the component draws the list only, and the reference in the text is yours to write.
+
+## Accessibility
+
+The root is an ordered list (`<ol>`), one `<li>` per note. The id is drawn as text inside each item.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<ol>` pass through to the root `<ol>`.
+
+<ArgTypes />

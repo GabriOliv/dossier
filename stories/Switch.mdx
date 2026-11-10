@@ -1,0 +1,44 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Switch.stories";
+
+<Meta of={Stories} />
+
+# Switch
+
+A square on/off switch with its label, hint and error state, on a native `<input type="checkbox" role="switch">`.
+
+## Usage
+
+Set `label`. Native attributes such as `checked`, `defaultChecked`, `onChange` and `name` go to the input.
+
+```tsx
+import { Switch } from "@gabrioliv/dossier";
+
+<Switch label="Send reports by e-mail" defaultChecked />;
+```
+
+## Do and don't
+
+- Do: use it for a setting that takes effect as soon as it is flipped.
+- Do: write the label so both states make sense: Send reports by e-mail, not Enable.
+- Don't: use it for a choice that is submitted with a form; that is a Checkbox.
+- Don't: change what the label says when the switch flips: the state is announced by the switch.
+
+## Accessibility
+
+The control is a native checkbox with `role="switch"`, inside a `<label>`, so a screen reader announces a switch with its on or off state and the text names it. With `required` the label writes the word Required after a dot.
+
+With `error` the input gets `aria-invalid="true"` and the message is tied to it by `aria-describedby`; the hint is tied the same way when there is no error.
+
+Keys are those of the native element:
+
+- `Tab` moves focus to the switch and `Shift+Tab` away from it.
+- `Space` flips it.
+
+`labels` changes the word Required: `labels={ptBR.Switch}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<input>` go to the `<input>` (`checked`, `onChange` and `name` among them); `className` goes to the outer `<div>`.
+
+<ArgTypes />

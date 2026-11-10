@@ -1,0 +1,50 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Accordion.stories";
+
+<Meta of={Stories} />
+
+# Accordion
+
+Sections that open and close, on native `<details>` and `<summary>`.
+
+## Usage
+
+Pass `items`, each with a `title`, `content` and optionally `defaultOpen`. With `exclusive` every item shares one `name`, so the browser keeps one open at a time. It works without JavaScript, and the browser's find in page opens the item it finds text in. With no items nothing renders.
+
+```tsx
+import { Accordion } from "@gabrioliv/dossier";
+
+<Accordion
+  exclusive
+  items={[
+    { title: "How do I ship?", content: "The order leaves in two business days." },
+    { title: "Can I return it?", content: "Within thirty days.", defaultOpen: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: write the title as the question or the topic, in plain text.
+- Do: use `exclusive` when the sections are alternatives the person reads one after another.
+- Do: use it in a Server Component: it holds no state and carries no `"use client"`.
+- Don't: give `defaultOpen` to more than one item of an `exclusive` accordion: the server marks both open, and the browser opens only the first. Give it to one item.
+- Don't: put headings in `title`: the summary is a button.
+- Don't: hide content the person must see to finish a task.
+
+## Accessibility
+
+Each item is a native `<details>` with a `<summary>`; the summary is the button, named by its title, and the browser announces whether it is expanded.
+
+Keys are those of the native element:
+
+- `Tab` moves focus to the next summary and `Shift+Tab` to the previous one.
+- `Enter` and `Space` open or close the focused item.
+
+The content of a closed item is not available to assistive tech. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

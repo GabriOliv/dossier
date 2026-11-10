@@ -1,0 +1,47 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Assertion.stories";
+
+<Meta of={Stories} />
+
+# Assertion
+
+Expected against actual for one check: a label with a status flag, then an Expected row and an Actual row in mono.
+
+## Usage
+
+Give it the `expected` and `actual` values. It passes when both are equal as strings; set `pass` to decide yourself. On a failure the Actual row gets the error mark and turns to the error colour.
+
+```tsx
+import { Assertion } from "@gabrioliv/dossier";
+
+<Assertion
+  label="CHK-114 · status code"
+  expected="200 OK"
+  actual="500 Internal Server Error"
+  location="checkout.spec.ts:88"
+/>;
+```
+
+## Do and don't
+
+- Do: show the raw values as the system returned them: status lines, numbers with units.
+- Do: put the same check id in `label` that the CheckLog row has, and place the two side by side.
+- Do: pass `pass` yourself when equal values can differ as text, such as `84.9` and `84.90`: the default compares `String(expected)` with `String(actual)`.
+- Don't: use it for long diffs. Show the short values and link to the full log.
+- Don't: put the file and line in `label`; that is what `location` is for.
+
+## Accessibility
+
+The root is a `<div>`; it has no role of its own. The rows are a description list (`<dl>`) with an Expected and an Actual term, so a screen reader reads each value after its term.
+
+The result is a StatusFlag, which writes the word Pass or Fail, so the result never depends on colour. The error mark on a failed Actual row is hidden from assistive tech.
+
+`label` is plain text, not a heading, and it falls back to the word Assertion. `labels` changes that fallback, the words Expected and Actual, and the Pass and Fail words of the flag: `labels={ptBR.Assertion}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

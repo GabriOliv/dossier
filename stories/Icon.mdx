@@ -1,0 +1,40 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Icon.stories";
+
+<Meta of={Stories} />
+
+# Icon
+
+One icon of the Dossier set: a 1 px square-capped stroke in the text colour, drawn inline.
+
+## Usage
+
+Set `name` to one of the 22 icons: `close`, `check`, `plus`, `minus`, `chevron-up`, `chevron-down`, `chevron-left`, `chevron-right`, `arrow-up`, `arrow-down`, `arrow-left`, `arrow-right`, `search`, `menu`, `more`, `external`, `copy`, `download`, `info`, `warning`, `error` and `loading`. `size` is 16 (the default) or 24 px. Any other name renders nothing.
+
+```tsx
+import { Icon } from "@gabrioliv/dossier";
+
+<Icon name="search" />
+
+<Icon name="warning" size={24} label="Warning" />
+```
+
+## Do and don't
+
+- Do: leave `label` out when text beside the icon says the same, so it is not read twice.
+- Do: pass `label` when the icon is the only thing that says it.
+- Do: put an icon in an IconButton to make it an action.
+- Don't: pass a name that is not in the set: nothing renders, and no error is shown.
+- Don't: use an icon on its own as a button: it is not interactive.
+
+## Accessibility
+
+Without `label` the `<svg>` is `aria-hidden="true"`: it is decoration. With `label` it is a `role="img"` named by it.
+
+It follows the text colour (`currentColor`). It is not interactive: it takes no focus and accepts no keys. For an action, use an IconButton. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

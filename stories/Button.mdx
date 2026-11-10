@@ -1,0 +1,50 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Button.stories";
+
+<Meta of={Stories} />
+
+# Button
+
+A square button in three variants, on a native `<button>`.
+
+## Usage
+
+`variant` is `outline` (the default), `solid` for the main action or `text` for the quiet ones. `tone="danger"` swaps the accent for the error colour, and `size="sm"` is the compact size. `type` is `button` unless you say `submit` or `reset`. `loading` shows a Spinner over the label, which keeps its place so the width does not change.
+
+```tsx
+import { Button } from "@gabrioliv/dossier";
+
+<Button variant="solid" onClick={save}>
+  Save
+</Button>
+
+<Button tone="danger" variant="solid" type="submit">
+  Delete
+</Button>
+```
+
+## Do and don't
+
+- Do: use one `solid` button per group, for the main action.
+- Do: use `tone="danger"` for destructive actions, and say the action in the label: Delete, not OK.
+- Do: use `loading` while an action runs, and keep the label: the button keeps its width.
+- Don't: use a Button to go to another page; that is a Link.
+- Don't: use `loading` from a Server Component. Button has no `"use client"`, and with `loading` it passes a function to `<button onClick>`, which a file without `"use client"` cannot do. Use `loading` from a Client Component.
+- Don't: expect a click while `loading` to reach `onClick` or submit the form: it does neither.
+
+## Accessibility
+
+The root is a native `<button>`, named by its text. Keys are those of the native element:
+
+- `Tab` moves focus to the button and `Shift+Tab` away from it.
+- `Enter` and `Space` press it.
+
+With `loading` the button gets `aria-busy="true"`, stays focusable, and a click, `Enter` or `Space` neither calls `onClick` nor submits a form. The Spinner inside is hidden from assistive tech, so `aria-busy` is what tells the state.
+
+A `disabled` button leaves the tab order, as a native one does. Button has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<button>` pass through to the root `<button>`.
+
+<ArgTypes />

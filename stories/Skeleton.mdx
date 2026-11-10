@@ -1,0 +1,40 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Skeleton.stories";
+
+<Meta of={Stories} />
+
+# Skeleton
+
+A still placeholder for content on its way: no gradient and no movement.
+
+## Usage
+
+`variant` is `text` (the default, one line of body text high) or `block`. A `block` is `--ds-space-12` high unless you set `height`, a CSS length or a number of px; `text` ignores `height`.
+
+```tsx
+import { Skeleton } from "@gabrioliv/dossier";
+
+<div aria-busy="true">
+  <Skeleton />
+  <Skeleton variant="block" height={96} />
+</div>;
+```
+
+## Do and don't
+
+- Do: give the placeholder the size of the content it stands for, so the page does not jump when the content arrives.
+- Do: put `aria-busy` on the container that loads.
+- Don't: use it for a wait with no content shape, or one that may fail; show a message or a Spinner.
+- Don't: use it as the only sign of loading for a screen reader: it is hidden from assistive tech.
+
+## Accessibility
+
+The root is a `<div aria-hidden="true">`, hidden from assistive tech. Say that the area is loading with `aria-busy` on its container, or with a Spinner.
+
+It is not interactive: it takes no focus and accepts no keys. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

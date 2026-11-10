@@ -1,0 +1,54 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./TextField.stories";
+
+<Meta of={Stories} />
+
+# TextField
+
+A square text input, or a textarea, with a label above and a hint or an error below.
+
+## Usage
+
+Set `label`. Use `value` with `onChange` for a controlled field, or `defaultValue` for an uncontrolled one. `hint` shows under the field; `error` replaces the hint and puts the field in its error state. `multiline` renders a textarea, and `rows` sets its height (default 3).
+
+```tsx
+import { TextField } from "@gabrioliv/dossier";
+
+<TextField
+  label="Waiver reason"
+  name="reason"
+  multiline
+  required
+  hint="Shown in the audit log."
+  error="Write a reason before waiving a failed check."
+/>;
+```
+
+## Do and don't
+
+- Do: write the error as the fix, not only the fault: Write a reason before waiving a failed check.
+- Do: show the error after the person leaves the field or submits, not while they type.
+- Do: give the field a `name` when it is in a form.
+- Don't: rely on the red border alone: the message is what carries the error.
+- Don't: put a placeholder where a label belongs: the label is always shown.
+
+## Accessibility
+
+The label is a real `<label>` tied to the field, so clicking it focuses the field and it names the field. With `required`, the label also writes the word Required after a dot, and the native `required` is set.
+
+With `error` the field gets `aria-invalid="true"`, and the message is tied to the field by `aria-describedby`, with the error mark hidden from assistive tech. With `hint` and no `error`, the hint is tied the same way. The error is not a live region, so it is read when the field is focused, not when it appears.
+
+The ref and every native attribute go to the `<input>` or the `<textarea>`; `className` goes to the outer `<div>`.
+
+Keys are those of the native control:
+
+- `Tab` moves focus to the field and `Shift+Tab` away from it.
+- `Enter` in a single-line field submits the form it is in; in a `multiline` field it adds a new line.
+
+`labels` changes the word Required: `labels={ptBR.TextField}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<input>` go to the `<input>` (to the `<textarea>` with `multiline`); `className` goes to the outer `<div>`.
+
+<ArgTypes />

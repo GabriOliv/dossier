@@ -1,0 +1,38 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Dimension.stories";
+
+<Meta of={Stories} />
+
+# Dimension
+
+A blueprint measure: a line with end ticks and the value centred above it.
+
+## Usage
+
+Set `length` in px (default 240) and optionally a `label`; without one the text is the length followed by px. The SVG adds 6 px on each side for the ticks, so offset the thing it measures by 6 px.
+
+```tsx
+import { Dimension } from "@gabrioliv/dossier";
+
+<Dimension length={320} label="320 px · content width" />;
+```
+
+## Do and don't
+
+- Do: place it directly above or below the object it measures.
+- Do: use it in the Blueprint theme, for wireframes, specs and layout annotations.
+- Do: mark the one measure under discussion `active`.
+- Don't: put labels on the line itself, or use it as a divider; Divider is for that.
+- Don't: pass a `length` of `0`: it falls back to 240.
+
+## Accessibility
+
+The root is an `<svg role="img">` named by its text: the `label` you pass, or the length followed by px. The name is the same text that is drawn, so it is read once.
+
+It has no fixed texts, so it takes no `labels`; the default text is not translated, so pass a `label` in the language of the page. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

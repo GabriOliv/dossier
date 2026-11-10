@@ -1,0 +1,37 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Meter.stories";
+
+<Meta of={Stories} />
+
+# Meter
+
+A segmented rating: a row of square cells filled up to the value, with the label on the left and the count on the right.
+
+## Usage
+
+Set `label` and a whole-number `value`. `max` is the number of cells (default 10). `tone="signal"` colours the one meter that matters most.
+
+```tsx
+import { Meter } from "@gabrioliv/dossier";
+
+<Meter label="Coverage" value={7} />;
+```
+
+## Do and don't
+
+- Do: use `tone="signal"` on at most one meter per group.
+- Do: keep the same `max` for every meter in a group, so the cells line up.
+- Don't: use it for precise figures; show those in a Readout.
+- Don't: expect a value above `max` to show in full: it is rounded and clamped, so `12` with the default `max` shows `10/10`.
+
+## Accessibility
+
+The root is a `<div role="meter">` with `aria-valuemin` 0, `aria-valuemax` set to `max`, `aria-valuenow` set to the shown value and `aria-label` set to `label`. The cells are hidden from assistive tech; the text `7/10` is drawn beside them.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

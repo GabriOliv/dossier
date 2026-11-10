@@ -1,0 +1,44 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ProportionDial.stories";
+
+<Meta of={Stories} />
+
+# ProportionDial
+
+One share of a whole: an arc on the outer ring from 12 o'clock, a disc of dots, and the percentage with its label.
+
+## Usage
+
+Set `value` from 0 to 100 and a `label` for what the share counts. Optional `segments` (`angle` in degrees from 3 o'clock, clockwise, and `label`) put category callouts on the ring. `size`, `labelWidth` and `dotStep` set the geometry.
+
+```tsx
+import { ProportionDial } from "@gabrioliv/dossier";
+
+<ProportionDial
+  value={72}
+  label="Checks passed"
+  segments={[
+    { angle: 200, label: "Checkout" },
+    { angle: 320, label: "Search" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: draw one dial per figure, one share per dial.
+- Do: place segment callouts on the side away from the value callout, which sits at the end of the arc.
+- Don't: use it for several categories that add up to 100%; that is a BarChart.
+- Don't: put the value only in the dial: write the figure in the text too.
+
+## Accessibility
+
+The root is an `<svg role="img">`. Its name is `title`, else `label`, else the word Share, followed by a colon and the rounded percentage, such as Checks passed: 72%.
+
+`labels` changes only the fallback word: `labels={ptBR.ProportionDial}`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

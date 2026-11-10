@@ -1,0 +1,39 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Redacted.stories";
+
+<Meta of={Stories} />
+
+# Redacted
+
+An inline bar that stands in for withheld text, sized by a character count.
+
+## Usage
+
+Set `length`, the approximate number of characters covered, from 2 to 40 (default 8). Use it inside body text, Transcript lines or FieldList values.
+
+```tsx
+import { Redacted } from "@gabrioliv/dossier";
+
+<p>
+  The reviewer was <Redacted length={12} />.
+</p>;
+```
+
+## Do and don't
+
+- Do: remove the real text from your data before rendering: the component never takes the text, so nothing hidden ends up in the page.
+- Do: size the bar to the length of the text it replaces only if that length is not itself a secret.
+- Don't: use it as decoration or for emphasis.
+- Don't: pass the hidden text as a prop or as `children`: it takes neither.
+
+## Accessibility
+
+The root is a `<span role="img">` named Redacted (`aria-label`). A screen reader reads the word Redacted and nothing else, and the bar has no text inside it.
+
+`labels` changes the name: `labels={ptBR.Redacted}`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<span>` pass through to the root `<span>`.
+
+<ArgTypes />

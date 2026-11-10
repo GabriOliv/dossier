@@ -1,0 +1,47 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Tooltip.stories";
+
+<Meta of={Stories} />
+
+# Tooltip
+
+A short text tip for its trigger, which it describes by `aria-describedby`.
+
+## Usage
+
+Wrap the trigger, one element that takes the pointer and focus, in general an IconButton, and pass the text as `content`. The tip shows above the trigger after the pointer or keyboard focus has stayed on it for 500 ms, and hides once pointer and focus have left.
+
+```tsx
+import { Tooltip } from "@gabrioliv/dossier";
+
+<Tooltip content="Copies the link to the clipboard">
+  <IconButton label="Copy link">
+    <Icon name="copy" />
+  </IconButton>
+</Tooltip>;
+```
+
+## Do and don't
+
+- Do: use it to add a short detail to a control that is already named.
+- Do: keep it to a few words of plain text.
+- Don't: put anything the person needs in a tip: it shows only on hover or keyboard focus, and a disabled trigger never shows it.
+- Don't: put links, buttons or other controls in it; `content` is text only.
+- Don't: repeat the trigger's own name: a screen reader reads the name, then the tip.
+
+## Accessibility
+
+The tip is a `<div role="tooltip">` and the trigger gets `aria-describedby` pointing to it, added to any `aria-describedby` the trigger already has. A screen reader reads the trigger's name, then the tip.
+
+Keys:
+
+- `Tab` moves focus to the trigger; after 500 ms of keyboard focus the tip shows.
+- `Escape` hides the tip, without closing a Dialog or Popover the tip is in.
+
+The tip stays while the pointer is over the trigger or the tip. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` go to the tip, not to the trigger.
+
+<ArgTypes />

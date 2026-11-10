@@ -1,0 +1,40 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Link.stories";
+
+<Meta of={Stories} />
+
+# Link
+
+A native link with the Dossier link style: an `<a class="ds-link">`.
+
+## Usage
+
+Pass `href` and the text. Every native `<a>` attribute works. To style the link of a router, put the class on it instead: `<NextLink className="ds-link">`.
+
+```tsx
+import { Link } from "@gabrioliv/dossier";
+
+<Link href="/runs/0427">Run 0427</Link>;
+```
+
+## Do and don't
+
+- Do: write link text that makes sense out of context: Read the run report, not Click here.
+- Do: use `ds-link` on the link of your router, so it looks the same.
+- Don't: use a Link for an action that does not go anywhere; that is a Button.
+- Don't: leave out `href`: an `<a>` without it is not a link and cannot be focused.
+
+## Accessibility
+
+The root is a native `<a>`, named by its text. Keys are those of the native element:
+
+- `Tab` moves focus to the link and `Shift+Tab` away from it.
+- `Enter` follows it.
+
+Link adds no `target` or `rel`: set them yourself for a link that opens a new tab. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<a>` pass through to the root `<a>`.
+
+<ArgTypes />

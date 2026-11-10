@@ -1,0 +1,41 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Grid.stories";
+
+<Meta of={Stories} />
+
+# Grid
+
+Items on a grid, spaced by the Dossier scale: a grid `<div>`.
+
+## Usage
+
+`columns` is a number of equal columns; below 640 px the grid has one column. `minColumnWidth` (a CSS length, or a number of px) makes columns at least that wide that fill the row, and `columns` is ignored when it is set. `gap` is a step of the scale: 1, 2, 3, 4, 6, 8 or 12.
+
+```tsx
+import { Grid } from "@gabrioliv/dossier";
+
+<Grid columns={3} gap={4}>
+  <Readout label="Passed" value="11" />
+  <Readout label="Failed" value="1" tone="signal" />
+  <Readout label="Skipped" value="0" />
+</Grid>;
+```
+
+## Do and don't
+
+- Do: use `columns` for a fixed count of equal items, such as a row of Readouts.
+- Do: use `minColumnWidth` for cards, so the count follows the width.
+- Don't: pass a `columns` that is not a whole number of 1 or more: it is ignored and the items stack in one column.
+- Don't: set `columns` together with `minColumnWidth` and expect both: `minColumnWidth` wins.
+
+## Accessibility
+
+The root is a plain `<div>` with no role. Items keep their order in the page, and on a narrow screen they stack in the same order.
+
+It is not interactive: it takes no focus and accepts no keys. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

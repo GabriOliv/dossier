@@ -1,0 +1,46 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./LineChart.stories";
+
+<Meta of={Stories} />
+
+# LineChart
+
+One trend line over a hatched area, with value callouts on chosen points instead of a y axis.
+
+## Usage
+
+Pass `data`, each point with an `x` label and a `y` value. Put `callout` on the points whose value to show, and `active` on the one the text is about. `yMin` and `yMax` default to 0 and the largest value; `width` and `height` set the viewBox (720 by 240).
+
+```tsx
+import { LineChart } from "@gabrioliv/dossier";
+
+<LineChart
+  title="Pass rate by month"
+  unit="%"
+  data={[
+    { x: "Jun", y: 82, callout: true },
+    { x: "Jul", y: 88 },
+    { x: "Aug", y: 94, active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark one point `active`, the one the headline is about, and put callouts on two or three others at most.
+- Do: put the source in Footnotes or in a caption under the chart.
+- Do: keep the default size or larger, so the labels stay legible when the SVG scales down.
+- Don't: draw more than one line; split the series into separate charts.
+- Don't: expect a y axis: the values show only in the callouts, so call out every value the reader needs.
+
+## Accessibility
+
+The root is an `<svg role="img">` named by `title`, or by the words Line chart without it. The name does not list the values, so write the finding in the text around the chart and call out the key values.
+
+`labels` changes only the fallback name: `labels={ptBR.LineChart}`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

@@ -1,0 +1,53 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Menu.stories";
+
+<Meta of={Stories} />
+
+# Menu
+
+A button that opens a flat list of actions, on a Popover.
+
+## Usage
+
+Pass the `trigger`, in general a Button or an IconButton, and `items`, each with a `label` and an `onSelect`, and optionally `disabled` and `tone="danger"`. `placement` works as in Popover. Choosing an item closes the menu, then calls `onSelect`.
+
+```tsx
+import { Menu } from "@gabrioliv/dossier";
+
+<Menu
+  trigger={<Button>Actions</Button>}
+  items={[
+    { label: "Rename", onSelect: rename },
+    { label: "Delete", onSelect: remove, tone: "danger" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: use it for a list of actions on one object, with the most used first.
+- Do: mark a destructive item `tone="danger"`.
+- Do: keep a disabled item in the list instead of removing it, so the list does not change shape.
+- Don't: use it for navigation between pages; use links.
+- Don't: put fields or other controls in it: it holds actions only.
+- Don't: use it from a Server Component: `onSelect` is a function, so use it from a Client Component.
+
+## Accessibility
+
+The panel is a `role="menu"` and each action a `<button role="menuitem">`; the trigger gets `aria-haspopup="menu"`, and `aria-expanded` from the Popover. A disabled item stays in the list with `aria-disabled`, the arrow keys skip it and choosing it does nothing. With no `items` the trigger is `aria-disabled` and opens nothing.
+
+Keys:
+
+- `Enter`, `Space` and `ArrowDown` on the trigger open the menu and move focus to the first enabled item.
+- `ArrowDown` and `ArrowUp` move between the enabled items and wrap at the ends.
+- `Home` and `End` go to the first and last enabled item.
+- `Enter` and `Space` choose the focused item: the menu closes and focus goes back to the trigger.
+- `Escape` and `Tab` close it without choosing.
+
+Only one item is in the tab order at a time. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` go to the menu panel, not to the trigger.
+
+<ArgTypes />

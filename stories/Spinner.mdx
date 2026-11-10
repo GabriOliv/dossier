@@ -1,0 +1,39 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Spinner.stories";
+
+<Meta of={Stories} />
+
+# Spinner
+
+Four square cells lit one at a time, with a text beside them.
+
+## Usage
+
+Render it while something loads. The text defaults to Loading; change it with `labels`. With reduced motion the cells stand still, two lit, and the text stays visible.
+
+```tsx
+import { Spinner } from "@gabrioliv/dossier";
+
+<Spinner />
+
+<Spinner labels={{ label: "Saving" }} />
+```
+
+## Do and don't
+
+- Do: say what is loading with `labels`, such as Saving or Exporting.
+- Do: show one Spinner for one waiting area.
+- Don't: use it for a known progress; it shows none.
+- Don't: render many at once, such as one per row: each is a live region, so each is announced.
+
+## Accessibility
+
+The root is a `<span role="status">` named by its text (`aria-label`), and the text is visible beside the cells. A `status` is a live region, so a screen reader announces it when it appears. The cells are hidden from assistive tech.
+
+`labels` changes the text and the name together: `labels={ptBR.Spinner}`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<span>` pass through to the root `<span>`.
+
+<ArgTypes />

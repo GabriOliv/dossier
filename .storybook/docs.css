@@ -1,0 +1,5 @@
+/* Docs pages on a phone: the props table scrolls inside its block, so the page itself never scrolls sideways. */
+.sbdocs-content .docblock-argstable {
+  display: block;
+  overflow-x: auto;
+}

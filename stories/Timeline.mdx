@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Timeline.stories";
+
+<Meta of={Stories} />
+
+# Timeline
+
+Evenly spaced events on one axis that ends in a pointer: a position above, a marker on the axis, a label and a note below.
+
+## Usage
+
+Pass `events` in order, each with `at` (the position, as text), a `label`, and optionally a `note` and `active`. The spacing is even, not proportional, and three to six events read best.
+
+```tsx
+import { Timeline } from "@gabrioliv/dossier";
+
+<Timeline
+  events={[
+    { at: "T+00:00", label: "Run starts" },
+    { at: "T+04:00", label: "Export fails", note: "Timeout after 4000 ms", active: true },
+    { at: "T+09:30", label: "Rerun passes" },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark one event `active`, drawn as a larger signal marker.
+- Do: use it for scales that jump (1, 10, 100, 1000): the spacing is even.
+- Don't: write notes longer than one short line.
+- Don't: expect distances to mean time: two events far apart in time are drawn as far as two close ones.
+
+## Accessibility
+
+The root is an ordered list (`<ol>`), one `<li>` per event, so the order is announced. The position, the label and the note are plain text. The axis and the marker are hidden from assistive tech, so the active event is marked by its marker only: say in the text why it matters.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<ol>` pass through to the root `<ol>`.
+
+<ArgTypes />

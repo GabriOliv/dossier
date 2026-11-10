@@ -1,0 +1,65 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Toaster.stories";
+
+<Meta of={Stories} />
+
+# Toaster
+
+The region where `toast()` shows its messages, at the bottom right of the window, in the top layer.
+
+## Usage
+
+Mount one `<Toaster />` near the root of the app, then call `toast()` from any handler: no context to pass down. Only the first Toaster mounted shows the toasts. Up to 3 show at a time and the others wait in order of arrival. A toast whose time is running pauses while the pointer is over it or focus is inside it.
+
+```tsx
+import { Toaster } from "@gabrioliv/dossier";
+
+<Toaster />;
+```
+
+### `toast()`
+
+`toast(options)` shows a toast in the Toaster, or queues it until one mounts, and returns the toast's id. It returns `null`, and shows nothing, when `title` is an empty string. `toast.dismiss(id)` closes the toast with that id, whether it is shown or waiting; an unknown id changes nothing.
+
+Options:
+
+- `title`: the message.
+- `description`: a second line under the title.
+- `tone`: `default`, or `error`, which goes to the `role="alert"` container and never closes by itself.
+- `duration`: how long the toast stays, in ms. The default is 6000, and `Infinity` keeps it until it is closed.
+
+```tsx
+import { toast } from "@gabrioliv/dossier";
+
+const id = toast({ title: "Export started", description: "run-0042.pdf", duration: 10000 });
+
+toast.dismiss(id!);
+```
+
+## Do and don't
+
+- Do: mount the Toaster once, in the root layout, and keep it mounted.
+- Do: use `tone: "error"` for a failure the person must see: it does not close by itself.
+- Do: keep the title short, and put the detail in `description`.
+- Don't: pass a `duration` of 0, a negative number or `NaN`: the toast closes almost at once. Use a positive number, or `Infinity` to keep it until it is closed.
+- Don't: pass a `title` of only spaces: it makes a blank toast. Only an empty string makes none, so trim the text first.
+- Don't: call `toast()` in the same task in which the last Toaster unmounts: the toast is dropped. Keep one Toaster mounted at the root.
+- Don't: show a toast while a modal `<dialog>` is open (a Dialog, for example): the toast sits under the `::backdrop` and its Close button cannot be clicked. Show the message inside the dialog instead.
+- Don't: use it from a Server Component: Toaster and `toast` carry `"use client"`.
+
+## Accessibility
+
+The Toaster is a `<section role="region">` named Notifications. It holds two live regions, always rendered: a `role="status"` container for default toasts and a `role="alert"` one for errors, so a screen reader announces each new toast. Each toast has a Close button.
+
+Keys:
+
+- `Tab` and `Shift+Tab` move focus to the Close button of a toast, which pauses its time.
+- `Enter` and `Space` press Close.
+
+There is no key that closes a toast from elsewhere: call `toast.dismiss(id)`, or let the time run out. `labels` changes the region name (Notifications) and the Close text: `labels={ptBR.Toaster}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<section>` pass through to the root `<section>`.
+
+<ArgTypes />

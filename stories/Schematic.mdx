@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Schematic.stories";
+
+<Meta of={Stories} />
+
+# Schematic
+
+The signature diagram: concentric rings with ticks, a crosshair, nodes on the rings and leader lines to callouts.
+
+## Usage
+
+Pass `nodes`, each with a `ring` (1 is the innermost), an `angle` in degrees from 3 o'clock clockwise, a `label` and optionally `active`. `size` is the outer diameter (default 240), `rings` the ring count (default 4), `labelWidth` the room for callouts on each side (default 120).
+
+```tsx
+import { Schematic } from "@gabrioliv/dossier";
+
+<Schematic
+  title="Test layers"
+  nodes={[
+    { ring: 1, angle: 30, label: "Unit" },
+    { ring: 3, angle: 200, label: "End to end", active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark one node `active`; every other node is an outlined disc.
+- Do: spread the nodes so callouts on the same side sit at least 20 px apart vertically.
+- Don't: fill rings, add gradients or glows, or label anything inside the outer ring.
+- Don't: rely on the picture alone: it is one image for assistive tech, so list the nodes in the text.
+
+## Accessibility
+
+The root is an `<svg role="img">` named by `title`, or by the word Schematic without it. The name does not list the nodes, so describe the structure in the text around it.
+
+`labels` changes only the fallback name: `labels={ptBR.Schematic}`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

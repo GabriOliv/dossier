@@ -1,0 +1,64 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Dialog.stories";
+
+<Meta of={Stories} />
+
+# Dialog
+
+A modal dialog on a native `<dialog>`: the page behind is inert, and focus stays inside.
+
+## Usage
+
+The state lives with you: `open` shows the dialog and `onClose` is called on Escape, on the close button and on a click on the backdrop. Only setting `open` to `false` closes it. `title` is the heading, `description` a line under it, `actions` the buttons at the foot, and `children` the body. `alert` makes it a confirmation.
+
+```tsx
+import { Dialog } from "@gabrioliv/dossier";
+
+export function DeleteFile() {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Delete file</Button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Delete file"
+        description="The file leaves the folder and cannot be restored."
+        actions={
+          <Button variant="solid" tone="danger" onClick={() => setOpen(false)}>
+            Delete
+          </Button>
+        }
+      />
+    </>
+  );
+}
+```
+
+## Do and don't
+
+- Do: set `open` to `false` in `onClose`: the events only ask, and `open` closes the dialog.
+- Do: use `alert` for a confirmation that needs an answer: a click on the backdrop does not close it.
+- Do: write the title as the question or the action, and put the buttons in `actions`.
+- Don't: use it from a Server Component: `onClose` is a function, so use it from a Client Component.
+- Don't: use it for content that is not modal, such as a small menu or a filter; that is a Popover.
+
+## Accessibility
+
+The root is a native `<dialog>` opened with `showModal()`: the page behind is inert, focus moves into the dialog and goes back to where it was on close. The title is an `<h2>` that names the dialog (`aria-labelledby`), and `description` describes it (`aria-describedby`). With `alert` the role is `alertdialog`.
+
+The close button is an IconButton named Close.
+
+Keys:
+
+- `Escape` calls `onClose`. If a Popover, Menu or Tooltip is open inside the dialog, it gets the key first.
+- `Tab` and `Shift+Tab` move through the focusable elements and wrap at the ends, so focus never leaves the dialog.
+- `Enter` and `Space` press the focused button, the close button included.
+
+`labels` changes the name of the close button: `labels={ptBR.Dialog}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<dialog>` go to the `<dialog>`.
+
+<ArgTypes />

@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./StageIcon.stories";
+
+<Meta of={Stories} />
+
+# StageIcon
+
+One maturity-stage icon of the QA Garden cycle: A seed, B sprout, C tree, D fruit.
+
+## Usage
+
+Set `stage` to `A`, `B`, `C` or `D`. `size` is `sm` (16 px, the default) or `lg` (48 px). It draws inline and follows the colour of the text and the theme.
+
+```tsx
+import { StageIcon } from "@gabrioliv/dossier";
+
+<StageIcon stage="C" />
+
+<span>
+  <StageIcon stage="D" decorative /> Stage D · Fruit
+</span>
+```
+
+## Do and don't
+
+- Do: set `decorative` when the stage name is written next to the icon, so it is not read twice.
+- Do: use `sm` for 14 to 24 px and `lg` for 48 to 128 px.
+- Don't: redraw or recolour the drawings; they follow `currentColor` and the signal token.
+- Don't: use an icon alone to say the stage when the reader may not see it: add the name.
+
+## Accessibility
+
+The root is an `<svg role="img">` named by the stage (for example Stage A · Seed), with the same text in a `<title>`. With `decorative` it is `aria-hidden="true"`, with no role and no title.
+
+`labels` changes the four names: `labels={ptBR.StageIcon}` gives the Portuguese names. An unknown `stage` renders nothing.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<svg>` pass through to the root `<svg>`.
+
+<ArgTypes />

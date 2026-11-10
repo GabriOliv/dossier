@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Quote.stories";
+
+<Meta of={Stories} />
+
+# Quote
+
+Large uppercase text, in two variants: an attributed quote and a statement for the key message of a page.
+
+## Usage
+
+The text is the `children`. `source` and `code` make the attribution line in both variants. `variant="statement"` also takes a `kicker` above the text and a `note` below it; the default `quote` variant ignores them. Wrap the key figure in `<span className="ds-hl">` to set it in signal.
+
+```tsx
+import { Quote } from "@gabrioliv/dossier";
+
+<Quote variant="statement" kicker="Finding" note="Measured over three runs.">
+  <span className="ds-hl">90%</span> of the failures start in checkout.
+</Quote>
+
+<Quote source="Release manager" code="REV B">
+  Ship when the gate is green.
+</Quote>
+```
+
+## Do and don't
+
+- Do: use one quote or statement per page or slide.
+- Do: lead a statement with the number when there is one.
+- Don't: set long passages; keep the one sentence that matters.
+- Don't: pass `kicker` or `note` to a quote: they show on the `statement` variant only.
+
+## Accessibility
+
+The root is a `<figure>`. The `quote` variant wraps the text in a `<blockquote>`; the `statement` variant uses a `<p>`. The attribution is a `<figcaption>`. The opening quotation mark is hidden from assistive tech.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<figure>` pass through to the root `<figure>`.
+
+<ArgTypes />

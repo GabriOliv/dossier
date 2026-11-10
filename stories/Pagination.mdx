@@ -1,0 +1,45 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Pagination.stories";
+
+<Meta of={Stories} />
+
+# Pagination
+
+A `<nav>` with Previous, the pages and Next.
+
+## Usage
+
+Set `page` (from 1) and `total`. `siblings` is how many pages show on each side of the current one (default 1). With `href`, each page is a link, which works without JavaScript and in a Server Component. Without it, each page is a button and `onChange(page, event)` runs on click. With both, `onChange` runs before the browser follows the link: call `event.preventDefault()` to route on the client instead. With a `total` of 1 or less nothing renders.
+
+```tsx
+import { Pagination } from "@gabrioliv/dossier";
+
+<Pagination page={5} total={20} href={(n) => `/runs?page=${n}`} />;
+```
+
+## Do and don't
+
+- Do: pass `href` whenever a page can be a real link.
+- Do: keep `page` between 1 and `total`: a page out of range counts as the nearer end.
+- Do: test `event.ctrlKey`, `event.metaKey` and `event.shiftKey` in `onChange` and return before `event.preventDefault()` when one is set, so the browser can open the link in a new tab.
+- Don't: pass a `page` or a `total` that is not a whole number: `page={10.5}` shows the pages 9.5, 10.5 and 11.5. Round them first.
+- Don't: pass `NaN` or a negative number as `siblings`: the list shows two `…` in a row. Use 0 or more.
+- Don't: expect a Ctrl+click on a link to skip `onChange` when both `href` and `onChange` are set: it still calls `onChange`, so route on the client only when no modifier key is held.
+
+## Accessibility
+
+The root is a `<nav>` named Pagination, with the pages in a list. The current page has `aria-current="page"`, and each page number is named, for example Page 5. With `href` each page is an `<a>`; without it, a `<button>`. At the ends Previous or Next is disabled: a `disabled` button, or an `aria-disabled` span when the pages are links.
+
+Keys are those of links and buttons:
+
+- `Tab` and `Shift+Tab` move through the enabled controls.
+- `Enter` follows a link or presses a button.
+- `Space` presses a button, not a link.
+
+`labels` changes the nav name (Pagination), Previous, Next and the word Page: `labels={ptBR.Pagination}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<nav>` pass through to the root `<nav>`.
+
+<ArgTypes />

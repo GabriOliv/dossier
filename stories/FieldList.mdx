@@ -1,0 +1,45 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./FieldList.stories";
+
+<Meta of={Stories} />
+
+# FieldList
+
+Label and value rows, in two variants: a record sheet and a glossary.
+
+## Usage
+
+Pass `fields`, each with a `label` and a `value`. The default `record` variant sets mono labels beside one-line values and can use two `columns`; `variant="definition"` sets a term beside a longer description. A field can be `mono` (codes, dates) or `active` (one value in signal).
+
+```tsx
+import { FieldList } from "@gabrioliv/dossier";
+
+<FieldList
+  columns={2}
+  fields={[
+    { label: "Designation", value: "Regression run" },
+    { label: "Code", value: "RUN-0427", mono: true },
+    { label: "Status", value: "Blocked", active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: use records for identity sheets, with designation, code and status first.
+- Do: use definitions for glossaries and scope notes, with one or two sentences each.
+- Do: mark `mono` on codes, dates and coordinates.
+- Don't: use it for numeric comparisons across items; that is a DataTable.
+- Don't: set `columns` on the `definition` variant: it applies to records only.
+
+## Accessibility
+
+The root is a native description list (`<dl>`): each label is a `<dt>` and each value a `<dd>`, in a wrapping `<div>`, so assistive tech reads each value with its label. The `active` value is marked by colour only; say in the text why it stands out.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<dl>` pass through to the root `<dl>`.
+
+<ArgTypes />

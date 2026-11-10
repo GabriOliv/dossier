@@ -1,0 +1,43 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Transcript.stories";
+
+<Meta of={Stories} />
+
+# Transcript
+
+A time-coded dialogue log: time, speaker and line, one row per utterance.
+
+## Usage
+
+Pass `lines`, each with a `speaker` and `text`, and optionally a `time` and `active`. `title` shows above the log. `text` may hold Redacted elements.
+
+```tsx
+import { Transcript } from "@gabrioliv/dossier";
+
+<Transcript
+  title="Interview 04"
+  lines={[
+    { time: "04:12", speaker: "Reviewer", text: "Where did the export fail?" },
+    { time: "04:19", speaker: "Engineer", text: "At the export step.", active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark the line being discussed `active`; its speaker turns signal.
+- Do: use Redacted inside `text` for withheld words, and keep the real words out of your data.
+- Don't: use it for a chat interface; it is a record, not a conversation surface.
+- Don't: put a long monologue in one line: the text wraps at about 64 characters.
+
+## Accessibility
+
+The root is a `<div>`; the lines are an ordered list (`<ol>`), one `<li>` per utterance, with the time, the speaker and the text as plain text. The title is a `<div>`, not a heading element. The `active` line is marked by colour only, so name it in the text around the log.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

@@ -1,0 +1,44 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Contents.stories";
+
+<Meta of={Stories} />
+
+# Contents
+
+A numbered table of contents: a number, a title, a short description and an optional page reference for each section.
+
+## Usage
+
+Pass `items`, each with a `title` and optionally an `index`, a `description`, a `page` and `active`. The numbers default to 01, 02 and so on; a `page` is shown after the prefix P.
+
+```tsx
+import { Contents } from "@gabrioliv/dossier";
+
+<Contents
+  items={[
+    { title: "Scope", description: "What the run covers", page: 2 },
+    { title: "Results", description: "Every check", page: 4, active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: mark the current section `active` when the contents repeat as a divider page.
+- Do: keep each description to one sentence and each title to one to three words.
+- Don't: use it for more than seven sections on one page.
+- Don't: expect links: the items are text, not anchors. Add the links in your own markup if you need them.
+
+## Accessibility
+
+The root is an `<ol>`, one `<li>` per section, so the order is announced. The number, title, description and page are plain text. The current section (`active`) is marked by the colour of its number alone, so name it in the page too.
+
+`labels` changes the prefix before a page number (P.): `labels={ptBR.Contents}`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<ol>` pass through to the root `<ol>`.
+
+<ArgTypes />

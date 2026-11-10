@@ -1,0 +1,45 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Comparison.stories";
+
+<Meta of={Stories} />
+
+# Comparison
+
+Two or three parallel columns weighed against each other, each with a code, a title, a lead sentence and a list.
+
+## Usage
+
+Pass `columns`, each with a `title` and optionally a `code` (the default is A, B, C), a `lead`, `items` and `active`. Only the first three columns render. Mark the recommended or current column `active`.
+
+```tsx
+import { Comparison } from "@gabrioliv/dossier";
+
+<Comparison
+  columns={[
+    { title: "Keep", lead: "Fewest changes.", items: ["No migration", "Old API stays"] },
+    { title: "Replace", lead: "Cleaner API.", items: ["One migration", "New API"], active: true },
+  ]}
+/>;
+```
+
+## Do and don't
+
+- Do: give every column the same structure and a similar number of items, so they read side by side.
+- Do: mark the recommended or current column `active`.
+- Do: set `level` so the column titles fit the heading outline of the page.
+- Don't: pass more than three columns: the extra ones are dropped. Use a DataTable for more options.
+- Don't: put long paragraphs in `items`; they are one-line bullets.
+
+## Accessibility
+
+The root is a `<div>`, and each column is a `<section>`. The column title is a heading: `<h3>` by default, or the level you set with `level` (1 to 6). The code letter, the lead and the items are plain text, and the items are an unordered list.
+
+`active` is shown by colour only, so state in the title or the lead why the column is recommended.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

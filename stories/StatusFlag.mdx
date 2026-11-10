@@ -1,0 +1,41 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./StatusFlag.stories";
+
+<Meta of={Stories} />
+
+# StatusFlag
+
+The result of one check as a square flag with a mark and a word: pass, fail, skipped or pending.
+
+## Usage
+
+Set `status` to `pass`, `fail`, `skip` or `pending`. The word defaults to Pass, Fail, Skipped or Pending; pass one word as `children` to replace it. Any other `status` renders as pending.
+
+```tsx
+import { StatusFlag } from "@gabrioliv/dossier";
+
+<StatusFlag status="fail" />
+
+<StatusFlag status="pass">Verified</StatusFlag>
+```
+
+## Do and don't
+
+- Do: use it wherever a check, a test or a job has a result.
+- Do: keep the word: the mark and the colour never carry the result alone.
+- Don't: use it for states that are not results, such as draft or archived; that is a Tag.
+- Don't: replace the word with something longer than one word.
+
+## Accessibility
+
+The root is a `<span>` that holds the word as text. The mark (a cross for fail, a square for the others) is hidden from assistive tech, so the result is read from the word.
+
+`labels` changes the four default words: `labels={ptBR.StatusFlag}`. A `children` word wins over `labels`.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<span>` pass through to the root `<span>`.
+
+<ArgTypes />

@@ -1,0 +1,41 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./ToleranceBar.stories";
+
+<Meta of={Stories} />
+
+# ToleranceBar
+
+One measured value against its allowed range, on a scale: the range as a band, the value as a marker.
+
+## Usage
+
+Set `label`, `value` and the allowed range with `min`, `max` or both. `scaleMin` and `scaleMax` set the ends of the scale (defaults 0 and 1.25 times the larger of `max` and `value`); `unit` and `format` shape the text. Inside the range the marker reads Within limit; outside it states the overshoot.
+
+```tsx
+import { ToleranceBar } from "@gabrioliv/dossier";
+
+<ToleranceBar label="Response time" value={4.64} max={4} unit="s" scaleMax={6} />;
+```
+
+## Do and don't
+
+- Do: choose a scale that shows both the limit and the value with room on either side.
+- Do: stack related measures with the same scale where they share a unit.
+- Don't: use it for targets you want to exceed; it is for limits.
+- Don't: leave out both `min` and `max`: give at least one, or the limit line reads ≥ undefined.
+
+## Accessibility
+
+The root is a `<div>` made of text: the label, the value, the state word (Within limit or Out of range, with the overshoot) and a line that begins with the word Limit. The track is a `<div role="img">` whose name reads, for example, Response time: 4.64 s, limit ≤ 4 s, Out of range. The scale ticks are hidden from assistive tech.
+
+Out of range is marked by the error mark and the error colour as well as by the words, so it never depends on colour.
+
+`labels` changes the state words (Within limit, Out of range), the fallback value name and the word limit in the accessible name: `labels={ptBR.ToleranceBar}`. The visible line under the scale always starts with the English word Limit, and `labels` does not change it.
+
+It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` pass through to the root `<div>`.
+
+<ArgTypes />

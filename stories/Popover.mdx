@@ -1,0 +1,49 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Popover.stories";
+
+<Meta of={Stories} />
+
+# Popover
+
+A panel tied to its trigger, on the native Popover API: it opens in the top layer, next to the trigger.
+
+## Usage
+
+Pass the `trigger`, in general a Button, and the panel content as `children`. The trigger gets `aria-expanded`, `aria-controls` and a click that toggles the panel. `placement` is `bottom-start` (the default), `bottom-end`, `top-start` or `top-end`. Pass `open` and `onOpenChange` to hold the state yourself; leave `open` out to let the Popover hold it.
+
+```tsx
+import { Popover } from "@gabrioliv/dossier";
+
+<Popover trigger={<Button>Filters</Button>}>
+  <Checkbox label="Only open files" />
+</Popover>;
+```
+
+## Do and don't
+
+- Do: use it for small, non-modal content tied to one control: filters, a form of two fields.
+- Do: use `bottom-end` or `top-end` for a trigger at the right of the page, so the panel grows to the left.
+- Do: pass `open` and `onOpenChange` together when something else must open or close the panel.
+- Don't: put a wide panel on a trigger near the right edge of the window: the panel can run past the window. It flips up or down to fit, never sideways, so use an `end` placement or keep the panel narrow.
+- Don't: use it for content that must be answered before anything else; that is a Dialog.
+- Don't: use it from a Server Component: it has state and effects, so use it from a Client Component.
+
+## Accessibility
+
+The panel is a `<div popover="auto">` with no role of its own; `ref` and the native attributes go to it, so give it a `role` or an `aria-label` when its content needs one. The trigger gets `aria-expanded` and `aria-controls`.
+
+The panel does not trap focus: focus moves freely in and out of it. When it closes with focus inside, focus goes back to the trigger.
+
+Keys:
+
+- `Enter` and `Space` on a Button trigger toggle the panel.
+- `Tab` and `Shift+Tab` move through the panel and out of it, without closing it.
+- `Escape` closes it.
+
+A click outside the panel also closes it. It has no fixed texts, so it takes no `labels`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<div>` go to the panel, not to the trigger.
+
+<ArgTypes />

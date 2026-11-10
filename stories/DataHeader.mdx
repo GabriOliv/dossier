@@ -1,0 +1,41 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./DataHeader.stories";
+
+<Meta of={Stories} />
+
+# DataHeader
+
+The header of a page, in two variants: a band that opens the document, and a slim running header for the pages after it.
+
+## Usage
+
+The default `band` shows the `title` and the file `code` in an inverse band, with a meta row for `kicker` and `meta`. `variant="running"` is one slim line with the document name, to repeat on every following page.
+
+```tsx
+import { DataHeader } from "@gabrioliv/dossier";
+
+<DataHeader title="Regression report" code="FILE 0427 · REV B" kicker="Release 3.18" meta="9 Nov 2026" />
+
+<DataHeader variant="running" title="Regression report" meta="03 / 12" />
+```
+
+## Do and don't
+
+- Do: use one band per document, on its first page, and a running header on every page after it.
+- Do: keep `code` in the same pattern in every document (`FILE 0427 · REV B`), so pages index together.
+- Don't: put anything in `signal` colour inside the band: it fails contrast on the inverse fill.
+- Don't: stack two headers, or use either as a section title. Sections use SectionTitle.
+
+## Accessibility
+
+The root is a `<header>`. In the band variant the title is a heading: `<h1>` by default, or the level you set with `level` (1 to 6). The running variant has no heading; its title is plain text.
+
+The decorative index square is hidden from assistive tech.
+
+It has no fixed texts, so it takes no `labels`. It is not interactive: it takes no focus and accepts no keys.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<header>` pass through to the root `<header>`.
+
+<ArgTypes />
