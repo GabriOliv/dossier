@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Dossier gallery</title>
+    <meta name="description" content="Every component of the Dossier design system for React, in three themes." />
+    <script>
+      /* Theme before first paint: ?theme=, else the visitor's pick, else the OS. */
+      (function () {
+        var ok = ["paper", "void", "blueprint"];
+        var t = null;
+        try {
+          t = new URLSearchParams(location.search).get("theme");
+        } catch (e) {}
+        if (ok.indexOf(t) < 0) {
+          try {
+            t = localStorage.getItem("dossier-gallery-theme");
+          } catch (e) {}
+        }
+        if (ok.indexOf(t) < 0) {
+          t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "void" : "paper";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
