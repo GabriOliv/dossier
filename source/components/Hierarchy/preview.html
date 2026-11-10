@@ -1,0 +1,15 @@
+<!-- @dsCard group="Diagrams" height=320 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Hierarchy — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.Hierarchy, { title: 'Directorate structure', root: { label: 'Directorate', code: 'D-00', children: [{ label: 'Operations', code: 'O-01', children: [{ label: 'Relay A', code: 'R-0A', active: true }, { label: 'Relay B', code: 'R-0B' }] }, { label: 'Research', code: 'S-02', children: [{ label: 'Archive', code: 'A-07' }] }, { label: 'Logistics', code: 'L-03' }] } }));
+</script>
+</body>
+</html>

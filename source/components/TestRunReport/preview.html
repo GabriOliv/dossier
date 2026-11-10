@@ -1,0 +1,61 @@
+<!-- @dsCard group="Compositions" height=1760 subtitle="A failed regression run: every error component in context" page -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Test run report — composition</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+  .report { display: grid; gap: var(--space-8); }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-8); align-items: start; }
+  .stack { display: grid; gap: var(--space-6); }
+</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  var ms = function (v) { return v.toFixed(2); };
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    h('div', { className: 'report' },
+      h(D.DataHeader, { title: 'Regression run', code: 'Run 0427 · Build 3.18.2', kicker: 'Section 01 — Summary', meta: 'Status: blocked' }),
+      h(D.ErrorNotice, { code: 'Run 0427', meta: '2026-10-21 03:12 UTC', title: 'Release blocked: 2 checks failed', action: 'Rerun after fix #1182',
+        items: ['CHK-114 · Checkout returns 500 under load', 'CHK-121 · p95 latency 1.84 s, limit 1.20 s'] },
+        'The build cannot ship until both checks pass or a waiver is approved.'),
+      h('div', { className: 'ds-row' },
+        h(D.Readout, { label: 'Checks run', value: '148' }),
+        h(D.Readout, { label: 'Pass rate', value: '98.0', unit: '%', trend: 'down', delta: '−1.4% vs run 0426' }),
+        h(D.Readout, { label: 'Duration', value: '14:32', unit: 'min' })),
+
+      h(D.SectionTitle, { index: '02', title: 'Check results', meta: '6 of 148 shown' }),
+      h(D.CheckLog, { title: 'Checkout suite', checks: [
+        { id: 'CHK-101', label: 'Cart totals match line items', result: 'pass', duration: '0.4 s' },
+        { id: 'CHK-114', label: 'Checkout returns 200 under load', result: 'fail', detail: '500 Internal Server Error at 120 rps', duration: '2.1 s' },
+        { id: 'CHK-117', label: 'Payment token refresh', result: 'pass', duration: '0.9 s' },
+        { id: 'CHK-121', label: 'p95 latency within budget', result: 'fail', detail: '1.84 s against a 1.20 s limit', duration: '60.0 s' },
+        { id: 'CHK-130', label: 'Coupon stacking rules', result: 'skip', detail: 'Blocked by CHK-114' },
+        { id: 'CHK-142', label: 'Order confirmation email', result: 'pass', duration: '1.2 s' }] }),
+
+      h(D.SectionTitle, { index: '03', title: 'Failure detail', meta: 'CHK-114 · CHK-121' }),
+      h('div', { className: 'two' },
+        h(D.Assertion, { label: 'CHK-114 · status code', expected: '200 OK', actual: '500 Internal Server Error', location: 'checkout.spec.ts:88' }),
+        h('div', { className: 'stack' },
+          h(D.ToleranceBar, { label: 'CHK-121 · p95 latency', value: 1.84, max: 1.2, scaleMax: 2.4, unit: 's', format: ms }),
+          h(D.ToleranceBar, { label: 'Error rate', value: 0.3, max: 1, scaleMax: 2, unit: '%' }))),
+
+      h(D.SectionTitle, { index: '04', title: 'Waiver', meta: 'Optional' }),
+      h('div', { className: 'two' },
+        h('div', { className: 'stack' },
+          h(D.TextField, { label: 'Waiver reason', required: true, multiline: true, rows: 3, error: 'Write a reason before waiving a failed check.' }),
+          h(D.TextField, { label: 'Approver', defaultValue: 'Release manager', hint: 'Who signs off on build 3.18.2.' })),
+        h(D.FieldList, { fields: [
+          { label: 'Checks to waive', value: 'CHK-121', mono: true },
+          { label: 'Not waivable', value: 'CHK-114 (server error)' },
+          { label: 'Expires', value: 'Run 0430', mono: true },
+          { label: 'Status', value: h(D.StatusFlag, { status: 'pending' }) }] })),
+
+      h(D.Footnotes, { notes: [
+        { text: 'Limits from the performance budget, revision C.' },
+        { text: 'Load profile: 120 requests per second for 60 s against staging.' }] })
+    ));
+</script>
+</body>
+</html>

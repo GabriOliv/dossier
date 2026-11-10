@@ -1,0 +1,14 @@
+<!-- @dsCard group="Diagrams" height=330 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Schematic — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.Schematic, { title: 'Network rings', size: 240, rings: 4, nodes: [{ ring: 1, angle: -60, label: 'Core' }, { ring: 2, angle: 200, label: 'Relay A', active: true }, { ring: 3, angle: 30, label: 'Relay B' }, { ring: 4, angle: -140, label: 'Perimeter' }, { ring: 4, angle: 120, label: 'Outpost' }] }));
+</script>
+</body>
+</html>

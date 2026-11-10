@@ -1,0 +1,15 @@
+<!-- @dsCard group="Page structure" height=380 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Contents — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.Contents, { items: [{ title: 'Project and strategy', description: 'Scope, objectives and the constraints the plan works within.', page: 4 }, { title: 'Proposal', description: 'Three options, their cost and the recommended path.', page: 9, active: true }, { title: 'Change management', description: 'Rollout sequence, owners and the review cadence.', page: 15 }] }));
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+{
+  "manifestVersion": 3,
+  "name": "Dossier",
+  "namespace": "Dossier",
+  "files": [
+    "components/Assertion/README.md",
+    "components/BarChart/README.md",
+    "components/CheckLog/README.md",
+    "components/Comparison/README.md",
+    "components/Connector/README.md",
+    "components/Contents/README.md",
+    "components/DataHeader/README.md",
+    "components/DataTable/README.md",
+    "components/Dimension/README.md",
+    "components/ErrorNotice/README.md",
+    "components/FieldList/README.md",
+    "components/Footnotes/README.md",
+    "components/Hierarchy/README.md",
+    "components/LineChart/README.md",
+    "components/Meter/README.md",
+    "components/ProportionDial/README.md",
+    "components/Quote/README.md",
+    "components/Readout/README.md",
+    "components/Redacted/README.md",
+    "components/Schematic/README.md",
+    "components/SectionTitle/README.md",
+    "components/StatusFlag/README.md",
+    "components/Tag/README.md",
+    "components/TestRunReport/README.md",
+    "components/TextField/README.md",
+    "components/Timeline/README.md",
+    "components/ToleranceBar/README.md",
+    "components/Transcript/README.md",
+    "components/bundle.css",
+    "components/bundle.js",
+    "components/index.d.ts",
+    "tokens.css"
+  ],
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18",
+      "global": "React"
+    },
+    {
+      "name": "react-dom",
+      "version": "18",
+      "global": "ReactDOM"
+    }
+  ],
+  "components": [
+    {
+      "name": "DataHeader",
+      "group": "Page structure",
+      "summary": "Page headers in two variants: band (default) opens a page with an inverse band holding the title and file code, then a meta row closed by a stroke-rule rule; r…"
+    },
+    {
+      "name": "SectionTitle",
+      "group": "Page structure",
+      "summary": "Opens a section: a short stroke-heavy signal bar and \"SECTION 02\" in mono, then the title in title over a stroke-rule rule."
+    },
+    {
+      "name": "Readout",
+      "group": "Data",
+      "summary": "One labelled figure: label in mono over a number with its unit, ruled on top, with an optional trend line. size=\"hero\" sets the figure in figure-xl for the one…"
+    },
+    {
+      "name": "Tag",
+      "group": "Data",
+      "summary": "A square, outlined label in mono caps for status, revision or classification."
+    },
+    {
+      "name": "DataTable",
+      "group": "Data",
+      "summary": "A ruled data table: mono heads over a stroke-rule rule, hairline rule-soft row separators, numeric columns in datum, right-aligned."
+    },
+    {
+      "name": "FieldList",
+      "group": "Data",
+      "summary": "Label/value rows in two variants: record (default), mono labels in a 144px column beside one-line values; definition, a semibold term beside a longer descripti…"
+    },
+    {
+      "name": "Meter",
+      "group": "Data",
+      "summary": "A segmented rating: a row of square cells, filled up to the value, with the label on the left and \"7/10\" on the right."
+    },
+    {
+      "name": "BarChart",
+      "group": "Diagrams",
+      "summary": "Horizontal bars in ink on a single hairline axis, values printed at the end in datum, with a 0 / half / max scale row."
+    },
+    {
+      "name": "Timeline",
+      "group": "Diagrams",
+      "summary": "Evenly spaced events on one hairline axis that ends in a triangle pointer: mono position above, square marker on the axis, label and note below."
+    },
+    {
+      "name": "Schematic",
+      "group": "Diagrams",
+      "summary": "The signature diagram: concentric rings (outer solid, inner dotted) with degree ticks, a crosshair, nodes on the rings and 45° leader lines out to mono callout…"
+    },
+    {
+      "name": "Hierarchy",
+      "group": "Diagrams",
+      "summary": "A top-down tree: the root on the inverse fill, every other node a square outlined box with mono code and label, joined by orthogonal hairline connectors."
+    },
+    {
+      "name": "Dimension",
+      "group": "Diagrams",
+      "summary": "A blueprint measure: a hairline with end extension lines, 45° architectural ticks and the value centred above in mono."
+    },
+    {
+      "name": "Quote",
+      "group": "Text",
+      "summary": "Large uppercase text in title, in two variants: quote (default), an attributed quote opened by a hanging signal mark under a stroke-rule rule, with a dashed so…"
+    },
+    {
+      "name": "Transcript",
+      "group": "Text",
+      "summary": "A time-coded dialogue log: time in ink-muted mono, speaker in mono, line in body, rows split by hairline rule-soft separators."
+    },
+    {
+      "name": "Redacted",
+      "group": "Text",
+      "summary": "An inline inverse bar that stands in for withheld text, sized by character count."
+    },
+    {
+      "name": "Footnotes",
+      "group": "Page structure",
+      "summary": "Numbered notes under a short hairline rule: signal mono numbers beside caption text in ink-muted."
+    },
+    {
+      "name": "Contents",
+      "group": "Page structure",
+      "summary": "A numbered table of contents: figure numbers, uppercase title section names, a short description in ink-muted and an optional page reference, rows on hairline…"
+    },
+    {
+      "name": "Comparison",
+      "group": "Text",
+      "summary": "Two or three parallel columns weighed against each other: each opens with a stroke-rule rule, a mono code, an uppercase title, a lead sentence and a list with…"
+    },
+    {
+      "name": "LineChart",
+      "group": "Diagrams",
+      "summary": "One trend line in ink over a hatched area, on a hairline baseline with evenly spaced mono x labels."
+    },
+    {
+      "name": "ProportionDial",
+      "group": "Diagrams",
+      "summary": "One share of a whole: a signal arc on the outer ring from 12 o'clock, a disc of dots with the share's sector in ink and the rest in rule-soft, and a leader to…"
+    },
+    {
+      "name": "Connector",
+      "group": "Diagrams",
+      "summary": "An orthogonal hairline arrow ending in a triangle pointer: it runs from one corner of its box to the opposite corner, either leg first, or straight when one si…"
+    },
+    {
+      "name": "StatusFlag",
+      "group": "Status",
+      "summary": "The result of one check as a square mono flag: PASS (ink outline, filled square), FAIL (contrast-error fill, cross, on-signal text), SKIPPED (dashed muted outl…"
+    },
+    {
+      "name": "ErrorNotice",
+      "group": "Status",
+      "summary": "A blocking error at the top of a page or module: a stroke-heavy contrast-error rule, the error mark with \"ERROR · \", an uppercase title, an explanation, an opt…"
+    },
+    {
+      "name": "CheckLog",
+      "group": "Status",
+      "summary": "A list of checks with their results: a heading with a pass/fail/skip summary (fail count in contrast-error), then rows of id, label, detail, duration and a Sta…"
+    },
+    {
+      "name": "Assertion",
+      "group": "Status",
+      "summary": "Expected against actual for one check: a mono label with a StatusFlag, then EXPECTED and ACTUAL rows in mono."
+    },
+    {
+      "name": "ToleranceBar",
+      "group": "Status",
+      "summary": "One measured value against its allowed range: the range as a panel band on a hairline scale, the value as a marker with a triangle pointer."
+    },
+    {
+      "name": "TextField",
+      "group": "Forms",
+      "summary": "A square text input (or textarea) with a mono label above and a hint or error below."
+    },
+    {
+      "name": "TestRunReport",
+      "group": "Compositions",
+      "summary": "A composition, not an exported component: a failed regression run laid out as one Dossier page, showing where each error component belongs.",
+      "page": true
+    }
+  ],
+  "assetGroups": [
+    {
+      "name": "animations",
+      "files": [
+        {
+          "path": "assets/animations/flask-garden-001-dossier-blueprint.svg",
+          "id": "9e4a3ff9f58c6fa63f814d565ea6174e"
+        },
+        {
+          "path": "assets/animations/flask-garden-001-dossier-paper.svg",
+          "id": "e01ede1657945ff0401c046a4369a901"
+        },
+        {
+          "path": "assets/animations/flask-garden-001-dossier-void.svg",
+          "id": "df20f1ddea199007ed2738d4cd59079f"
+        }
+      ]
+    },
+    {
+      "name": "models"
+    },
+    {
+      "name": "banners",
+      "files": [
+        {
+          "path": "assets/banners/banner-flask-dossier.svg",
+          "id": "a7c34868dbaaf308668efc0123062655"
+        },
+        {
+          "path": "assets/banners/banner-flask-qa-dossier.svg",
+          "id": "a6f2846f789c785f1cf4a965ae7b06b6"
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "files": {
+      "assets/animations/flask-garden-001-dossier-blueprint.svg": {
+        "store": "blob",
+        "id": "9e4a3ff9f58c6fa63f814d565ea6174e",
+        "sha256": "112e4baa40dd06c745a3e3e99d2988da94959f3bcd7dcd6799378dc5f142d81b",
+        "bytes": 1976,
+        "type": "image/svg+xml"
+      },
+      "assets/animations/flask-garden-001-dossier-paper.svg": {
+        "store": "blob",
+        "id": "e01ede1657945ff0401c046a4369a901",
+        "sha256": "b3fe4b8ea3624c11149b2f6ef6e485d06eec536700add256e809503e622a0e94",
+        "bytes": 1972,
+        "type": "image/svg+xml"
+      },
+      "assets/animations/flask-garden-001-dossier-void.svg": {
+        "store": "blob",
+        "id": "df20f1ddea199007ed2738d4cd59079f",
+        "sha256": "f85418956d9fc71f9170e8daa91919066fbd1040193dda72ba27b627d7bb3113",
+        "bytes": 1964,
+        "type": "image/svg+xml"
+      },
+      "assets/banners/banner-flask-dossier.svg": {
+        "store": "blob",
+        "id": "a7c34868dbaaf308668efc0123062655",
+        "sha256": "f8336836e6508ea5862a0e00667e948b71aa6356655520b42e9d3319212c057b",
+        "bytes": 10769,
+        "type": "image/svg+xml",
+        "name": "banner-flask-dossier.svg",
+        "addedAt": "2026-10-22T04:11:17.887Z",
+        "via": "page"
+      },
+      "assets/banners/banner-flask-qa-dossier.svg": {
+        "store": "blob",
+        "id": "a6f2846f789c785f1cf4a965ae7b06b6",
+        "sha256": "0137118c1c3685bc937b05e45d45accdeeb5e3fd885b8dc996d069cf8ec469f0",
+        "bytes": 12749,
+        "type": "image/svg+xml",
+        "name": "banner-flask-qa-dossier.svg",
+        "addedAt": "2026-10-22T04:11:18.824Z",
+        "via": "page"
+      }
+    },
+    "blobBytesUsed": 29430
+  }
+}

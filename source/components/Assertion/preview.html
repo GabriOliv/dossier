@@ -1,0 +1,15 @@
+<!-- @dsCard group="Status" height=360 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Assertion — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>.stack{display:grid;gap:var(--space-6)}</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'stack' }, h(D.Assertion, { label: 'CHK-114 · status code', expected: '200 OK', actual: '500 Internal Server Error', location: 'checkout.spec.ts:88' }), h(D.Assertion, { label: 'CHK-101 · cart total', expected: '84.90', actual: '84.90', location: 'cart.spec.ts:41' })));
+</script>
+</body>
+</html>

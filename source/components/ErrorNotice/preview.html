@@ -1,0 +1,15 @@
+<!-- @dsCard group="Status" height=260 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>ErrorNotice — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.ErrorNotice, { code: 'Run 0427', meta: '2026-10-21 03:12 UTC', title: 'Release blocked: 2 checks failed', action: 'Rerun after fix #1182', items: ['CHK-114 · Checkout returns 500 under load', 'CHK-121 · p95 latency 1.84 s, limit 1.20 s'] }, 'The build cannot ship until both checks pass or a waiver is approved.'));
+</script>
+</body>
+</html>

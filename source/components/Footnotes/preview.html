@@ -1,0 +1,15 @@
+<!-- @dsCard group="Page structure" height=168 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Footnotes — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', null, h('p', { className: 'body', style: { margin: '0 0 var(--space-6)', maxWidth: '64ch' } }, 'Readings stabilised after the third cycle', h('sup', { className: 'label ds-ref' }, '01'), ' and held within tolerance', h('sup', { className: 'label ds-ref' }, '02'), '.'), h(D.Footnotes, { notes: [{ text: 'Cycle length is 72 hours unless stated otherwise.' }, { text: 'Tolerance is ±0.5% of the seven-day mean.' }] })));
+</script>
+</body>
+</html>

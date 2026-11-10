@@ -1,0 +1,469 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "animations": {
+      "files": {
+        "flask-garden-001-dossier-blueprint.svg": {
+          "blob": "3afc69be6cde89133f937eaa4c4751bd",
+          "name": "flask-garden-001-dossier-blueprint.svg",
+          "sha256": "ccd72ea7901e4211f6d81c50c44692403b96eb18975c8570796b37997c7964c6",
+          "size": 10781,
+          "type": "image/svg+xml"
+        },
+        "flask-garden-001-dossier-paper.svg": {
+          "blob": "ab750b5ba5c54c4bedd35e2960ee5dd6",
+          "name": "flask-garden-001-dossier-paper.svg",
+          "sha256": "023bc9d805a3c3272e644498be9c405fedcfcba94c74ac45a40713a41db985b9",
+          "size": 10623,
+          "type": "image/svg+xml"
+        },
+        "flask-garden-001-dossier-void.svg": {
+          "blob": "45ea93db780921a879239bb8f1516c50",
+          "name": "flask-garden-001-dossier-void.svg",
+          "sha256": "8ff763c3ff4ee5b6fc665c1fdb38a61a88088e6367c26bfd5c1b5956d67e33de",
+          "size": 10758,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "animations",
+      "order": [
+        "flask-garden-001-dossier-paper.svg",
+        "flask-garden-001-dossier-void.svg",
+        "flask-garden-001-dossier-blueprint.svg"
+      ]
+    },
+    "banners": {
+      "files": {
+        "banner-flask-dossier.svg": {
+          "blob": "7cf2a29fe08f45195b9f318924e68e2b",
+          "name": "banner-flask-dossier.svg",
+          "sha256": "0aa30f67dcbdd62264ef9113057a9bc0f99da2723ac13cf8a280bf12446d39e5",
+          "size": 17139,
+          "type": "image/svg+xml"
+        },
+        "banner-flask-qa-dossier.svg": {
+          "blob": "2b727da42bf15b2ba3f9c1079ccb66d5",
+          "name": "banner-flask-qa-dossier.svg",
+          "sha256": "47635beba357cd3b20d109323d955abfef0c94e9764b9cd67878f976ad041500",
+          "size": 20197,
+          "type": "image/svg+xml"
+        },
+        "social-card-dossier.svg": {
+          "blob": "c7d9378d4fc14a8eb36e91f53e8ccb04",
+          "name": "social-card-dossier.svg",
+          "sha256": "d1785eeecc32a2b4295da6db1de952a1e2c8b8f45569eed73c9fd76dbe41d592",
+          "size": 16088,
+          "type": "image/svg+xml"
+        },
+        "banner-grafo-dossier.svg": {
+          "blob": "e1284e898420d7f64f137aef6ea1a6eb",
+          "name": "banner-grafo-dossier.svg",
+          "sha256": "40b25a35300490a90cc77ea9623d377cb9a89dcee7dd89507bc22b59f89d6e24",
+          "size": 19178,
+          "type": "image/svg+xml"
+        },
+        "banner-automato-dossier.svg": {
+          "blob": "86253e1041523b4e4538a9e8dd433209",
+          "name": "banner-automato-dossier.svg",
+          "sha256": "53b612eee0ee4ebbb245d2d19b3ac3d13c24152ebb072004c3a5928facc72211",
+          "size": 56701,
+          "type": "image/svg+xml"
+        },
+        "banner-harmonografo-dossier.svg": {
+          "blob": "e48bd79521bb8511e2d1a60a082fc07a",
+          "name": "banner-harmonografo-dossier.svg",
+          "sha256": "3be91178a50dfd11bc70066c99e0f991669e1bd53c0242ba6ab63bf236d02b08",
+          "size": 76648,
+          "type": "image/svg+xml"
+        },
+        "banner-filotaxia-dossier.svg": {
+          "blob": "65d6d3907d77234457f08bccdc0c0b1d",
+          "name": "banner-filotaxia-dossier.svg",
+          "sha256": "87c4ab3183827f4a59265397c514b7bf1544c294ed257f0f21f136c796feaf38",
+          "size": 58808,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "banners",
+      "order": [
+        "banner-flask-dossier.svg",
+        "banner-flask-qa-dossier.svg",
+        "banner-grafo-dossier.svg",
+        "banner-automato-dossier.svg",
+        "banner-harmonografo-dossier.svg",
+        "banner-filotaxia-dossier.svg",
+        "social-card-dossier.svg"
+      ]
+    },
+    "models": {
+      "files": {},
+      "name": "models",
+      "order": []
+    },
+    "stages": {
+      "files": {
+        "base/estagio-a-semente-16.svg": {
+          "blob": "63aac5ba6231650108ee539da8397ae6",
+          "name": "base/estagio-a-semente-16.svg",
+          "sha256": "2f19bbf67386652f602f9203c14ab3a78f1964c6dd9cbeafed951ec3636f6f02",
+          "size": 338,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-b-broto-16.svg": {
+          "blob": "e0a093c60af4b0e4f71ebf0eeb75de9c",
+          "name": "base/estagio-b-broto-16.svg",
+          "sha256": "753735d6628ff5eccc9ad005c66d9a6d911ac699144c56f25e746159490c7255",
+          "size": 421,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-c-arvore-16.svg": {
+          "blob": "11980fe64d10c1d5e28167faea0defc6",
+          "name": "base/estagio-c-arvore-16.svg",
+          "sha256": "4e89d16d73f28b8b3280c4b8257e1bba9e6035ec35b9abeb8698fac43d692480",
+          "size": 403,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-d-fruto-16.svg": {
+          "blob": "f72a6d58837b57845de5c3ce7a40de98",
+          "name": "base/estagio-d-fruto-16.svg",
+          "sha256": "bf2eca34b15612617bfb346188fcd132a5995435bcddfd3c9cc90adddf017484",
+          "size": 408,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-a-semente-48.svg": {
+          "blob": "4498af8bc0d8a844a480190f721ce620",
+          "name": "base/estagio-a-semente-48.svg",
+          "sha256": "fdcd357ddaea80edacfb80cb704d6cb9312b311cc459c0b2155ad15ea7160f5f",
+          "size": 411,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-b-broto-48.svg": {
+          "blob": "acfbc3455d90e596b4ff2d87a219228b",
+          "name": "base/estagio-b-broto-48.svg",
+          "sha256": "a6c5f857913ec871e6f4d17c11ecce6cff23857c04c334bd0fb941ea20efaef6",
+          "size": 583,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-c-arvore-48.svg": {
+          "blob": "6b43380e2e1065aa8adf3f5f00e25cde",
+          "name": "base/estagio-c-arvore-48.svg",
+          "sha256": "c8892e0373929f9ab513841504bafcf3b63cb1509e517c22a9228b1e47f0150d",
+          "size": 588,
+          "type": "image/svg+xml"
+        },
+        "base/estagio-d-fruto-48.svg": {
+          "blob": "d36d5b04598b695d78082b41162d8d00",
+          "name": "base/estagio-d-fruto-48.svg",
+          "sha256": "422baa31364442374bd6724bdf3f55e20c5ffd3376149387c63c329f4c8c65f1",
+          "size": 560,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-a-semente-16-dossier-paper.svg": {
+          "blob": "0152e7d4ecc5d96b7747fa4286eb0f40",
+          "name": "paper/estagio-a-semente-16-dossier-paper.svg",
+          "sha256": "b2631a1d82b19a2233187e14efa84b362bc6119e5a08f5fc2be8e9de5a2af3f5",
+          "size": 328,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-b-broto-16-dossier-paper.svg": {
+          "blob": "210fd8d868ff7039baf60600f5eb6dec",
+          "name": "paper/estagio-b-broto-16-dossier-paper.svg",
+          "sha256": "d4d31e10a3daca78071353e735c73b068563c404da11143fa2517809888bc25a",
+          "size": 406,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-c-arvore-16-dossier-paper.svg": {
+          "blob": "7006fc831b08c688d94b569b69e4e25b",
+          "name": "paper/estagio-c-arvore-16-dossier-paper.svg",
+          "sha256": "8ed758b22ce29d9eb161c4636f2b91b7f6beb8f68c1ec4400e9bf81e47ef3240",
+          "size": 388,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-d-fruto-16-dossier-paper.svg": {
+          "blob": "2b5ac8402dd9894740b17efa84821d20",
+          "name": "paper/estagio-d-fruto-16-dossier-paper.svg",
+          "sha256": "3cf78173d78446b5ddce092b98706faaa74ab04debba9afbf47a95e8261f8a37",
+          "size": 377,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-a-semente-48-dossier-paper.svg": {
+          "blob": "9c00a5cce3bc7ae97e34e9b7918324ce",
+          "name": "paper/estagio-a-semente-48-dossier-paper.svg",
+          "sha256": "9c6ee17f164261b42e861ac0bf760351534fb838c99ad794f0f08373c21a6a0f",
+          "size": 401,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-b-broto-48-dossier-paper.svg": {
+          "blob": "7bbff1e7b34cc731f63790f34836afd7",
+          "name": "paper/estagio-b-broto-48-dossier-paper.svg",
+          "sha256": "57f02c81a051f18a5ff512fafbda8208159b19e7740747d52df89f8f4c1a4376",
+          "size": 568,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-c-arvore-48-dossier-paper.svg": {
+          "blob": "bc4771f247fd178fd0ea406a65649b27",
+          "name": "paper/estagio-c-arvore-48-dossier-paper.svg",
+          "sha256": "12c22f6446a146d9203ea4d5746c5c54885fc9ea493efac02541fd58ad33a295",
+          "size": 573,
+          "type": "image/svg+xml"
+        },
+        "paper/estagio-d-fruto-48-dossier-paper.svg": {
+          "blob": "1235a9f55f0426686fe210dd39b3de82",
+          "name": "paper/estagio-d-fruto-48-dossier-paper.svg",
+          "sha256": "10b373238f4f1bd7e532db0c13d593722f651734d07f2d67f9c7a342b3aa4be6",
+          "size": 529,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-a-semente-16-dossier-void.svg": {
+          "blob": "dd1fb177f7a3a27ee315c9127d4d1881",
+          "name": "void/estagio-a-semente-16-dossier-void.svg",
+          "sha256": "e7e0286c4d47d270e6b4dc603f3b49458fd6e31e21746d9937ba6afbf4cd1780",
+          "size": 328,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-b-broto-16-dossier-void.svg": {
+          "blob": "bc0cfd677d12f12272d1dbbea085d84d",
+          "name": "void/estagio-b-broto-16-dossier-void.svg",
+          "sha256": "4b67072e397d8ff25e37b77fa823a07a94755be4a070d46825bf1f1513349172",
+          "size": 406,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-c-arvore-16-dossier-void.svg": {
+          "blob": "6ad2ab472429f2eb3e63e005f34587e7",
+          "name": "void/estagio-c-arvore-16-dossier-void.svg",
+          "sha256": "ed8a11ecbae1cc977facbd56562166064793e51967f0141bbb3780c4e17981c1",
+          "size": 388,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-d-fruto-16-dossier-void.svg": {
+          "blob": "4666bf306fdbe8935034b68f90e2c0a5",
+          "name": "void/estagio-d-fruto-16-dossier-void.svg",
+          "sha256": "da1756b640d337767e67785f749602c777434d48c31997006657e3fbe4949f2f",
+          "size": 377,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-a-semente-48-dossier-void.svg": {
+          "blob": "389a5b825b77814387425a1a69f23135",
+          "name": "void/estagio-a-semente-48-dossier-void.svg",
+          "sha256": "949e3f6954db16b8e16c7ce4737a0769cb7f8287ccf0a3d3cd25db357b36ecf4",
+          "size": 401,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-b-broto-48-dossier-void.svg": {
+          "blob": "0b485cff06404a4f0851b7042bae7212",
+          "name": "void/estagio-b-broto-48-dossier-void.svg",
+          "sha256": "c1800cd900ce8f69779aedb92ae3f51446770e88d690f0619dcbebd53f88775d",
+          "size": 568,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-c-arvore-48-dossier-void.svg": {
+          "blob": "6e2e5f08a6a637a4013f0b2523ac8d1d",
+          "name": "void/estagio-c-arvore-48-dossier-void.svg",
+          "sha256": "fe07df0bbb42796cd936d13087acc948ca4aa31f0333abb202f5afbe418d9202",
+          "size": 573,
+          "type": "image/svg+xml"
+        },
+        "void/estagio-d-fruto-48-dossier-void.svg": {
+          "blob": "5fd73d0da98710edb372b5e155c3aef2",
+          "name": "void/estagio-d-fruto-48-dossier-void.svg",
+          "sha256": "8f193611d6873cffd1b1302d03861b99db9381216676be4a4ed36b07aa446cb7",
+          "size": 529,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-a-semente-16-dossier-blueprint.svg": {
+          "blob": "d59a63fd834c9cbcb1a86e0f470aca5f",
+          "name": "blueprint/estagio-a-semente-16-dossier-blueprint.svg",
+          "sha256": "11c14c34eb8bde1a6bb269a3f6b364eaa396faab8c73370d48d6fb5b8f978d74",
+          "size": 328,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-b-broto-16-dossier-blueprint.svg": {
+          "blob": "a88907785a2095735c57c00d006e5239",
+          "name": "blueprint/estagio-b-broto-16-dossier-blueprint.svg",
+          "sha256": "bbe44e14ce787ba59e38e20fd7cb52d035efaffe0fa90e72f55e8732062ee30c",
+          "size": 406,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-c-arvore-16-dossier-blueprint.svg": {
+          "blob": "15c50920535e53b9f0ce6d1692a8cc2b",
+          "name": "blueprint/estagio-c-arvore-16-dossier-blueprint.svg",
+          "sha256": "e682390f204ec385945296eaab47ed556ed14c877b29a7e2a323fa1f1c74233c",
+          "size": 388,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-d-fruto-16-dossier-blueprint.svg": {
+          "blob": "530ae47d38d48ec4c3e0893690cca15a",
+          "name": "blueprint/estagio-d-fruto-16-dossier-blueprint.svg",
+          "sha256": "8b5a27b81ba967d535dab0585faae0f4ee574d7bc507893b27460bb9e09c8e20",
+          "size": 377,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-a-semente-48-dossier-blueprint.svg": {
+          "blob": "7b2ec37383c1f0807c9a7ac687a93ed1",
+          "name": "blueprint/estagio-a-semente-48-dossier-blueprint.svg",
+          "sha256": "3f374ce592a10608d79a3c3c2f9c59dbb9a11c0ab94a2f5061f13f93ca95cb7f",
+          "size": 401,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-b-broto-48-dossier-blueprint.svg": {
+          "blob": "0431c9954f1616b5f9e8d8b0fcec7b5f",
+          "name": "blueprint/estagio-b-broto-48-dossier-blueprint.svg",
+          "sha256": "1844fac36b0a07fe3fdf2922d351ab203a7847f9c52f07f271f3edfadb6a712f",
+          "size": 568,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-c-arvore-48-dossier-blueprint.svg": {
+          "blob": "ace88bb33564a14fb82e2b920f0a946b",
+          "name": "blueprint/estagio-c-arvore-48-dossier-blueprint.svg",
+          "sha256": "22a538ec56d835e74bc89486793853a7f943e8ade2616888f650b03c5284f703",
+          "size": 573,
+          "type": "image/svg+xml"
+        },
+        "blueprint/estagio-d-fruto-48-dossier-blueprint.svg": {
+          "blob": "4717b59d12e95c4f27298dd89e67bc7a",
+          "name": "blueprint/estagio-d-fruto-48-dossier-blueprint.svg",
+          "sha256": "79f52fca2c7d63a625e73d6fc68434938231257ef1c3c96d3cd12df44a540662",
+          "size": 529,
+          "type": "image/svg+xml"
+        },
+        "pranchas/estagio-a-semente-dossier.svg": {
+          "blob": "c5cfb2186541a3ab35876953d1fea679",
+          "name": "pranchas/estagio-a-semente-dossier.svg",
+          "sha256": "d680c7deda731d6aa1aeb7bcb31825e8d4bab10981c02dd657e629dedcc401b2",
+          "size": 7013,
+          "type": "image/svg+xml"
+        },
+        "pranchas/estagio-b-broto-dossier.svg": {
+          "blob": "ed71e0bf2b769d609861d9c763c0f8a5",
+          "name": "pranchas/estagio-b-broto-dossier.svg",
+          "sha256": "6c569b7d3d47033cbf9a2673b7f3c799beff122021d3084fa99dbb36103adcac",
+          "size": 7917,
+          "type": "image/svg+xml"
+        },
+        "pranchas/estagio-c-arvore-dossier.svg": {
+          "blob": "5cfecc9c86a815b41c1217cb16fe6f17",
+          "name": "pranchas/estagio-c-arvore-dossier.svg",
+          "sha256": "3ca79210c9fe282d3dadfe3f8601265402a1871800873c94d9a4480b00750fcb",
+          "size": 7854,
+          "type": "image/svg+xml"
+        },
+        "pranchas/estagio-d-fruto-dossier.svg": {
+          "blob": "2fd36def6cba2879f9fa17afdd0e3b68",
+          "name": "pranchas/estagio-d-fruto-dossier.svg",
+          "sha256": "3bacf9abbfb1b26d5a0e1641a23c5e5549a00b7fe8f972815dc1feb0323672b2",
+          "size": 7813,
+          "type": "image/svg+xml"
+        }
+      },
+      "name": "stages",
+      "order": [
+        "base/estagio-a-semente-16.svg",
+        "base/estagio-b-broto-16.svg",
+        "base/estagio-c-arvore-16.svg",
+        "base/estagio-d-fruto-16.svg",
+        "base/estagio-a-semente-48.svg",
+        "base/estagio-b-broto-48.svg",
+        "base/estagio-c-arvore-48.svg",
+        "base/estagio-d-fruto-48.svg",
+        "paper/estagio-a-semente-16-dossier-paper.svg",
+        "paper/estagio-b-broto-16-dossier-paper.svg",
+        "paper/estagio-c-arvore-16-dossier-paper.svg",
+        "paper/estagio-d-fruto-16-dossier-paper.svg",
+        "paper/estagio-a-semente-48-dossier-paper.svg",
+        "paper/estagio-b-broto-48-dossier-paper.svg",
+        "paper/estagio-c-arvore-48-dossier-paper.svg",
+        "paper/estagio-d-fruto-48-dossier-paper.svg",
+        "void/estagio-a-semente-16-dossier-void.svg",
+        "void/estagio-b-broto-16-dossier-void.svg",
+        "void/estagio-c-arvore-16-dossier-void.svg",
+        "void/estagio-d-fruto-16-dossier-void.svg",
+        "void/estagio-a-semente-48-dossier-void.svg",
+        "void/estagio-b-broto-48-dossier-void.svg",
+        "void/estagio-c-arvore-48-dossier-void.svg",
+        "void/estagio-d-fruto-48-dossier-void.svg",
+        "blueprint/estagio-a-semente-16-dossier-blueprint.svg",
+        "blueprint/estagio-b-broto-16-dossier-blueprint.svg",
+        "blueprint/estagio-c-arvore-16-dossier-blueprint.svg",
+        "blueprint/estagio-d-fruto-16-dossier-blueprint.svg",
+        "blueprint/estagio-a-semente-48-dossier-blueprint.svg",
+        "blueprint/estagio-b-broto-48-dossier-blueprint.svg",
+        "blueprint/estagio-c-arvore-48-dossier-blueprint.svg",
+        "blueprint/estagio-d-fruto-48-dossier-blueprint.svg",
+        "pranchas/estagio-a-semente-dossier.svg",
+        "pranchas/estagio-b-broto-dossier.svg",
+        "pranchas/estagio-c-arvore-dossier.svg",
+        "pranchas/estagio-d-fruto-dossier.svg"
+      ]
+    },
+    "diagramas": {
+      "name": "diagramas",
+      "tile": "l",
+      "order": [
+        "diagrama-sdlc-sem-cobertura-dossier.svg",
+        "diagrama-sdlc-com-cobertura-dossier.svg",
+        "diagrama-jenga-dossier.svg"
+      ],
+      "files": {
+        "diagrama-sdlc-sem-cobertura-dossier.svg": {
+          "blob": "02ec31dd5faea22d8cca30880d3efd43",
+          "name": "diagrama-sdlc-sem-cobertura-dossier.svg",
+          "sha256": "36c0cc196059c8a4359dc6622c1c4e057923e659ebaa94fe63e3ec436eb89d6f",
+          "size": 20221,
+          "type": "image/svg+xml"
+        },
+        "diagrama-sdlc-com-cobertura-dossier.svg": {
+          "blob": "355b271aeaea8076228e345162ae4037",
+          "name": "diagrama-sdlc-com-cobertura-dossier.svg",
+          "sha256": "82e3afc2b20355d4dc05b66b8423a223cf4e655432fc460179a56c02ef915faa",
+          "size": 20844,
+          "type": "image/svg+xml"
+        },
+        "diagrama-jenga-dossier.svg": {
+          "blob": "1cdd86e02301def6ed7d6036809d17b3",
+          "name": "diagrama-jenga-dossier.svg",
+          "sha256": "103fffd89122a7ab6fa5458f00964fb691d2bbd532a090745f3193c7ca392dd5",
+          "size": 65217,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-10-20T23:40:15Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "groups": [
+    "animations",
+    "models",
+    "banners",
+    "stages",
+    "diagramas"
+  ],
+  "lastChange": {
+    "at": "2026-10-25T04:31:39Z",
+    "by": "Laureano",
+    "via": "Claude",
+    "note": "Banners: restored banner-flask and banner-flask-qa from originals and added grafo, automato, harmonografo, filotaxia. Animations: restored the 3 flask-garden files. All baked to static SVG (styles inlined, final frame) because the asset store strips <style> and SMIL."
+  },
+  "layout": "files",
+  "libraries": [
+    {
+      "global": "React",
+      "name": "react",
+      "version": "18"
+    },
+    {
+      "global": "ReactDOM",
+      "name": "react-dom",
+      "version": "18"
+    }
+  ],
+  "namespace": "Dossier",
+  "sections": {},
+  "title": "Dossier"
+}

@@ -1,0 +1,15 @@
+<!-- @dsCard group="Text" height=232 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Transcript — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(D.Transcript, { title: 'Transcript — Log 07', lines: [{ time: '04:12', speaker: 'Control', text: 'Relay A, confirm position.' }, { time: '04:12', speaker: 'Relay A', text: h(React.Fragment, null, 'Holding at grid 41 by 12. Visual on ', h(D.Redacted, { length: 9 }), ', no change.') }, { time: '04:13', speaker: 'Control', text: 'Hold. Next contact in twelve minutes.', active: true }, { time: '04:25', speaker: 'Relay A', text: h(React.Fragment, null, 'Contact lost near ', h(D.Redacted, { length: 6 }), '.') }] }));
+</script>
+</body>
+</html>

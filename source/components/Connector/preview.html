@@ -1,0 +1,15 @@
+<!-- @dsCard group="Diagrams" height=250 -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Connector — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>.stack{display:grid;gap:var(--space-8)} .conn-row{display:flex;align-items:center;gap:var(--space-3)} .conn-word{font-family:var(--font-display);text-transform:uppercase}</style>
+</head>
+<body>
+<div id="root" class="ds-demo"></div>
+<script>
+  var D = window.Dossier, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'stack' }, h('div', { className: 'conn-row' }, h('span', { className: 'title conn-word' }, 'Observation'), h(D.Connector, { width: 96, height: 0, from: 'top-left' }), h('span', { className: 'title conn-word' }, 'Assessment'), h(D.Connector, { width: 96, height: 0, from: 'top-left', active: true }), h('span', { className: 'title conn-word' }, 'Decision')), h('div', { className: 'conn-row' }, h(D.Connector, { width: 160, height: 64, from: 'bottom-right', first: 'vertical' }), h(D.Connector, { width: 160, height: 64, from: 'bottom-right', first: 'horizontal' }), h(D.Connector, { width: 160, height: 64, from: 'top-left', first: 'horizontal', active: true }))));
+</script>
+</body>
+</html>
