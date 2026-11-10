@@ -15,7 +15,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-test:
+  test:
+    uses: ./.github/workflows/test.yml
+
+  # Builds the site while the tests run; deploy waits for both.
+  build:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.64.1-noble
@@ -24,24 +28,10 @@ jobs:
       - uses: actions/checkout@v5
       - name: Install
         run: npm ci
-      - name: Install React 19 test deps
-        run: npm ci --prefix tests/react19
       - name: Build library and gallery
         run: npm run build:gallery
-      - name: Unit tests
-        run: npx playwright test --project unit
-      - name: Gallery tests
-        run: npm run test:gallery
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Storybook tests
-        run: npm run test:storybook
-      - name: Keep the test results when a test fails
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: test-results
-          path: test-results/
       - name: Put Storybook next to the gallery
         run: cp -r storybook-static gallery/dist/storybook
       - name: Upload the gallery and Storybook
@@ -50,7 +40,7 @@ jobs:
           path: gallery/dist
 
   deploy:
-    needs: build-test
+    needs: [test, build]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
