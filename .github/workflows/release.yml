@@ -1,0 +1,90 @@
+name: Release
+
+# A v* tag builds, tests and packs the library, then attaches that exact tarball to a GitHub Release (no npm).
+# A manual run does everything up to the tarball, kept as a workflow artifact, and creates no release.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Check the tag against package.json and main
+        if: github.event_name == 'push'
+        run: node scripts/release/preflight.mjs "$GITHUB_REF_NAME" origin/main
+
+  verify:
+    needs: preflight
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install
+        run: npm ci
+      - name: Format
+        run: npm run format
+      - name: Build and unit tests
+        run: npm test
+      - name: Package lint
+        run: npm run lint:package
+      - name: Consumer tests (packs the tarball and installs it in the Vite and Docusaurus fixtures)
+        run: npm run test:consumer
+      - name: Keep the tested tarball
+        uses: actions/upload-artifact@v7
+        with:
+          name: tarball
+          path: .pack/*.tgz
+          if-no-files-found: error
+
+  release:
+    needs: verify
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v8
+        with:
+          name: tarball
+          path: .pack
+      - name: Refuse to replace an existing release
+        run: |
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            echo "A release for $GITHUB_REF_NAME already exists (maybe a draft left by a failed run). Bump the version."
+            exit 1
+          fi
+      - name: Create the release as a draft, upload the tarball, then publish
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          node scripts/release/notes.mjs "$version" > notes.md
+          gh release create "$GITHUB_REF_NAME" ".pack/gabrioliv-dossier-${version}.tgz" --draft --verify-tag --title "$GITHUB_REF_NAME" --notes-file notes.md
+          gh release edit "$GITHUB_REF_NAME" --draft=false
+
+  smoke:
+    needs: release
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v8
+        with:
+          name: tarball
+          path: .pack
+      - name: Install the README URL in an empty project and compare it with the tested tarball
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          node scripts/release/verify-install.mjs "https://github.com/GabriOliv/dossier/releases/download/$GITHUB_REF_NAME/gabrioliv-dossier-${version}.tgz" ".pack/gabrioliv-dossier-${version}.tgz"
