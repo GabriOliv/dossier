@@ -1,0 +1,33 @@
+import { readFileSync } from "node:fs";
+import { test } from "@playwright/test";
+import { Schematic, type SchematicProps } from "../../src/components/Schematic";
+import { expectMarkup } from "./markup";
+import { render } from "./oracle";
+
+/** The portfolio's data.json tools (portfolio 850d307), the real use of Schematic. */
+const tools: { name: string; layer: number; angle: number; active?: boolean }[] = JSON.parse(
+  readFileSync("tests/fixtures/schematic-tools.json", "utf8"),
+);
+const nodes = tools.map((t) => ({ ring: t.layer, angle: t.angle, label: t.name, active: t.active }));
+
+const page = (size: number): SchematicProps => ({
+  size,
+  labelWidth: 94,
+  rings: 3,
+  title: "Tools by layer, from test code at the centre to infrastructure on the outer ring",
+  nodes,
+});
+
+const cases: [string, SchematicProps][] = [
+  ["seven tools at 120", page(120)],
+  ["seven tools at 200", page(200)],
+  ["seven tools at 260", page(260)],
+  ["defaults, no ticks", { nodes: [{ ring: 9, angle: 0, label: "far" }], ticks: false, className: "x" }],
+];
+
+test("VIS-11 Schematic markup matches its snapshot", () => {
+  expectMarkup(
+    "Schematic",
+    cases.map(([name, props]) => [name, render(<Schematic {...props} />)]),
+  );
+});

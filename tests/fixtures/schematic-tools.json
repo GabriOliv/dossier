@@ -1,0 +1,52 @@
+[
+  {
+    "name": "playwright",
+    "category": "e2e",
+    "label": "End-to-end tests",
+    "layer": 1,
+    "angle": -30,
+    "active": true
+  },
+  {
+    "name": "terraform",
+    "category": "iac",
+    "label": "Infrastructure as code",
+    "layer": 3,
+    "angle": -60
+  },
+  {
+    "name": "jenkins",
+    "category": "ci/cd",
+    "label": "CI/CD",
+    "layer": 2,
+    "angle": 140
+  },
+  {
+    "name": "python",
+    "category": "scripting",
+    "label": "Scripting",
+    "layer": 1,
+    "angle": 40
+  },
+  {
+    "name": "typescript",
+    "category": "automation",
+    "label": "Automation",
+    "layer": 1,
+    "angle": 200
+  },
+  {
+    "name": "docker",
+    "category": "containers",
+    "label": "Containers",
+    "layer": 3,
+    "angle": 60
+  },
+  {
+    "name": "git",
+    "category": "vcs",
+    "label": "Version control",
+    "layer": 2,
+    "angle": -130
+  }
+]

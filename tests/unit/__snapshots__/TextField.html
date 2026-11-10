@@ -1,0 +1,41 @@
+## every prop on an input, hint shown
+<div class="ds-textfield x"><label class="ds-t-label ds-tf-label" for="«id1»">Email<span class="ds-tf-req"> · Required</span></label><input id="«id1»" class="ds-t-body ds-tf-input" name="email" placeholder="you@example.com" required="" disabled="" aria-describedby="«id2»" type="email" value="a@b.c"/><div id="«id2»" class="ds-t-caption ds-tf-msg">We never share it.</div></div>
+
+## label only: text input, no message
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" type="text"/></div>
+
+## defaultValue on an input
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" type="text" value="Ana"/></div>
+
+## value wins over defaultValue
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" type="text" value="Bo"/></div>
+
+## empty value is still controlled
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" type="text" value=""/></div>
+
+## error without hint
+<div class="ds-textfield ds-tf-invalid"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" aria-invalid="true" aria-describedby="«id2»" type="text"/><div id="«id2»" class="ds-t-caption ds-tf-msg ds-tf-error"><svg class="ds-err-mark" viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><rect class="ds-err-mark-box" x="0" y="0" width="14" height="14"></rect><path class="ds-err-mark-x" d="M4 4 L10 10 M10 4 L4 10"></path></svg><span>Enter a name.</span></div></div>
+
+## error wins over hint
+<div class="ds-textfield ds-tf-invalid"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" aria-invalid="true" aria-describedby="«id2»" type="text"/><div id="«id2»" class="ds-t-caption ds-tf-msg ds-tf-error"><svg class="ds-err-mark" viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><rect class="ds-err-mark-box" x="0" y="0" width="14" height="14"></rect><path class="ds-err-mark-x" d="M4 4 L10 10 M10 4 L4 10"></path></svg><span>Enter a name.</span></div></div>
+
+## hint without error
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" aria-describedby="«id2»" type="text"/><div id="«id2»" class="ds-t-caption ds-tf-msg">Your full name.</div></div>
+
+## required only
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name<span class="ds-tf-req"> · Required</span></label><input id="«id1»" class="ds-t-body ds-tf-input" required="" type="text"/></div>
+
+## disabled only
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" disabled="" type="text"/></div>
+
+## textarea defaults to 3 rows and ignores type
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Notes</label><textarea id="«id1»" class="ds-t-body ds-tf-input" rows="3"></textarea></div>
+
+## textarea with rows, defaultValue, error
+<div class="ds-textfield ds-tf-invalid"><label class="ds-t-label ds-tf-label" for="«id1»">Notes</label><textarea id="«id1»" class="ds-t-body ds-tf-input" aria-invalid="true" aria-describedby="«id2»" rows="6">Hi</textarea><div id="«id2»" class="ds-t-caption ds-tf-msg ds-tf-error"><svg class="ds-err-mark" viewBox="0 0 14 14" width="12" height="12" aria-hidden="true"><rect class="ds-err-mark-box" x="0" y="0" width="14" height="14"></rect><path class="ds-err-mark-x" d="M4 4 L10 10 M10 4 L4 10"></path></svg><span>Too short.</span></div></div>
+
+## textarea with value and hint
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Notes</label><textarea id="«id1»" class="ds-t-body ds-tf-input" aria-describedby="«id2»" rows="3">Hello</textarea><div id="«id2»" class="ds-t-caption ds-tf-msg">Markdown ok.</div></div>
+
+## rows is ignored on an input
+<div class="ds-textfield"><label class="ds-t-label ds-tf-label" for="«id1»">Name</label><input id="«id1»" class="ds-t-body ds-tf-input" type="text"/></div>

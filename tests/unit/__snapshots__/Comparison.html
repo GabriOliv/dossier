@@ -1,0 +1,20 @@
+## list prop absent
+<div class="ds-compare" style="grid-template-columns:repeat(1, minmax(0, 1fr))"></div>
+
+## two columns with every field, first active
+<div class="ds-compare x" style="grid-template-columns:repeat(2, minmax(0, 1fr))"><section class="ds-cmp-col ds-cmp-on"><span class="ds-t-label ds-cmp-code">X1</span><h3 class="ds-t-title ds-cmp-title">Option one</h3><p class="ds-t-body ds-cmp-lead">The lead.</p><ul class="ds-cmp-list"><li class="ds-t-body ds-cmp-item">a</li><li class="ds-t-body ds-cmp-item">b</li></ul></section><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">X2</span><h3 class="ds-t-title ds-cmp-title">Option two</h3><p class="ds-t-body ds-cmp-lead">Other lead.</p><ul class="ds-cmp-list"><li class="ds-t-body ds-cmp-item">c</li></ul></section></div>
+
+## three columns, code defaults to A, B, C
+<div class="ds-compare" style="grid-template-columns:repeat(3, minmax(0, 1fr))"><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">A</span><h3 class="ds-t-title ds-cmp-title">One</h3></section><section class="ds-cmp-col ds-cmp-on"><span class="ds-t-label ds-cmp-code">B</span><h3 class="ds-t-title ds-cmp-title">Two</h3></section><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">C</span><h3 class="ds-t-title ds-cmp-title">Three</h3><p class="ds-t-body ds-cmp-lead">L</p></section></div>
+
+## extra columns are dropped
+<div class="ds-compare" style="grid-template-columns:repeat(3, minmax(0, 1fr))"><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">A</span><h3 class="ds-t-title ds-cmp-title">One</h3></section><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">B</span><h3 class="ds-t-title ds-cmp-title">Two</h3></section><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">C</span><h3 class="ds-t-title ds-cmp-title">Three</h3></section></div>
+
+## lead and items absent
+<div class="ds-compare" style="grid-template-columns:repeat(1, minmax(0, 1fr))"><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">B</span><h3 class="ds-t-title ds-cmp-title">Bare</h3></section></div>
+
+## empty items list
+<div class="ds-compare" style="grid-template-columns:repeat(1, minmax(0, 1fr))"><section class="ds-cmp-col"><span class="ds-t-label ds-cmp-code">A</span><h3 class="ds-t-title ds-cmp-title">Empty</h3></section></div>
+
+## no columns
+<div class="ds-compare" style="grid-template-columns:repeat(1, minmax(0, 1fr))"></div>
