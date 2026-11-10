@@ -45,6 +45,8 @@ jobs:
           name: tarball
           path: .pack/*.tgz
           if-no-files-found: error
+          # .pack is a hidden directory, which upload-artifact leaves out unless told otherwise.
+          include-hidden-files: true
 
   release:
     needs: verify
