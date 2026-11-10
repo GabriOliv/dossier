@@ -125,11 +125,13 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover
         "aria-controls": id,
         onPointerDown: (e: PointerEvent<HTMLElement>) => {
           theirs.onPointerDown?.(e);
-          pressedOpen.current = open;
+          pressedOpen.current = node.current!.matches(":popover-open");
         },
         onClick: (e: MouseEvent<HTMLElement>) => {
           theirs.onClick?.(e);
-          const was = pressedOpen.current ?? open;
+          // The panel itself, not `open`: after Escape the browser hides it at once, but tells React only on the
+          // toggle event, which a click that comes first does not wait for.
+          const was = pressedOpen.current ?? node.current!.matches(":popover-open");
           pressedOpen.current = null;
           // The press on the trigger of an open panel was a click outside it: the browser has closed the panel.
           if (was && !node.current!.matches(":popover-open")) return;
