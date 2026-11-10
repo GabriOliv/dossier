@@ -1,0 +1,81 @@
+{
+  "name": "@gabrioliv/dossier",
+  "version": "1.0.0",
+  "description": "Dossier design system for React: components, tokens and ready-made CSS.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabriOliv/dossier.git"
+  },
+  "homepage": "https://gabrioliv.github.io/dossier/",
+  "bugs": "https://github.com/GabriOliv/dossier/issues",
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./locales/en": {
+      "types": "./dist/locales/en.d.ts",
+      "default": "./dist/locales/en.js"
+    },
+    "./locales/pt-BR": {
+      "types": "./dist/locales/pt-BR.d.ts",
+      "default": "./dist/locales/pt-BR.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./base.css": "./dist/base.css",
+    "./docusaurus.css": "./dist/docusaurus.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./assets/*": "./dist/assets/*",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && node scripts/clean.mjs && vite build && tsc -p tsconfig.build.json && node scripts/build-css.mjs",
+    "test": "npm run build && npm run setup:react19 && playwright test --project unit",
+    "test:consumer": "node scripts/fixtures.mjs && PW_CONSUMER=1 playwright test --project consumer",
+    "build:gallery": "npm run build && vite build --config gallery/vite.config.ts",
+    "dev:gallery": "npm run build && vite --config gallery/vite.config.ts --host 0.0.0.0 --port 5173 --strictPort",
+    "test:gallery": "PW_GALLERY=1 playwright test --project gallery --project gallery-phone",
+    "test:visual:update": "npm run build:gallery && PW_GALLERY=1 playwright test tests/gallery/visual --project=gallery --project=gallery-phone -g \"VIS-0[12] |OVL-08 [A-Za-z]+ open \" --update-snapshots=all",
+    "test:markup:update": "npm run build && playwright test --project=unit -g \"markup matches its snapshot\" --update-snapshots=all",
+    "storybook": "npm run build && storybook dev --port 6006 --host 0.0.0.0 --ci",
+    "build:storybook": "npm run build && storybook build --output-dir storybook-static",
+    "test:storybook": "PW_STORYBOOK=1 playwright test --project storybook",
+    "format": "prettier --check . --print-width 120 --tab-width 2 --no-use-tabs",
+    "lint:package": "publint",
+    "setup:react19": "test -d tests/react19/node_modules/react-server-dom-webpack || npm ci --prefix tests/react19 --no-audit --no-fund"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@fontsource/ibm-plex-sans-condensed": "5.3.0",
+    "@playwright/test": "1.64.1",
+    "@storybook/addon-docs": "10.6.3",
+    "@storybook/react-vite": "10.6.3",
+    "@types/node": "24.19.2",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "5.2.0",
+    "prettier": "3.6.2",
+    "publint": "0.3.25",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "storybook": "10.6.3",
+    "typescript": "5.9.3",
+    "vite": "7.3.7",
+    "yaml": "2.9.1"
+  }
+}

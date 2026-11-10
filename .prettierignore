@@ -1,0 +1,19 @@
+source/
+dist/
+package-lock.json
+fixtures/*/package-lock.json
+fixtures/*/build/
+fixtures/*/build-plain/
+fixtures/*/dist/
+fixtures/*/.docusaurus/
+tests/fixtures/
+# Byte-for-byte copies of the reference, or derived from it line by line (tests compare them):
+assets/
+tokens/tokens.json
+scripts/build-tokens.mjs
+docs/maturity-stages.md
+src/styles/*.css
+gallery/gallery.css
+.claude/
+# Generated references: written by test:markup:update and test:visual:update, compared byte for byte.
+tests/unit/__snapshots__/

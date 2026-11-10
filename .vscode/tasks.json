@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Docker: install",
+      "type": "shell",
+      "command": "docker compose run --rm node npm ci",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: build",
+      "type": "shell",
+      "command": "docker compose run --rm node npm run build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: test",
+      "type": "shell",
+      "command": "docker compose run --rm node npm test",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: test consumer",
+      "type": "shell",
+      "command": "docker compose run --rm node npm run test:consumer",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: test gallery",
+      "type": "shell",
+      "command": "docker compose run --rm node sh -c 'npm run build:gallery && npm run test:gallery'",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: format check",
+      "type": "shell",
+      "command": "docker compose run --rm node npm run format",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: gallery (http://localhost:5173/dossier/)",
+      "type": "shell",
+      "command": "docker rm -f dossier-gallery >/dev/null 2>&1; docker compose run --rm --name dossier-gallery -p 127.0.0.1:5173:5173 node npm run dev:gallery",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: storybook (http://localhost:6006)",
+      "type": "shell",
+      "command": "docker rm -f dossier-storybook >/dev/null 2>&1; docker compose run --rm --name dossier-storybook -p 127.0.0.1:6006:6006 node npm run storybook",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: build storybook",
+      "type": "shell",
+      "command": "docker compose run --rm node npm run build:storybook",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: stop servers",
+      "type": "shell",
+      "command": "docker rm -f dossier-gallery dossier-storybook",
+      "problemMatcher": []
+    }
+  ]
+}
