@@ -42,7 +42,7 @@
     "react": "^18.0.0 || ^19.0.0"
   },
   "scripts": {
-    "build": "tsc --noEmit && node scripts/clean.mjs && vite build && tsc -p tsconfig.build.json && node scripts/build-css.mjs",
+    "build": "node scripts/clean.mjs && vite build && tsc -p tsconfig.build.json && node scripts/build-css.mjs && tsc --noEmit",
     "test": "npm run build && npm run setup:react19 && playwright test --project unit",
     "test:consumer": "node scripts/fixtures.mjs && PW_CONSUMER=1 playwright test --project consumer",
     "build:gallery": "npm run build && vite build --config gallery/vite.config.ts",
