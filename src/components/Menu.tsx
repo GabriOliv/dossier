@@ -53,13 +53,16 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState(0);
   const nodes = useRef<(HTMLButtonElement | null)[]>([]);
+  // The focused item, set with the focus itself: a key pressed before React renders `current` again still steps from it.
+  const at = useRef(0);
   const enabled = items.flatMap((item, i) => (item.disabled ? [] : [i]));
   const focus = (i: number | undefined) => {
     if (i === undefined) return;
+    at.current = i;
     setCurrent(i);
     nodes.current[i]?.focus();
   };
-  const step = (by: number) => focus(enabled[(enabled.indexOf(current) + by + enabled.length) % enabled.length]);
+  const step = (by: number) => focus(enabled[(enabled.indexOf(at.current) + by + enabled.length) % enabled.length]);
 
   // The Popover inside has shown the menu by now: its effects run before these.
   useEffect(() => {
