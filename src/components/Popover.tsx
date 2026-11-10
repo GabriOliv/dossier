@@ -56,12 +56,15 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover
   const node = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, () => node.current!);
   const [own, setOwn] = useState(false);
-  // A controlled panel the browser closed while `open` stays true renders again, so the effect below shows it again.
-  const [, rerender] = useReducer((n: number) => n + 1, 0);
+  // Counts the gestures: the trigger click, Escape and a click outside. The effect below syncs the panel to `open` when
+  // `open` changes and on each gesture, so a controlled panel the browser closed while `open` stays true is shown
+  // again. Not on every render: `open` learns of a close the browser made only on the toggle event, a task later, and
+  // a render in between (a Menu moving focus, say) would show the closed panel again.
+  const [gestures, gesture] = useReducer((n: number) => n + 1, 0);
   const open = controlled ?? own;
   const ask = (next: boolean) => {
     if (controlled === undefined) setOwn(next);
-    else rerender();
+    gesture();
     onOpenChange?.(next);
   };
   /** Whether the panel was open when the pointer pressed the trigger; null outside a press. */
@@ -76,7 +79,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(function Popover
       if (open) panel.showPopover();
       else panel.hidePopover();
     }
-  });
+  }, [open, gestures]);
 
   useEffect(() => {
     const panel = node.current;
