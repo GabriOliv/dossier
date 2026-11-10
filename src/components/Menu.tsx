@@ -4,6 +4,7 @@ import {
   forwardRef,
   isValidElement,
   useEffect,
+  useImperativeHandle,
   useRef,
   useState,
   type KeyboardEvent,
@@ -52,6 +53,8 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
 ) {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState(0);
+  const panel = useRef<HTMLDivElement>(null);
+  useImperativeHandle(ref, () => panel.current!);
   const nodes = useRef<(HTMLButtonElement | null)[]>([]);
   // The focused item, set with the focus itself: a key pressed before React renders `current` again still steps from it.
   const at = useRef(0);
@@ -63,6 +66,15 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     nodes.current[i]?.focus();
   };
   const step = (by: number) => focus(enabled[(enabled.indexOf(at.current) + by + enabled.length) % enabled.length]);
+  // Opens the menu, by click, Enter, Space or the down arrow on the trigger. After Escape the browser hides the panel at
+  // once, but tells React only on the toggle event: `open` can still be true here, and `setOpen(true)` would change
+  // nothing. The panel is shown again, so that late event finds it open and leaves it so, and the first item is focused.
+  const show = () => {
+    if (open && panel.current && !panel.current.matches(":popover-open")) {
+      panel.current.showPopover();
+      focus(enabled[0]);
+    } else setOpen(true);
+  };
 
   // The Popover inside has shown the menu by now: its effects run before these.
   useEffect(() => {
@@ -84,24 +96,18 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
     <Popover
       role="menu"
       {...rest}
-      ref={ref}
+      ref={panel}
       className={cls("ds-menu", className)}
       placement={placement}
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={(next) => (next ? show() : setOpen(false))}
       trigger={cloneElement(opener, {
         "aria-haspopup": "menu",
         onKeyDown: (e: KeyboardEvent<HTMLElement>) => {
           theirs.onKeyDown?.(e);
           if (e.key !== "ArrowDown") return;
           e.preventDefault();
-          // After Escape the browser hides the panel at once, but tells React only on the toggle event: `open` can
-          // still be true here. The panel is shown again, so that late event finds it open and leaves it so.
-          const panel = document.getElementById(e.currentTarget.getAttribute("aria-controls") ?? "");
-          if (open && panel && !panel.matches(":popover-open")) {
-            panel.showPopover();
-            focus(enabled[0]);
-          } else setOpen(true);
+          show();
         },
       })}
       onKeyDown={(e) => {
