@@ -69,11 +69,14 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
   // Opens the menu, by click, Enter, Space or the down arrow on the trigger. After Escape the browser hides the panel at
   // once, but tells React only on the toggle event: `open` can still be true here, and `setOpen(true)` would change
   // nothing. The panel is shown again, so that late event finds it open and leaves it so, and the first item is focused.
+  // `setOpen(true)` still runs: when the toggle event has come but its `setOpen(false)` is not rendered yet, that
+  // render would otherwise find `open` false and hide the panel just shown.
   const show = () => {
     if (open && panel.current && !panel.current.matches(":popover-open")) {
       panel.current.showPopover();
       focus(enabled[0]);
-    } else setOpen(true);
+    }
+    setOpen(true);
   };
 
   // The Popover inside has shown the menu by now: its effects run before these.
