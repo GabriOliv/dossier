@@ -327,8 +327,9 @@ test("SONAR-02 the deploy job holds pages: write and id-token: write, and nothin
 });
 
 test("SONAR-03 no job of pages.yml but deploy holds a write permission", () => {
+  // `write-all` is a string, not a map, so the check reads the whole value.
   for (const [name, job] of Object.entries(pages.jobs).filter(([n]) => n !== "deploy"))
-    expect(Object.values(job.permissions ?? {}), name).not.toContain("write");
+    expect(JSON.stringify(job.permissions ?? {}), name).not.toMatch(/write/);
 });
 
 test("SONAR-04 every npm ci of test.yml passes --ignore-scripts", () => {
@@ -336,5 +337,7 @@ test("SONAR-04 every npm ci of test.yml passes --ignore-scripts", () => {
     job.steps.filter((s) => /\bnpm ci\b/.test(s.run ?? "")).map((s) => [name, s.run!] as const),
   );
   expect(installs.map(([name]) => name)).toEqual(["build", "unit", "browser", "consumer", "format"]);
-  for (const [name, run] of installs) expect(run, name).toMatch(/\bnpm ci\b.*\s--ignore-scripts\b/);
+  // Every `npm ci` of a step, up to the next command separator, carries the flag.
+  for (const [name, run] of installs)
+    expect(run.match(/\bnpm ci\b(?![^\n&|;]*\s--ignore-scripts\b)/g), name).toBeNull();
 });
