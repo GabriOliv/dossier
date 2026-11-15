@@ -1,0 +1,68 @@
+/* Layout of the Overview stories (stories/Overview.stories.tsx). Components are styled by the library. */
+.ds-demo {
+  padding: var(--ds-space-6);
+}
+.ds-row {
+  display: flex;
+  gap: var(--ds-space-6);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.gal-section {
+  padding-top: 32px;
+  scroll-margin-top: 16px;
+  min-width: 0;
+}
+.gal-section > h2 {
+  margin: 0 0 4px;
+}
+.gal-desc {
+  margin: 0 0 16px;
+  color: var(--ds-ink-muted);
+  max-width: 60ch;
+}
+.gal-variant {
+  margin: 0 0 24px;
+  min-width: 0;
+}
+.gal-cap {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ds-ink-muted);
+  font-family: var(--ds-font-mono);
+  font-size: 12px;
+}
+.gal-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.gal-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+}
+.gal-stack {
+  display: grid;
+  gap: 24px;
+}
+.gal-prose {
+  margin: 0;
+  max-width: 64ch;
+}
+.gal-report {
+  display: grid;
+  gap: 32px;
+  min-width: 0;
+}
+.gal-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  .gal-two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -16,3 +16,569 @@ html[data-theme] {
   --ifm-global-radius: var(--ds-radius-none);
   --ifm-table-stripe-background: transparent;
 }
+
+/* Markdown elements of a document. The selectors start with html[data-theme] to win over Infima and the theme's
+   CSS modules, in both modes. Alignment of a table column comes from the style attribute the Markdown writes. */
+html[data-theme] {
+  --ifm-hr-background-color: var(--ds-rule);
+}
+
+/* h2: a 32 x 6 px signal bar above, capitals by CSS (the DOM keeps the case written), a 2 px rule below. */
+html[data-theme] .markdown h2:not([class^="ds-"], [class*=" ds-"]) {
+  text-transform: uppercase;
+  padding-bottom: var(--ds-space-3);
+  border-bottom: var(--ds-stroke-rule) solid var(--ds-rule);
+}
+
+html[data-theme] .markdown h2:not([class^="ds-"], [class*=" ds-"])::before {
+  content: "";
+  display: block;
+  width: var(--ds-space-8);
+  height: var(--ds-stroke-heavy);
+  margin-bottom: var(--ds-space-2);
+  background: var(--ds-signal);
+}
+
+html[data-theme] .markdown :is(h3, h4, h5, h6):not([class^="ds-"], [class*=" ds-"]) {
+  text-transform: none;
+}
+
+/* Tables: no vertical rules, a 2 px rule under the head, a hairline under each body row. Above 996 px the table
+   takes the width of the column; below it scrolls inside its own box. */
+html[data-theme] .markdown table:not(.ds-table) {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  color: var(--ds-ink);
+}
+
+@media (min-width: 997px) {
+  html[data-theme] .markdown table:not(.ds-table) {
+    display: table;
+    width: 100%;
+    overflow-x: visible;
+  }
+}
+
+html[data-theme] .markdown table:not(.ds-table) :is(thead, tbody, tr) {
+  background: transparent;
+  border: 0;
+}
+
+html[data-theme] .markdown table:not(.ds-table) :is(th, td) {
+  border-width: 0;
+  background: transparent;
+  padding: var(--ds-space-2) var(--ds-space-4);
+  text-align: left;
+}
+
+html[data-theme] .markdown table:not(.ds-table) :is(th, td):first-child {
+  padding-left: 0;
+}
+
+html[data-theme] .markdown table:not(.ds-table) th {
+  color: var(--ds-ink-muted);
+  border-bottom: var(--ds-stroke-rule) solid var(--ds-rule);
+}
+
+html[data-theme] .markdown table:not(.ds-table) td {
+  border-bottom: var(--ds-stroke-hair) solid var(--ds-rule-soft);
+}
+
+/* Quotes: the Quote look, a 2 px rule on top, no rule on the left, capitals, and a signal opening mark. */
+html[data-theme] .markdown blockquote:not([class^="ds-"], [class*=" ds-"]) {
+  max-width: 640px;
+  margin: 0 0 var(--ds-space-8);
+  padding: var(--ds-space-3) 0 0;
+  border: 0;
+  border-top: var(--ds-stroke-rule) solid var(--ds-rule);
+  box-shadow: none;
+  color: var(--ds-ink);
+  font: var(--ds-text-title);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+html[data-theme] .markdown blockquote:not([class^="ds-"], [class*=" ds-"]) > :first-child::before {
+  content: "\201C";
+  margin-right: var(--ds-space-1);
+  color: var(--ds-signal);
+}
+
+html[data-theme] .markdown blockquote:not([class^="ds-"], [class*=" ds-"]) > :last-child {
+  margin-bottom: 0;
+}
+
+/* Text of the article: links in signal and underlined, a 68ch measure for paragraphs and lists, 16 px. */
+html[data-theme] .markdown :is(p, li, blockquote):not([class^="ds-"], [class*=" ds-"]) a:not(.hash-link, .ds-link),
+html[data-theme] .markdown table:not(.ds-table) :is(th, td) a:not(.ds-link) {
+  color: var(--ds-signal);
+  text-decoration: underline;
+}
+
+html[data-theme] .markdown > :is(p, ul, ol):not([class^="ds-"], [class*=" ds-"]) {
+  max-width: 68ch;
+  font-size: 16px;
+}
+
+html[data-theme] .markdown hr:not([class^="ds-"], [class*=" ds-"]) {
+  height: var(--ds-stroke-hair);
+  border: 0;
+  background-color: var(--ds-rule);
+}
+
+/* Inline code on the panel. */
+html[data-theme] :not(pre) > code:not([class^="ds-"], [class*=" ds-"]) {
+  background-color: var(--ds-panel);
+  border-color: var(--ds-rule-soft);
+  color: var(--ds-ink);
+}
+
+@media (forced-colors: active) {
+  html[data-theme] .markdown h2:not([class^="ds-"], [class*=" ds-"])::before {
+    forced-color-adjust: none;
+    background: Highlight;
+  }
+}
+
+/* What Infima and DocSearch leave over: the gray scales, shadows and search variables take the tokens, so a rule that
+   reads one of them lands on a token of the active theme. */
+html[data-theme] {
+  --ifm-color-emphasis-0: var(--ds-paper);
+  --ifm-color-emphasis-100: var(--ds-panel);
+  --ifm-color-emphasis-200: var(--ds-panel);
+  --ifm-color-emphasis-300: var(--ds-rule-soft);
+  --ifm-color-emphasis-400: var(--ds-rule-soft);
+  --ifm-color-emphasis-500: var(--ds-ink-muted);
+  --ifm-color-emphasis-600: var(--ds-ink-muted);
+  --ifm-color-emphasis-700: var(--ds-ink-muted);
+  --ifm-color-emphasis-800: var(--ds-ink);
+  --ifm-color-emphasis-900: var(--ds-ink);
+  --ifm-color-emphasis-1000: var(--ds-ink);
+  --ifm-color-content-secondary: var(--ds-ink-muted);
+  --ifm-color-danger: var(--ds-contrast-error);
+  --ifm-color-danger-dark: var(--ds-contrast-error);
+  --ifm-color-danger-darker: var(--ds-contrast-error);
+  --ifm-color-danger-darkest: var(--ds-contrast-error);
+  --ifm-font-color-base-inverse: var(--ds-on-signal);
+  --ifm-table-border-color: var(--ds-rule-soft);
+  --ifm-toc-border-color: var(--ds-rule-soft);
+  --ifm-hover-overlay: color-mix(in srgb, var(--ds-ink) 5%, transparent);
+  --ifm-global-shadow-lw: none;
+  --ifm-global-shadow-md: none;
+  --ifm-global-shadow-tl: none;
+  --ifm-navbar-shadow: none;
+  --ifm-code-background: var(--ds-panel);
+  --ifm-scrollbar-track-background-color: var(--ds-panel);
+  --ifm-scrollbar-thumb-background-color: var(--ds-ink-muted);
+  --ifm-scrollbar-thumb-hover-background-color: var(--ds-ink);
+}
+
+/* Square corners, no shadow, and the paper veil of the phone menu in a token. */
+html[data-theme] :is(.breadcrumbs__link, .menu__list-item-collapsible, .theme-back-to-top-button) {
+  border-radius: var(--ds-radius-none);
+}
+
+html[data-theme] .theme-back-to-top-button {
+  box-shadow: none;
+}
+
+html[data-theme] .navbar-sidebar__backdrop {
+  background-color: color-mix(in srgb, var(--ds-ink) 60%, transparent);
+}
+
+/* The cards of the pagination: a 1 px ink border. */
+html[data-theme] .pagination-nav__link {
+  border: var(--ds-stroke-hair) solid var(--ds-ink);
+}
+
+/* The search modal. */
+html[data-theme] {
+  --docsearch-primary-color: var(--ds-signal);
+  --docsearch-soft-primary-color: var(--ds-signal-tint);
+  --docsearch-subtle-color: var(--ds-rule-soft);
+  --docsearch-text-color: var(--ds-ink);
+  --docsearch-error-color: var(--ds-contrast-error);
+  --docsearch-success-color: var(--ds-panel);
+  --docsearch-secondary-text-color: var(--ds-ink-muted);
+  --docsearch-background-color: var(--ds-panel);
+  --docsearch-focus-color: var(--ds-signal);
+  --docsearch-highlight-color: var(--ds-signal);
+  --docsearch-muted-color: var(--ds-ink-muted);
+  --docsearch-muted-color-darker: var(--ds-ink-muted);
+  --docsearch-icon-color: var(--ds-ink-muted);
+  --docsearch-container-background: color-mix(in srgb, var(--ds-ink) 60%, transparent);
+  --docsearch-logo-color: var(--ds-signal);
+  --docsearch-search-button-background: var(--ds-paper);
+  --docsearch-search-button-text-color: var(--ds-ink-muted);
+  --docsearch-modal-background: var(--ds-panel);
+  --docsearch-modal-shadow: none;
+  --docsearch-searchbox-background: var(--ds-paper);
+  --docsearch-searchbox-focus-background: var(--ds-paper);
+  --docsearch-hit-color: var(--ds-ink);
+  --docsearch-hit-highlight-color: var(--ds-signal-tint);
+  --docsearch-hit-background: var(--ds-paper);
+  --docsearch-hit-shadow: none;
+  --docsearch-key-background: var(--ds-panel);
+  --docsearch-key-color: var(--ds-ink-muted);
+  --docsearch-key-pressed-shadow: none;
+  --docsearch-footer-background: var(--ds-paper);
+  --docsearch-footer-shadow: none;
+  --docsearch-dropdown-menu-background: var(--ds-paper);
+  --docsearch-dropdown-menu-item-hover-background: var(--ds-panel);
+}
+
+html[data-theme]
+  :is(
+    .DocSearch-Modal,
+    .DocSearch-Form,
+    .DocSearch-Hit,
+    .DocSearch-Hit a,
+    .DocSearch-Footer,
+    .DocSearch-Action,
+    .DocSearch-Commands-Key
+  ) {
+  border-radius: var(--ds-radius-none);
+  box-shadow: none;
+}
+
+/* Touch targets on phones: 44 x 44 px for the controls, 24 x 24 px for the chips and the breadcrumbs. */
+@media (max-width: 996px) {
+  html[data-theme] :is(.navbar__toggle, .navbar-sidebar__close, .navbar .DocSearch-Button),
+  html[data-theme] .navbar-sidebar__brand button[class*="toggleButton"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  html[data-theme] :is(a[rel="tag"], .breadcrumbs__link) {
+    display: inline-flex;
+    align-items: center;
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
+
+/* Tag chips: a rectangle with a 1 px ink border, without the point and the hole that Infima draws with ::before and
+   ::after, and the count inside the chip in mono. */
+html[data-theme] a[rel="tag"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  margin: var(--ds-space-2) var(--ds-space-2) 0 0;
+  padding: var(--ds-space-1) var(--ds-space-2);
+  border: var(--ds-stroke-hair) solid var(--ds-ink);
+  border-radius: var(--ds-radius-none);
+  background: transparent;
+  color: var(--ds-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+html[data-theme] a[rel="tag"]::before,
+html[data-theme] a[rel="tag"]::after {
+  content: none;
+}
+
+html[data-theme] a[rel="tag"] > span {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-family: var(--ds-font-mono);
+}
+
+html[data-theme] a[rel="tag"]:hover {
+  border-color: var(--ds-signal);
+  color: var(--ds-signal);
+}
+
+/* Code. The theme of Prism writes its colors in style attributes, so the palette needs !important: the ground in
+   panel, comments in ink-muted, keywords in signal, everything else in ink. A site that wants another palette has to
+   use !important too. */
+html[data-theme] .theme-code-block {
+  --prism-color: var(--ds-ink) !important;
+  --prism-background-color: var(--ds-panel) !important;
+  --docusaurus-highlighted-code-line-bg: var(--ds-signal-tint);
+}
+
+html[data-theme] .theme-code-block pre {
+  background-color: var(--ds-panel) !important;
+}
+
+html[data-theme] .theme-code-block :is(pre, .token-line, .token) {
+  color: var(--ds-ink) !important;
+}
+
+html[data-theme] .theme-code-block .token:is(.comment, .prolog, .doctype, .cdata) {
+  color: var(--ds-ink-muted) !important;
+}
+
+html[data-theme] .theme-code-block .token.keyword {
+  color: var(--ds-signal) !important;
+}
+
+/* Mermaid. The theme draws the diagram from a style element with ids, so the palette needs !important here too. The
+   selector is the id prefix of the SVG, which also matches the SVG that Mermaid builds off screen to measure the
+   text, so the measure already uses IBM Plex. Nodes are panel with an ink stroke, groups paper with an ink stroke,
+   edges, arrowheads and text ink, and the edge labels paper. */
+svg[id^="mermaid-svg"],
+svg[id^="mermaid-svg"] * {
+  font-family: var(--ds-font-sans) !important;
+}
+
+svg[id^="mermaid-svg"] .node :is(rect, circle, ellipse, polygon, path) {
+  fill: var(--ds-panel) !important;
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] .cluster rect {
+  fill: var(--ds-paper) !important;
+  stroke: var(--ds-ink) !important;
+}
+
+/* Timeline: the event boxes are panel like the nodes, and every line (axis and section lines) is ink. */
+svg[id^="mermaid-svg"] .node-bkg {
+  fill: var(--ds-panel) !important;
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] line {
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] :is(.flowchart-link, .edgePath path, .transition, path[class*="edge-pattern"]) {
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] marker :is(path, polygon, circle) {
+  fill: var(--ds-ink) !important;
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] .edgeLabel,
+svg[id^="mermaid-svg"] .edgeLabel :is(div, span, p) {
+  background-color: var(--ds-paper) !important;
+}
+
+svg[id^="mermaid-svg"] .edgeLabel rect {
+  fill: var(--ds-paper) !important;
+}
+
+svg[id^="mermaid-svg"] text {
+  fill: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"] foreignObject * {
+  color: var(--ds-ink) !important;
+}
+
+/* Chrome of the Docusaurus theme in the Dossier rules (CHROME-01 to CHROME-09 and CHROME-12 of the Garden). The
+   selectors start with html[data-theme] to win over Infima and the theme's CSS modules. */
+
+/* Square corners. */
+html[data-theme] button,
+html[data-theme] .button,
+html[data-theme] .DocSearch-Button,
+html[data-theme] .DocSearch-Button-Key,
+html[data-theme] .menu__link,
+html[data-theme] .pagination-nav__link,
+html[data-theme] .alert,
+html[data-theme] .theme-code-block,
+html[data-theme] code,
+html[data-theme] a[rel="tag"],
+html[data-theme] a[rel="tag"]::before,
+html[data-theme] a[rel="tag"]::after {
+  border-radius: var(--ds-radius-none);
+}
+
+/* No shadow. */
+html[data-theme] .navbar,
+html[data-theme] .alert,
+html[data-theme] .theme-code-block,
+html[data-theme] .pagination-nav__link {
+  box-shadow: none;
+}
+
+/* Surfaces from the tokens. The variable bridge does not set the Infima surface. */
+html[data-theme] {
+  --ifm-background-surface-color: var(--ds-paper);
+}
+
+html[data-theme] .theme-doc-sidebar-container {
+  background-color: var(--ds-panel);
+}
+
+html[data-theme] .pagination-nav__link {
+  background-color: var(--ds-paper);
+}
+
+/* Keyboard focus with the Dossier ring. In forced colors the shadow disappears and the outline comes back in the
+   system color, as in the components. */
+html[data-theme] a:focus-visible,
+html[data-theme] button:focus-visible,
+html[data-theme] summary:focus-visible {
+  box-shadow: var(--ds-focus-ring);
+  outline: none;
+}
+
+@media (forced-colors: active) {
+  html[data-theme] a:focus-visible,
+  html[data-theme] button:focus-visible,
+  html[data-theme] summary:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+}
+
+/* Tag chips and table heads as Dossier labels. */
+html[data-theme] a[rel="tag"],
+html[data-theme] .markdown th {
+  font: var(--ds-text-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Admonitions with tokens only. The border and the title use --ifm-alert-border-color and
+   --ifm-alert-foreground-color; the text stays in ink. */
+html[data-theme] .theme-admonition-note {
+  --ifm-alert-border-color: var(--ds-ink);
+  --ifm-alert-foreground-color: var(--ds-ink);
+  --ifm-alert-background-color: var(--ds-panel);
+}
+
+html[data-theme] .theme-admonition-tip {
+  --ifm-alert-border-color: var(--ds-signal);
+  --ifm-alert-foreground-color: var(--ds-signal);
+  --ifm-alert-background-color: var(--ds-paper);
+}
+
+html[data-theme] .theme-admonition-info {
+  --ifm-alert-border-color: var(--ds-signal);
+  --ifm-alert-foreground-color: var(--ds-signal);
+  --ifm-alert-background-color: var(--ds-panel);
+}
+
+html[data-theme] .theme-admonition-warning {
+  --ifm-alert-border-color: var(--ds-signal);
+  --ifm-alert-foreground-color: var(--ds-signal);
+  --ifm-alert-background-color: var(--ds-signal-tint);
+}
+
+html[data-theme] .theme-admonition-danger {
+  --ifm-alert-border-color: var(--ds-contrast-error);
+  --ifm-alert-foreground-color: var(--ds-contrast-error);
+  --ifm-alert-background-color: var(--ds-panel);
+}
+
+html[data-theme] .theme-admonition > div:last-child {
+  color: var(--ds-ink);
+}
+
+/* Contrast. The active item of the menu and the search button leave the colors of Infima and DocSearch, which stay
+   under 4.5:1. */
+html[data-theme] {
+  --ifm-menu-color-background-active: var(--ds-signal-tint);
+}
+
+html[data-theme] .DocSearch-Button {
+  --docsearch-muted-color: var(--ds-ink-muted);
+  --docsearch-searchbox-background: var(--ds-paper);
+}
+
+/* Backgrounds inside the navbar and the side menu only in tokens. The keys of the search are fields lowered on the
+   button in paper. The collapse button of the menu follows the outline button of Dossier: at rest it vanishes in the
+   panel of the menu, on hover and focus it goes to paper. */
+html[data-theme] .DocSearch-Button {
+  --docsearch-key-background: var(--ds-panel);
+}
+
+html[data-theme] .theme-doc-sidebar-container {
+  --docusaurus-collapse-button-bg: var(--ds-panel);
+  --docusaurus-collapse-button-bg-hover: var(--ds-paper);
+}
+
+/* The hover of the menu links and the active category row use the hover background of Infima. It stays in paper, the
+   visible step over the panel of the menu; signal-tint stays on the active link only. */
+html[data-theme] .theme-doc-sidebar-container {
+  --ifm-menu-color-background-hover: var(--ds-paper);
+}
+
+/* The hover of the color mode button uses --ifm-color-emphasis-200. It stays in panel, the visible step over the
+   paper of the navbar. */
+html[data-theme] .navbar__items--right {
+  --ifm-color-emphasis-200: var(--ds-panel);
+}
+
+/* Markdown footnotes ([^1]) in the look of Footnotes: a short rule, the number in signal mono with two digits, the
+   text in ink-muted at caption size, and no back arrow. The mark in the text is signal mono too. */
+html[data-theme] .markdown section[data-footnotes] > ol {
+  position: relative;
+  list-style: none;
+  counter-reset: ds-footnote;
+  margin: 0;
+  padding: var(--ds-space-3) 0 0;
+  display: grid;
+  gap: var(--ds-space-2);
+  max-width: 560px;
+}
+
+html[data-theme] .markdown section[data-footnotes] > ol::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 96px;
+  border-top: var(--ds-stroke-hair) solid var(--ds-rule);
+}
+
+html[data-theme] .markdown section[data-footnotes] > ol > li {
+  counter-increment: ds-footnote;
+  display: grid;
+  grid-template-columns: var(--ds-space-8) 1fr;
+  column-gap: var(--ds-space-2);
+  align-items: baseline;
+  margin: 0;
+  font: var(--ds-text-caption);
+  color: var(--ds-ink-muted);
+}
+
+html[data-theme] .markdown section[data-footnotes] > ol > li::before {
+  content: counter(ds-footnote, decimal-leading-zero);
+  grid-row: 1 / span 99;
+  font: var(--ds-text-label);
+  color: var(--ds-signal);
+}
+
+html[data-theme] .markdown section[data-footnotes] > ol > li > *,
+html[data-theme] .markdown section[data-footnotes] > ol > li :is(p, ul, ol, li) {
+  grid-column: 2;
+  margin: 0;
+  max-width: none;
+  font: inherit;
+  color: inherit;
+}
+
+html[data-theme] .markdown section[data-footnotes] > ol > li ul {
+  padding-left: var(--ds-space-4);
+}
+
+html[data-theme] .markdown section[data-footnotes] a.data-footnote-backref {
+  display: none;
+}
+
+/* Above the rule of the article links, with the same :not() lists, so it still wins when a minifier splits each
+   :not(a, b) into :not(a):not(b); it never leans on source order (CONS-08). */
+html[data-theme]
+  .markdown
+  :is(p, li, td, figcaption):not([class^="ds-"], [class*=" ds-"])
+  sup
+  > a[data-footnote-ref]:not(.hash-link, .ds-link) {
+  font-family: var(--ds-font-mono);
+  color: var(--ds-signal);
+  text-decoration: none;
+}

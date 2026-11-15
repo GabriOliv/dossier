@@ -63,6 +63,10 @@ export const CASES: Record<string, [string, object][]> = {
       { items: Array.from({ length: 10 }, (_, i) => ({ title: "S" + i, active: i === 9 })) },
     ],
     ["no items", { items: [] }],
+    [
+      "href makes the title a link",
+      { items: [{ title: "Linked", description: "A linked item.", page: 2, href: "/linked" }, { title: "Plain" }] },
+    ],
   ],
   Transcript: [
     ["list prop absent", {}],

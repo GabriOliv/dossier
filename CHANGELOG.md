@@ -4,6 +4,25 @@ All notable changes to `@gabrioliv/dossier` are listed here, newest first. The f
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-13
+
+### Added
+
+- `.ds-btn` on a link (`<a class="ds-t-label ds-btn ds-btn-solid">`, the `Link` of your router): inline flex, no underline, and the text color kept on hover, so a link looks like a `Button`.
+- `docusaurus.css` styles the Markdown of a document with the tokens: h2 with a signal bar, capitals and a 2 px rule, tables with a head rule and hairlines, quotes in the `Quote` look, underlined signal links, a 68ch measure for paragraphs and lists, `hr` and inline code.
+- `docusaurus.css` gives the leftovers of Infima and the DocSearch modal the tokens: the gray scales, the shadows and the search variables, square breadcrumbs, category rows and back to top button, and a 1 px ink border on the pagination cards.
+- `docusaurus.css` sizes the touch targets on phones, below 997 px: 44 x 44 px for the menu button, the search button, the close button of the menu and the color mode button, and 24 x 24 px for the tag chips and the breadcrumb links.
+- `docusaurus.css` draws every tag chip as a rectangle with a 1 px ink border and a transparent ground, without the point and the hole that Infima draws, and the count of the tags index inside the chip, in mono.
+- `docusaurus.css` paints the code blocks (Prism) and the Mermaid diagrams with the tokens: a panel ground, comments in ink-muted, keywords in signal, the rest in ink, nodes and timeline events in panel and groups in paper with an ink stroke, lines and the edges of every diagram type in ink, and the diagram text in IBM Plex Sans. Prism and Mermaid write their colors in style attributes, so these rules use `!important`: a site with another palette needs it too. The palette is in the Docusaurus section of the README.
+- `docusaurus.css` gives the chrome of the Docusaurus theme the Dossier rules: square corners, no shadow, surfaces and backgrounds in tokens, the keyboard focus ring of the components (the outline comes back in the system color in forced colors), tag chips and table heads as labels in mono, and admonitions in ink, signal and contrast-error. The Infima danger color (`--ifm-color-danger` and its dark steps) is contrast-error.
+- `docusaurus.css` draws the Markdown footnotes (`[^1]`) in the look of `Footnotes`: a short rule above the notes, the number in signal mono with two digits, the text in ink-muted at caption size, no back arrow, and the mark in the text in signal mono.
+- `href` on an item of `Contents`: the title is a link to that address, in the typography of the title. An item without `href` keeps the markup of 1.0.0.
+
+### Changed
+
+- `FieldList` below 640 px stacks the label above the value in every row, in the `record`, `definition` and two column looks.
+- `Contents` below 640 px lays each item out as the number and one column, with the title, the description and the page stacked, and no empty row for a missing description or page.
+
 ## [1.0.0] - 2026-11-09
 
 ### Added

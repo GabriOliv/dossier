@@ -340,6 +340,11 @@
 .ds-btn.ds-btn-solid:hover:not(:disabled), .ds-btn.ds-btn-solid:active:not(:disabled) { background: color-mix(in srgb, var(--ds-btn-accent) 85%, var(--ds-ink)); border-color: color-mix(in srgb, var(--ds-btn-accent) 85%, var(--ds-ink)); }
 .ds-btn.ds-btn-icon { display: inline-flex; align-items: center; justify-content: center; width: calc(var(--ds-space-8) + var(--ds-space-2)); padding: 0; }
 .ds-btn.ds-btn-icon.ds-btn-sm { width: var(--ds-space-8); }
+a.ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--ds-space-2); text-decoration: none; }
+a.ds-btn:hover { text-decoration: none; }
+a.ds-btn.ds-btn-outline:hover { color: var(--ds-btn-ink); }
+a.ds-btn.ds-btn-text:hover { color: var(--ds-btn-accent); }
+a.ds-btn.ds-btn-solid:hover { color: var(--ds-on-signal); }
 .ds-btn:focus-visible { box-shadow: var(--ds-focus-ring); }
 /* Disabled outranks every variant and tone, and the hover rules leave it alone. */
 .ds-btn.ds-btn:disabled { color: var(--ds-ink-muted); background: transparent; border-style: dashed; border-color: var(--ds-ink-muted); }
@@ -597,8 +602,8 @@ html:has(.ds-dialog:modal) { overflow: hidden; }
     grid-area: flag;
   }
   .ds-contents .ds-toc-item {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: "index title page" ". desc desc";
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "index title" ". desc" ". page";
     gap: var(--ds-space-2) var(--ds-space-4);
   }
   .ds-toc-item .ds-toc-index {
@@ -613,8 +618,16 @@ html:has(.ds-dialog:modal) { overflow: hidden; }
   }
   .ds-toc-item .ds-toc-page {
     grid-area: page;
+    text-align: left;
+  }
+  .ds-toc-item :is(.ds-toc-desc, .ds-toc-page):empty {
+    display: none;
   }
   .ds-fields.ds-fields.ds-fields-2 {
     grid-template-columns: 1fr;
+  }
+  .ds-fields .ds-field {
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-1);
   }
 }

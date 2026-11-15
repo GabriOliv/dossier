@@ -19,9 +19,24 @@ test("GOV-01 the changelog starts with the title, one paragraph citing Keep a Ch
   expect(paragraph).toMatch(/\[Versioning\]\(README\.md#versioning\)/);
 });
 
-test("GOV-02 1.0.0 is the only release below Unreleased", () => {
-  expect([...changelog.matchAll(/^## \[([^\]]+)\]/gm)].map((m) => m[1])).toEqual(["Unreleased", "1.0.0"]);
+test("GOV-02 the releases below Unreleased are 1.1.0 and 1.0.0, newest first", () => {
+  expect([...changelog.matchAll(/^## \[([^\]]+)\]/gm)].map((m) => m[1])).toEqual(["Unreleased", "1.1.0", "1.0.0"]);
   expect(section(changelog, "1.0.0")).toContain("`StageIcon`");
+});
+
+test("V11-04 package.json, the lock, the README link and the CHANGELOG carry 1.1.0", () => {
+  const version = (JSON.parse(readFileSync("package.json", "utf8")) as { version: string }).version;
+  expect(version).toBe("1.1.0");
+  const lock = JSON.parse(readFileSync("package-lock.json", "utf8")) as {
+    version: string;
+    packages: Record<string, { version: string }>;
+  };
+  expect(lock.version).toBe(version);
+  expect(lock.packages[""].version).toBe(version);
+  expect(readFileSync("README.md", "utf8")).toContain(
+    `npm install https://github.com/GabriOliv/dossier/releases/download/v${version}/gabrioliv-dossier-${version}.tgz`,
+  );
+  expect(changelog).toMatch(new RegExp(`^## \\[${version.replace(/\./g, "\\.")}\\] - \\d{4}-\\d{2}-\\d{2}$`, "m"));
 });
 
 test("GOV-02 every line of 1.0.0 is a bullet under one of the five headings", () => {

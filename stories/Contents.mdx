@@ -9,14 +9,14 @@ A numbered table of contents: a number, a title, a short description and an opti
 
 ## Usage
 
-Pass `items`, each with a `title` and optionally an `index`, a `description`, a `page` and `active`. The numbers default to 01, 02 and so on; a `page` is shown after the prefix P.
+Pass `items`, each with a `title` and optionally an `index`, a `description`, a `page`, `active` and `href`. The numbers default to 01, 02 and so on; a `page` is shown after the prefix P. With `href` the title is a link to that address, in the typography of the title; without it the title is plain text.
 
 ```tsx
 import { Contents } from "@gabrioliv/dossier";
 
 <Contents
   items={[
-    { title: "Scope", description: "What the run covers", page: 2 },
+    { title: "Scope", description: "What the run covers", page: 2, href: "#scope" },
     { title: "Results", description: "Every check", page: 4, active: true },
   ]}
 />;
@@ -27,15 +27,16 @@ import { Contents } from "@gabrioliv/dossier";
 - Do: mark the current section `active` when the contents repeat as a divider page.
 - Do: keep each description to one sentence and each title to one to three words.
 - Don't: use it for more than seven sections on one page.
-- Don't: expect links: the items are text, not anchors. Add the links in your own markup if you need them.
+- Do: pass `href` on the items that have a page of their own, so the title is a link to it.
+- Don't: expect the whole row to be a link: only the title is. `href` is a plain `<a>`, so a client-side router does not handle it.
 
 ## Accessibility
 
-The root is an `<ol>`, one `<li>` per section, so the order is announced. The number, title, description and page are plain text. The current section (`active`) is marked by the colour of its number alone, so name it in the page too.
+The root is an `<ol>`, one `<li>` per section, so the order is announced. The number, description and page are plain text, and so is the title unless the item has `href`. The current section (`active`) is marked by the colour of its number alone, so name it in the page too.
 
 `labels` changes the prefix before a page number (P.): `labels={ptBR.Contents}`.
 
-It is not interactive: it takes no focus and accepts no keys.
+Without `href` it is not interactive: it takes no focus and accepts no keys. A title with `href` is a link: `Tab` and `Shift+Tab` move between the links, and `Enter` follows the focused one.
 
 ## Props
 
