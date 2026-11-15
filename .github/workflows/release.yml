@@ -1,6 +1,6 @@
 name: Release
 
-# A v* tag builds, tests and packs the library, then attaches that exact tarball to a GitHub Release (no npm).
+# A v* tag runs the PR tests (test.yml) and packs the library, then attaches that exact tarball to a GitHub Release (no npm).
 # A manual run does everything up to the tarball, kept as a workflow artifact, and creates no release.
 on:
   push:
@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   preflight:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -21,35 +22,14 @@ jobs:
         if: github.event_name == 'push'
         run: node scripts/release/preflight.mjs "$GITHUB_REF_NAME" origin/main
 
-  verify:
+  # The same jobs as the PR (test.yml); its consumer job keeps the tested tarball as the "tarball" artifact.
+  test:
     needs: preflight
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble
-      options: --ipc=host
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install
-        run: npm ci
-      - name: Format
-        run: npm run format
-      - name: Build and unit tests
-        run: npm test
-      - name: Package lint
-        run: npm run lint:package
-      - name: Consumer tests (packs the tarball and installs it in the Vite and Docusaurus fixtures)
-        run: npm run test:consumer
-      - name: Keep the tested tarball
-        uses: actions/upload-artifact@v7
-        with:
-          name: tarball
-          path: .pack/*.tgz
-          if-no-files-found: error
-          # .pack is a hidden directory, which upload-artifact leaves out unless told otherwise.
-          include-hidden-files: true
+    uses: ./.github/workflows/test.yml
 
   release:
-    needs: verify
+    needs: test
+    timeout-minutes: 5
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
@@ -78,6 +58,7 @@ jobs:
 
   smoke:
     needs: release
+    timeout-minutes: 5
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:

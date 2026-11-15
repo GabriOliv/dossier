@@ -1,0 +1,48 @@
+name: Pages
+
+# Publishes the landing at /dossier/ and the Storybook at /dossier/storybook/, both from the build job of test.yml.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+
+  # Runs after the tests, with the build they used: nothing is built a second time.
+  assemble:
+    needs: test
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the build
+        uses: actions/download-artifact@v8
+        with:
+          name: build
+      - name: Put the Storybook next to the landing
+        run: cp -r storybook-static site/dist/storybook
+      - name: Upload the landing and the Storybook
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/dist
+
+  deploy:
+    needs: [test, assemble]
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,7 +1,7 @@
 name: Test
 
-# The test suites shared by the PR and Gallery workflows, split into parallel jobs.
-# Each job builds what it needs, so none waits for another.
+# The test suites shared by the PR, Pages and Release workflows. One job builds the library, the Storybook and the
+# landing; the test jobs download that build, so nothing is built twice.
 on:
   workflow_call:
 
@@ -9,7 +9,38 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v5
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
+      - name: Install
+        run: npm ci
+      - name: Build the library, the Storybook and the landing
+        run: npm run build:all
+      - name: Keep the build for the test jobs and the Pages deploy
+        uses: actions/upload-artifact@v7
+        with:
+          name: build
+          path: |
+            dist/
+            storybook-static/
+            site/dist/
+          if-no-files-found: error
+
+  # Stops at the first failure: a unit failure means the library is broken and the browser results add nothing.
   unit:
+    needs: build
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.64.1-noble
@@ -20,14 +51,22 @@ jobs:
         shard: [1, 2]
     steps:
       - uses: actions/checkout@v5
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
       - name: Install
         run: npm ci
       - name: Install React 19 test deps
-        run: npm ci --prefix tests/react19
-      - name: Build library
-        run: npm run build
+        run: npm run setup:react19
+      - name: Download the build
+        uses: actions/download-artifact@v8
+        with:
+          name: build
       - name: Unit tests
-        run: npx playwright test --project unit --shard ${{ matrix.shard }}/2
+        run: npx playwright test --project unit --max-failures=1 --shard ${{ matrix.shard }}/2
       - name: Keep the test results when a test fails
         if: failure()
         uses: actions/upload-artifact@v7
@@ -35,7 +74,10 @@ jobs:
           name: test-results-unit-${{ matrix.shard }}
           path: test-results/
 
-  gallery:
+  # Runs every test and reports every failure.
+  browser:
+    needs: build
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.64.1-noble
@@ -43,38 +85,80 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3]
+        shard: [1, 2, 3, 4]
     steps:
       - uses: actions/checkout@v5
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
       - name: Install
         run: npm ci
-      - name: Build library and gallery
-        run: npm run build:gallery
-      - name: Gallery tests
-        run: npm run test:gallery -- --shard ${{ matrix.shard }}/3
+      - name: Download the build
+        uses: actions/download-artifact@v8
+        with:
+          name: build
+      - name: Browser tests
+        run: npx playwright test --project component --project visual --project visual-phone --project a11y --project docs --project site --shard ${{ matrix.shard }}/4
       - name: Keep the test results when a test fails
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: test-results-gallery-${{ matrix.shard }}
+          name: test-results-browser-${{ matrix.shard }}
           path: test-results/
 
-  storybook:
+  consumer:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.64.1-noble
       options: --ipc=host
     steps:
       - uses: actions/checkout@v5
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
       - name: Install
         run: npm ci
-      - name: Build Storybook
-        run: npm run build:storybook
-      - name: Storybook tests
-        run: npm run test:storybook
+      - name: Consumer tests (packs the tarball and installs it in the Vite and Docusaurus fixtures)
+        run: npm run test:consumer
+      - name: Package lint
+        run: npm run lint:package
+      - name: Keep the tested tarball
+        uses: actions/upload-artifact@v7
+        with:
+          name: tarball
+          path: .pack/*.tgz
+          if-no-files-found: error
+          # .pack is a hidden directory, which upload-artifact leaves out unless told otherwise.
+          include-hidden-files: true
       - name: Keep the test results when a test fails
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: test-results-storybook
+          name: test-results-consumer
           path: test-results/
+
+  format:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+      options: --ipc=host
+    steps:
+      - uses: actions/checkout@v5
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-${{ runner.os }}-
+      - name: Install
+        run: npm ci
+      - name: Format
+        run: npm run format

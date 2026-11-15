@@ -9,35 +9,3 @@ permissions:
 jobs:
   test:
     uses: ./.github/workflows/test.yml
-
-  format:
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble
-      options: --ipc=host
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install
-        run: npm ci
-      - name: Format
-        run: npm run format
-
-  consumer:
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.64.1-noble
-      options: --ipc=host
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install
-        run: npm ci
-      - name: Consumer tests (packs the tarball and installs it in the Vite and Docusaurus fixtures)
-        run: npm run test:consumer
-      - name: Package lint
-        run: npm run lint:package
-      - name: Keep the test results when a test fails
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: test-results-consumer
-          path: test-results/
