@@ -20,3 +20,24 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const WithLinks: Story = {
+  args: {
+    items: [
+      {
+        title: "Project and strategy",
+        description: "Scope, objectives and the constraints.",
+        page: 4,
+        href: "#project",
+      },
+      {
+        title: "Proposal",
+        description: "Three options and the recommended path.",
+        page: 9,
+        active: true,
+        href: "#proposal",
+      },
+      { title: "Change management", description: "Rollout sequence, owners and the review cadence.", page: 15 },
+    ],
+  },
+};
