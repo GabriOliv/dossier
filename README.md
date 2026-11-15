@@ -2,7 +2,7 @@
 
 The Dossier design system for React: components, tokens and ready-made CSS in one package. Used by the portfolio, by QA Garden and by any other React project, so no repo has to rebuild the style.
 
-**[Gallery with every component, in the three themes](https://gabrioliv.github.io/dossier/)**
+**[Landing page, with a live sample and the install command](https://gabrioliv.github.io/dossier/)**
 
 **[Storybook with the props and examples of each component](https://gabrioliv.github.io/dossier/storybook/)**
 
@@ -16,7 +16,7 @@ The Dossier design system for React: components, tokens and ready-made CSS in on
 The package installs from GitHub, from the tarball attached to each release (the same file `npm pack` makes):
 
 ```bash
-npm install https://github.com/GabriOliv/dossier/releases/download/v1.0.0/gabrioliv-dossier-1.0.0.tgz
+npm install https://github.com/GabriOliv/dossier/releases/download/v1.1.0/gabrioliv-dossier-1.1.0.tgz
 ```
 
 Your project's `package.json` keeps the version fixed in the URL. To update, change the version in both places of the URL and run your project's tests.
@@ -59,22 +59,49 @@ import { Readout } from "@gabrioliv/dossier";
 
 Paper and Void follow the Docusaurus light/dark switch, and the Infima variables (`--ifm-*`) come from the tokens. Blueprint is available per block: `<div data-theme="blueprint">`.
 
+`docusaurus.css` also styles what a Docusaurus site draws from Markdown and from its theme, with no color to write in your own CSS: the headings, tables, quotes and links of a document, the DocSearch modal, tag chips, touch targets on phones, and the code blocks and Mermaid diagrams below.
+
+#### Code and diagrams
+
+Code blocks and Mermaid diagrams take only tokens of the active theme, so they follow the light/dark switch:
+
+| Element                            | Color                                |
+| ---------------------------------- | ------------------------------------ |
+| Code block ground                  | `--ds-panel`                         |
+| Comments in code                   | `--ds-ink-muted`                     |
+| Keywords in code                   | `--ds-signal`                        |
+| Any other code text                | `--ds-ink`                           |
+| Diagram nodes (no class)           | `--ds-panel` fill, `--ds-ink` stroke |
+| Diagram groups (no class)          | `--ds-paper` fill, `--ds-ink` stroke |
+| Edges, arrowheads and diagram text | `--ds-ink`                           |
+| Edge labels                        | `--ds-paper` ground                  |
+| Diagram font                       | IBM Plex Sans                        |
+
+Prism writes its colors in `style` attributes and Mermaid in a `<style>` element with ids, so `docusaurus.css` sets these colors with `!important`, scoped to `.theme-code-block` and to `svg[id^="mermaid-svg"]`. That is a trade-off: a site that wants another palette has to use `!important` too. Mermaid does not accept `var()` in a `classDef`, so a class of a diagram gets its tokens from your own CSS: give the node the class with `class B ship` (no `classDef`) and write a rule that is more specific than the bridge's and has `!important` too:
+
+```css
+svg[id^="mermaid-svg"] .node.ship rect {
+  fill: var(--ds-signal-tint) !important;
+  stroke: var(--ds-signal) !important;
+}
+```
+
 ## Entry points
 
-| Import                                             | Content                                       | Used by                          |
-| -------------------------------------------------- | --------------------------------------------- | -------------------------------- |
-| `@gabrioliv/dossier`                               | Components and types                          | Everyone                         |
-| `@gabrioliv/dossier/styles.css`                    | Fonts, tokens and components, no global rule  | Vite and others                  |
-| `@gabrioliv/dossier/base.css`                      | `body`, `:focus-visible`, `color-scheme`      | Only an app dedicated to Dossier |
-| `@gabrioliv/dossier/docusaurus.css`                | `styles.css` + dark → Void + Infima variables | Docusaurus                       |
-| `@gabrioliv/dossier/tokens.css`, `.../tokens.json` | The tokens only                               | Slides and other tools           |
-| `@gabrioliv/dossier/assets/*`                      | SVGs (stages, banners, diagrams, animations)  | Whoever needs them               |
+| Import                                             | Content                                      | Used by                          |
+| -------------------------------------------------- | -------------------------------------------- | -------------------------------- |
+| `@gabrioliv/dossier`                               | Components and types                         | Everyone                         |
+| `@gabrioliv/dossier/styles.css`                    | Fonts, tokens and components, no global rule | Vite and others                  |
+| `@gabrioliv/dossier/base.css`                      | `body`, `:focus-visible`, `color-scheme`     | Only an app dedicated to Dossier |
+| `@gabrioliv/dossier/docusaurus.css`                | `styles.css` + dark → Void + Infima styles   | Docusaurus                       |
+| `@gabrioliv/dossier/tokens.css`, `.../tokens.json` | The tokens only                              | Slides and other tools           |
+| `@gabrioliv/dossier/assets/*`                      | SVGs (stages, banners, diagrams, animations) | Whoever needs them               |
 
 The typography classes have a prefix: `.ds-t-display`, `.ds-t-title`, `.ds-t-figure`, `.ds-t-figure-xl`, `.ds-t-heading`, `.ds-t-body`, `.ds-t-caption`, `.ds-t-label` and `.ds-t-datum`. To cite a footnote, use `<sup class="ds-t-label ds-ref">01</sup>`.
 
 ## Components
 
-`DataHeader`, `SectionTitle`, `Readout`, `Tag`, `DataTable`, `FieldList`, `Schematic`, `Hierarchy`, `Quote`, `Footnotes`, `StatusFlag`, `CheckLog`, `StageIcon`, `Assertion`, `BarChart`, `Comparison`, `Connector`, `Contents`, `Dimension`, `ErrorNotice`, `LineChart`, `Meter`, `ProportionDial`, `Redacted`, `TextField`, `Timeline`, `ToleranceBar`, `Transcript`, `Button`, `IconButton`, `Link`, `Checkbox`, `Switch`, `RadioGroup`, `Select`, `Dialog`, `Popover`, `Tooltip`, `Menu`, `Tabs`, `Accordion`, `Pagination`, `Icon`, `Spinner`, `Skeleton`, `Stack`, `Grid`, `Divider`, `Toaster` and `toast`. The props and examples are in the [gallery](https://gabrioliv.github.io/dossier/), in the published [Storybook](https://gabrioliv.github.io/dossier/storybook/) and in the package types. The QA Garden maturity stages are in [docs/maturity-stages.md](docs/maturity-stages.md).
+`DataHeader`, `SectionTitle`, `Readout`, `Tag`, `DataTable`, `FieldList`, `Schematic`, `Hierarchy`, `Quote`, `Footnotes`, `StatusFlag`, `CheckLog`, `StageIcon`, `Assertion`, `BarChart`, `Comparison`, `Connector`, `Contents`, `Dimension`, `ErrorNotice`, `LineChart`, `Meter`, `ProportionDial`, `Redacted`, `TextField`, `Timeline`, `ToleranceBar`, `Transcript`, `Button`, `IconButton`, `Link`, `Checkbox`, `Switch`, `RadioGroup`, `Select`, `Dialog`, `Popover`, `Tooltip`, `Menu`, `Tabs`, `Accordion`, `Pagination`, `Icon`, `Spinner`, `Skeleton`, `Stack`, `Grid`, `Divider`, `Toaster` and `toast`. The props and examples are in the published [Storybook](https://gabrioliv.github.io/dossier/storybook/), where the Overview stories show the variants and states of each component in the three themes, and in the package types. The QA Garden maturity stages are in [docs/maturity-stages.md](docs/maturity-stages.md).
 
 ## Links and routers
 
@@ -218,14 +245,13 @@ Everything runs in the `node` container of [compose.yaml](compose.yaml) (image `
 docker compose run --rm node npm ci                  # install
 docker compose run --rm node npm test                # build, then unit tests (SSR in React 18 and 19, CSS, tokens)
 docker compose run --rm node npm run test:consumer   # pack and test in the Vite and Docusaurus fixtures
-docker compose run --rm node npm run build:gallery   # build the library and the gallery
-docker compose run --rm node npm run test:gallery    # gallery tests, desktop and phone
+docker compose run --rm node npm run build:all       # build the library, the Storybook and the landing, once each
+docker compose run --rm node npm run test:all        # build:all, then every test but the consumer suite; stops at the first failure
+docker compose run --rm node npm run test:all:full   # the same with the consumer suite, reporting every failure
 docker compose run --rm node npm run format          # Prettier check
 docker compose run --rm node npm pack --dry-run      # what goes in the package
-docker compose run --rm -p 127.0.0.1:5173:5173 node npm run dev:gallery  # gallery at http://localhost:5173/dossier/
 docker compose run --rm -p 127.0.0.1:6006:6006 node npm run storybook    # Storybook at http://localhost:6006
 docker compose run --rm node npm run build:storybook # static Storybook in storybook-static/
-docker compose run --rm node npm run test:storybook  # Storybook tests: every docs page opens, desktop and phone
 ```
 
 The same commands are in `.vscode/tasks.json` (Terminal → Run Task → `Docker: …`).
@@ -233,14 +259,16 @@ The same commands are in `.vscode/tasks.json` (Terminal → Run Task → `Docker
 - Storybook (`.storybook/`, stories in `stories/`) imports the components from `src/`, with hot reload, and the CSS from `dist/`: `npm run storybook` builds first. The theme changes from the toolbar.
 
 - `source/` keeps version `1793668292-91b3` of the Dossier artifact, as a reference only (`cd source && sha256sum -c SHA256SUMS`). The original bundle, `source/components/bundle.js`, is only the source for CMP-16 and for the tests of the defect fixed in ProportionDial; the expected markup of each component is its snapshot.
-- Each push to `main` publishes the gallery and Storybook to GitHub Pages ([gallery.yml](.github/workflows/gallery.yml)). A failing test blocks the deploy.
+- Each push to `main` publishes the landing at `/dossier/` and the Storybook at `/dossier/storybook/` to GitHub Pages ([pages.yml](.github/workflows/pages.yml)), from the build of the test run. A failing test blocks the deploy.
 
 ### Screenshots and markup snapshots
 
-The gallery tests compare each gallery section, in every theme, on desktop and phone, with a reference PNG in `tests/gallery/__screenshots__/`. The unit tests compare each component's markup with `tests/unit/__snapshots__/<Name>.html`, the only expected markup. Each capture holds only its section: the tests hide the menu and the other sections first, so adding a section or a link changes no other reference. A missing reference fails the test. References are generated only in the container, so they match CI pixel for pixel. After a change on purpose, regenerate them, read the diff, and commit it:
+The tests live in folders named after their kind: `tests/unit` (markup, CSS, tokens, scripts), `tests/component` (computed styles and behaviour), `tests/visual` (screenshots), `tests/a11y` (axe and forced colors), `tests/docs` (the Storybook docs pages), `tests/site` (the landing) and `tests/consumer` (the packed tarball in the Vite and Docusaurus fixtures). Every browser test opens the built Storybook (`iframe.html?id=<story>`), except the landing tests, which open the built landing.
+
+The screenshot references are one per `Overview` story, theme and project (desktop and phone), in `tests/visual/__screenshots__/`, plus the captures of the open overlays. The unit tests compare each component's markup with `tests/unit/__snapshots__/<Name>.html`, the only expected markup. Each capture holds only its story's section, so adding a story changes no other reference. A missing reference fails the test. References are generated only in the container, so they match CI pixel for pixel. After a change on purpose, regenerate them, read the diff, and commit it:
 
 ```bash
-docker compose run --rm node npm run test:visual:update   # screenshots of every gallery section
+docker compose run --rm node npm run test:visual:update   # screenshots of every Overview story
 docker compose run --rm node npm run test:markup:update   # markup snapshots of every component
 ```
 
@@ -257,9 +285,9 @@ To cut a release:
 5. Create the tag: `git tag v<version>`.
 6. Push the tag: `git push origin v<version>`.
 
-The `.github/workflows/release.yml` workflow checks that the tag matches `package.json` and that the commit is on `main`. `preflight.mjs` fails if `CHANGELOG.md` has no `## [<version>]` section for that version. Then it runs Prettier, build, unit tests, publint and the consumer tests. It then attaches the tested tarball to the GitHub Release, with the text of that changelog section as the release notes, and installs the public URL to confirm.
+The `.github/workflows/release.yml` workflow checks that the tag matches `package.json` and that the commit is on `main`. `preflight.mjs` fails if `CHANGELOG.md` has no `## [<version>]` section for that version. Then it runs the same jobs as a pull request (`test.yml`: Prettier, unit tests, browser tests, consumer tests and publint). It then attaches the tested tarball to the GitHub Release, with the text of that changelog section as the release notes, and installs the public URL to confirm.
 
-A manual run (`workflow_dispatch`) runs build and tests and keeps the tarball as an artifact. It checks neither the tag nor `main`, and it creates no release.
+A manual run (`workflow_dispatch`) runs those tests and keeps the tarball as an artifact. It checks neither the tag nor `main`, and it creates no release.
 
 ## License
 

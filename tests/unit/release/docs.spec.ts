@@ -306,7 +306,7 @@ test("GOV-32 CONTRIBUTING has the new component checklist, one item each", () =>
     /^`ref` goes to the root element, and the native attributes/,
     /^If it has a fixed text, it takes `labels`, with the keys in both `en` and `ptBR`/,
     /^`"use client"` only if it uses state or effects/,
-    /^A section in the gallery/,
+    /^An Overview story/,
     /^A story .* and an MDX page/,
     /^A markup snapshot/,
     /^Screenshots/,
@@ -328,7 +328,7 @@ test("GOV-32 CONTRIBUTING has the new component checklist, one item each", () =>
     "<Name>Accepts",
     "<Name>NoInnerHTML",
     "`ADDED`",
-    "tests/gallery/uppercase.spec.ts",
+    "tests/component/uppercase.spec.ts",
   ])
     expect(text, wiring).toContain(wiring);
 });
@@ -360,4 +360,34 @@ test("RVW-16 the Development section names the original bundle", () => {
   const text = section(read("README.md"), "## Development");
   expect(text).toContain("source/components/bundle.js");
   expect(text).not.toContain("The original `bundle.js`");
+});
+
+const LANDING = "https://gabrioliv.github.io/dossier/";
+
+test("RDM-01 the README and CONTRIBUTING never mention the gallery", () => {
+  for (const file of ["README.md", "CONTRIBUTING.md"]) expect(read(file), file).not.toMatch(/gallery/i);
+});
+
+test("RDM-02 the README links the landing and the Storybook at the top", () => {
+  const top = read("README.md").split("\n## ")[0];
+  expect(top).toContain(`(${LANDING})`);
+  expect(top).toContain(`(${LANDING}storybook/)`);
+});
+
+test("RDM-03 the README Development section lists test:all, test:all:full, the update scripts and the test folders", () => {
+  const text = section(read("README.md"), "## Development");
+  for (const cmd of [
+    "npm run test:all ",
+    "npm run test:all:full ",
+    "npm run test:visual:update",
+    "npm run test:markup:update",
+  ])
+    expect(text, cmd).toContain(cmd);
+  for (const dir of ["unit", "component", "visual", "a11y", "docs", "site", "consumer"])
+    expect(text, dir).toContain(`\`tests/${dir}\``);
+});
+
+test("RDM-04 the README explains one reference per Overview story, theme and project", () => {
+  const text = section(read("README.md"), "## Development");
+  expect(text).toContain("one per `Overview` story, theme and project");
 });
