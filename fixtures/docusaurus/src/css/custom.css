@@ -1,3 +1,9 @@
 :root {
   --ifm-code-font-size: 95%;
 }
+
+/* A class of a diagram painted from the site: more specific than the bridge, and with !important like it. */
+svg[id^="mermaid-svg"] .node.ship rect {
+  fill: var(--ds-signal-tint) !important;
+  stroke: var(--ds-signal) !important;
+}

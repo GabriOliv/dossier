@@ -17,7 +17,6 @@ const config: Config = {
       {
         docs: {
           routeBasePath: "/",
-          sidebarPath: false,
           exclude: plain ? ["**/slice.mdx"] : [],
         },
         blog: false,
@@ -32,6 +31,8 @@ const config: Config = {
   themeConfig: {
     colorMode: { defaultMode: "light", respectPrefersColorScheme: false },
     navbar: { title: "Dossier fixture" },
+    // A fake index: the tests answer the search request themselves, so no network is used.
+    algolia: { appId: "FIXTUREAPP", apiKey: "fixture-key", indexName: "fixture", contextualSearch: false },
   } satisfies Preset.ThemeConfig,
 };
 
