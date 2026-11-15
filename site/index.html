@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" data-theme="paper">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Dossier design system</title>
+    <meta name="description" content="Dossier: components, tokens and ready-made CSS for React, in three themes." />
+    <script>
+      /* Theme before first paint: ?theme=, else Paper. */
+      (function () {
+        var t = null;
+        try {
+          t = new URLSearchParams(location.search).get("theme");
+        } catch (e) {}
+        if (["paper", "void", "blueprint"].indexOf(t) < 0) t = "paper";
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

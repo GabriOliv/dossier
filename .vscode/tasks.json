@@ -29,23 +29,9 @@
       "problemMatcher": []
     },
     {
-      "label": "Docker: test gallery",
-      "type": "shell",
-      "command": "docker compose run --rm node sh -c 'npm run build:gallery && npm run test:gallery'",
-      "group": "test",
-      "problemMatcher": []
-    },
-    {
       "label": "Docker: format check",
       "type": "shell",
       "command": "docker compose run --rm node npm run format",
-      "problemMatcher": []
-    },
-    {
-      "label": "Docker: gallery (http://localhost:5173/dossier/)",
-      "type": "shell",
-      "command": "docker rm -f dossier-gallery >/dev/null 2>&1; docker compose run --rm --name dossier-gallery -p 127.0.0.1:5173:5173 node npm run dev:gallery",
-      "isBackground": true,
       "problemMatcher": []
     },
     {
@@ -65,7 +51,7 @@
     {
       "label": "Docker: stop servers",
       "type": "shell",
-      "command": "docker rm -f dossier-gallery dossier-storybook",
+      "command": "docker rm -f dossier-storybook",
       "problemMatcher": []
     }
   ]

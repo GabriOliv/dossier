@@ -6,7 +6,7 @@ const project = (name: string) => config.projects!.find((p) => p.name === name)!
 
 test("VIS-06 a screenshot without a reference fails and writes no reference", async ({ page }) => {
   expect(config.updateSnapshots).toBe("none");
-  for (const name of ["gallery", "gallery-phone"])
+  for (const name of ["visual", "visual-phone"])
     expect(project(name).snapshotPathTemplate).toBe("{testDir}/__screenshots__/{projectName}/{arg}{ext}");
   const file = test.info().snapshotPath("vis-06-missing.png");
   expect(existsSync(file)).toBe(false);

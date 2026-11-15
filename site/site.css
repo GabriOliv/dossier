@@ -1,0 +1,38 @@
+/* Landing-only layout. Components are styled by the library. */
+.site-wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+.site-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+.site-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.site-section {
+  padding-top: 32px;
+  min-width: 0;
+}
+.site-prose {
+  margin: 0 0 16px;
+  max-width: 60ch;
+}
+.site-code {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--ds-ink);
+  font-family: var(--ds-font-mono);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}

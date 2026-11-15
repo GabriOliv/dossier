@@ -127,8 +127,6 @@ test("CSS-03 base.css holds the page-wide rules moved out of bundle.css", () => 
   expect(base).toContain(dsVars(bundle[2]));
   expect(base).toContain(dsVars(bundle[244]));
   expect(base).toContain("color-scheme: dark");
-  expect(read("gallery/gallery.css")).toContain(dsVars(bundle[3]));
-  expect(read("gallery/gallery.css")).toContain(dsVars(bundle[4]));
 });
 
 test("CSS-04 twelve local woff2 files (six faces, latin and latin-ext) with the OFL", () => {
@@ -260,7 +258,7 @@ test("STY-12 docusaurus dark mode declares each colour and shadow token as --ds-
   );
 });
 
-test("STY-15 src/styles, src/components, gallery and .storybook reference tokens only by var(--ds-*)", () => {
+test("STY-15 src/styles, src/components, site and .storybook reference tokens only by var(--ds-*)", () => {
   const walk = (dir: string): string[] =>
     readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
       e.isDirectory()
@@ -269,7 +267,7 @@ test("STY-15 src/styles, src/components, gallery and .storybook reference tokens
           : walk(`${dir}/${e.name}`)
         : [`${dir}/${e.name}`],
     );
-  const files = ["src/styles", "src/components", "gallery", ".storybook"]
+  const files = ["src/styles", "src/components", "site", ".storybook"]
     .flatMap(walk)
     .filter((f) => /\.(css|tsx?|html)$/.test(f));
   expect(files).toContain("src/components/StageIcon.tsx");

@@ -13,7 +13,6 @@ tokens/tokens.json
 scripts/build-tokens.mjs
 docs/maturity-stages.md
 src/styles/*.css
-gallery/gallery.css
 .claude/
 # Generated references: written by test:markup:update and test:visual:update, compared byte for byte.
 tests/unit/__snapshots__/
