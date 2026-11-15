@@ -24,7 +24,7 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-${{ runner.os }}-
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Build the library, the Storybook and the landing
         run: npm run build:all
       - name: Keep the build for the test jobs and the Pages deploy
@@ -58,7 +58,7 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-${{ runner.os }}-
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Install React 19 test deps
         run: npm run setup:react19
       - name: Download the build
@@ -95,7 +95,7 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-${{ runner.os }}-
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Download the build
         uses: actions/download-artifact@v8
         with:
@@ -124,7 +124,7 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-${{ runner.os }}-
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Consumer tests (packs the tarball and installs it in the Vite and Docusaurus fixtures)
         run: npm run test:consumer
       - name: Package lint
@@ -159,6 +159,6 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-${{ runner.os }}-
       - name: Install
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Format
         run: npm run format

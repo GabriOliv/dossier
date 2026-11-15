@@ -317,3 +317,24 @@ test("STK-13 each job of every workflow sets timeout-minutes: 5", () => {
       expect((job as Job & { "timeout-minutes"?: number })["timeout-minutes"], `${file} ${name}`).toBe(5);
   }
 });
+
+test("SONAR-01 pages.yml grants only contents: read at workflow level", () => {
+  expect(pages.permissions).toEqual({ contents: "read" });
+});
+
+test("SONAR-02 the deploy job holds pages: write and id-token: write, and nothing else", () => {
+  expect(deploy.permissions).toEqual({ pages: "write", "id-token": "write" });
+});
+
+test("SONAR-03 no job of pages.yml but deploy holds a write permission", () => {
+  for (const [name, job] of Object.entries(pages.jobs).filter(([n]) => n !== "deploy"))
+    expect(Object.values(job.permissions ?? {}), name).not.toContain("write");
+});
+
+test("SONAR-04 every npm ci of test.yml passes --ignore-scripts", () => {
+  const installs = Object.entries(testWf.jobs).flatMap(([name, job]) =>
+    job.steps.filter((s) => /\bnpm ci\b/.test(s.run ?? "")).map((s) => [name, s.run!] as const),
+  );
+  expect(installs.map(([name]) => name)).toEqual(["build", "unit", "browser", "consumer", "format"]);
+  for (const [name, run] of installs) expect(run, name).toMatch(/\bnpm ci\b.*\s--ignore-scripts\b/);
+});
