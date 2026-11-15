@@ -40,7 +40,7 @@ export const StackGaps: Story = {
       </Variant>
       <Variant name='gap out of the scale: 0, 5, 7, 10, 13, -1, 2.5, NaN, "4"'>
         <div className="gal-stack">
-          {[0, 5, 7, 10, 13, -1, 2.5, NaN, "4"].map((gap) => (
+          {[0, 5, 7, 10, 13, -1, 2.5, Number.NaN, "4"].map((gap) => (
             <Stack key={String(gap)} direction="row" gap={gap as never}>
               <Tag>Intake</Tag>
               <Tag>Review</Tag>
@@ -87,7 +87,7 @@ export const GridLayout: Story = {
       </Variant>
       <Variant name='gap out of the scale: 0, 5, 13, -1, 2.5, NaN, "4"'>
         <div className="gal-stack">
-          {[0, 5, 13, -1, 2.5, NaN, "4"].map((gap) => (
+          {[0, 5, 13, -1, 2.5, Number.NaN, "4"].map((gap) => (
             <Grid key={String(gap)} columns={2} gap={gap as never}>
               <Tag>Intake</Tag>
               <Tag>Review</Tag>
