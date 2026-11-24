@@ -19,14 +19,19 @@ test("GOV-01 the changelog starts with the title, one paragraph citing Keep a Ch
   expect(paragraph).toMatch(/\[Versioning\]\(README\.md#versioning\)/);
 });
 
-test("GOV-02 the releases below Unreleased are 1.1.0 and 1.0.0, newest first", () => {
-  expect([...changelog.matchAll(/^## \[([^\]]+)\]/gm)].map((m) => m[1])).toEqual(["Unreleased", "1.1.0", "1.0.0"]);
+test("GOV-02 the releases below Unreleased are 1.2.0, 1.1.0 and 1.0.0, newest first", () => {
+  expect([...changelog.matchAll(/^## \[([^\]]+)\]/gm)].map((m) => m[1])).toEqual([
+    "Unreleased",
+    "1.2.0",
+    "1.1.0",
+    "1.0.0",
+  ]);
   expect(section(changelog, "1.0.0")).toContain("`StageIcon`");
 });
 
-test("V11-04 package.json, the lock, the README link and the CHANGELOG carry 1.1.0", () => {
+test("V11-04 package.json, the lock, the README link and the CHANGELOG carry 1.2.0", () => {
   const version = (JSON.parse(readFileSync("package.json", "utf8")) as { version: string }).version;
-  expect(version).toBe("1.1.0");
+  expect(version).toBe("1.2.0");
   const lock = JSON.parse(readFileSync("package-lock.json", "utf8")) as {
     version: string;
     packages: Record<string, { version: string }>;

@@ -110,8 +110,8 @@ test("DOC-05 the README lists every export and no other component", async () => 
     .sort();
   const section = read("README.md").split("\n## Components\n")[1].split("\n## ")[0];
   const listed = [...section.matchAll(/`([^`]+)`/g)].map((m) => m[1]).sort();
-  // 49 components and toast(), the one function export that is not a component.
-  expect(exported).toHaveLength(50);
+  // 50 components and toast(), the one function export that is not a component.
+  expect(exported).toHaveLength(51);
   expect(exported).toContain("toast");
   expect(listed).toEqual(exported);
 });

@@ -16,7 +16,7 @@ The Dossier design system for React: components, tokens and ready-made CSS in on
 The package installs from GitHub, from the tarball attached to each release (the same file `npm pack` makes):
 
 ```bash
-npm install https://github.com/GabriOliv/dossier/releases/download/v1.1.0/gabrioliv-dossier-1.1.0.tgz
+npm install https://github.com/GabriOliv/dossier/releases/download/v1.2.0/gabrioliv-dossier-1.2.0.tgz
 ```
 
 Your project's `package.json` keeps the version fixed in the URL. To update, change the version in both places of the URL and run your project's tests.
@@ -101,7 +101,7 @@ The typography classes have a prefix: `.ds-t-display`, `.ds-t-title`, `.ds-t-fig
 
 ## Components
 
-`DataHeader`, `SectionTitle`, `Readout`, `Tag`, `DataTable`, `FieldList`, `Schematic`, `Hierarchy`, `Quote`, `Footnotes`, `StatusFlag`, `CheckLog`, `StageIcon`, `Assertion`, `BarChart`, `Comparison`, `Connector`, `Contents`, `Dimension`, `ErrorNotice`, `LineChart`, `Meter`, `ProportionDial`, `Redacted`, `TextField`, `Timeline`, `ToleranceBar`, `Transcript`, `Button`, `IconButton`, `Link`, `Checkbox`, `Switch`, `RadioGroup`, `Select`, `Dialog`, `Popover`, `Tooltip`, `Menu`, `Tabs`, `Accordion`, `Pagination`, `Icon`, `Spinner`, `Skeleton`, `Stack`, `Grid`, `Divider`, `Toaster` and `toast`. The props and examples are in the published [Storybook](https://gabrioliv.github.io/dossier/storybook/), where the Overview stories show the variants and states of each component in the three themes, and in the package types. The QA Garden maturity stages are in [docs/maturity-stages.md](docs/maturity-stages.md).
+`DataHeader`, `SectionTitle`, `Readout`, `Tag`, `DataTable`, `FieldList`, `Schematic`, `Hierarchy`, `Figure`, `Quote`, `Footnotes`, `StatusFlag`, `CheckLog`, `StageIcon`, `Assertion`, `BarChart`, `Comparison`, `Connector`, `Contents`, `Dimension`, `ErrorNotice`, `LineChart`, `Meter`, `ProportionDial`, `Redacted`, `TextField`, `Timeline`, `ToleranceBar`, `Transcript`, `Button`, `IconButton`, `Link`, `Checkbox`, `Switch`, `RadioGroup`, `Select`, `Dialog`, `Popover`, `Tooltip`, `Menu`, `Tabs`, `Accordion`, `Pagination`, `Icon`, `Spinner`, `Skeleton`, `Stack`, `Grid`, `Divider`, `Toaster` and `toast`. The props and examples are in the published [Storybook](https://gabrioliv.github.io/dossier/storybook/), where the Overview stories show the variants and states of each component in the three themes, and in the package types. The QA Garden maturity stages are in [docs/maturity-stages.md](docs/maturity-stages.md).
 
 ## Links and routers
 

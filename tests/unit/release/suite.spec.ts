@@ -31,6 +31,11 @@ const OWN_PAGE: Record<string, string> = {
   "tests/component/release-1-1.spec.ts":
     "V11: a bare host page with dist/*.css and an unlayered a:hover, which no story has",
   "tests/a11y/axe.spec.ts": "A11Y-05 and A11Y-30 scan a page with a planted violation, which no story may carry",
+  "tests/component/hierarchy-layouts.spec.ts":
+    "TREE: a tree in a box of a fixed width, narrower or wider than the tree, in each layout, which no story has",
+  "tests/component/figure.spec.ts": "FIG: a figure in a box of a fixed width with a long title, which no story has",
+  "tests/component/bridge-katex.spec.ts":
+    "BRG-05: a Docusaurus-like page with dist/docusaurus.css and a KaTeX formula, which no story has",
 };
 
 /** The functions of the browser test folders and their bodies, by name. */
