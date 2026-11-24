@@ -53,7 +53,7 @@ for (const theme of THEMES) {
 }
 
 test("SUI-07 exactly one reference per Overview story, theme and project (VIS-04)", () => {
-  expect(SECTIONS).toHaveLength(50);
+  expect(SECTIONS).toHaveLength(51);
   // The overlay stories also have one reference with the overlay open (OVL-08).
   const expected = [
     ...SECTIONS.flatMap((id) => THEMES.map((t) => `${id}-${t}.png`)),
@@ -61,8 +61,8 @@ test("SUI-07 exactly one reference per Overview story, theme and project (VIS-04
   ].sort();
   expect(references("visual")).toEqual(expected);
   expect(references("visual-phone")).toEqual(expected);
-  // 50 stories x 3 themes x 2 projects, and the 4 overlay stories open x 3 themes x 2 projects.
-  expect(expected.length * 2).toBe(300 + 24);
+  // 51 stories x 3 themes x 2 projects, and the 4 overlay stories open x 3 themes x 2 projects.
+  expect(expected.length * 2).toBe(306 + 24);
 });
 
 const FEEDBACK = ["Icon", "Spinner", "Skeleton", "Stack", "Grid", "Divider", "Toaster"];

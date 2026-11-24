@@ -4,6 +4,22 @@ All notable changes to `@gabrioliv/dossier` are listed here, newest first. The f
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-11-24
+
+### Added
+
+- `layout` on `Hierarchy`: `"left-right"` stands the children in a column to the right of their parent, and `"folder"` puts each node on its own row, 24 px right of its parent, joined by an elbow from the parent's rail. Without `layout`, or with `"top-down"`, the tree and its markup are those of 1.1.0.
+- `Figure`: a numbered plate, the legend `FIG. NN — TITLE` with an optional `meta` at its right end, over a rule, then the image and an optional `<figcaption>` in the body type. `labels.fig` changes the prefix, `"FIG."` in `en` and `pt-BR`.
+- `docusaurus.css` paints the Mermaid `quadrantChart` quadrants in panel, and the `xychart-beta` ground in paper, its axes in ink and its line in signal.
+- `docusaurus.css` scrolls a KaTeX display formula wider than the column inside its own block, so the page does not scroll sideways.
+- `orientation` on `Timeline`: `"vertical"` runs the axis down, with each event to its right and the pointer at the bottom. Without it, or with `"horizontal"`, the markup is that of 1.1.0.
+
+### Fixed
+
+- A `Hierarchy` wider than its parent lost its left side: the overflow sat at a negative scroll that no scroll reached. The tree now scrolls from its left edge to its right edge, and a narrow tree stays centred.
+- `Timeline` below 640 px is vertical, instead of squeezing every event into one row.
+- `Comparison` below 640 px stacks its columns in one column, instead of squeezing two or three side by side.
+
 ## [1.1.0] - 2026-11-13
 
 ### Added

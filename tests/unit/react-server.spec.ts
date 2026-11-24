@@ -27,7 +27,7 @@ const run = (dir?: string): Run => {
 const fixtures = "tests/fixtures/react-server";
 const exported = () => [...readFileSync("src/index.ts", "utf8").matchAll(/export \{ (\w+),/g)].map((m) => m[1]).sort();
 
-test("FWK-01 dist/index.js imports under react-server with React 19 and exposes the 49 components", () => {
+test("FWK-01 dist/index.js imports under react-server with React 19 and exposes the 50 components", () => {
   const r = run();
   expect(r.version.startsWith("19.")).toBe(true);
   expect(r.serverBuild).toBe(true);
@@ -37,7 +37,7 @@ test("FWK-01 dist/index.js imports under react-server with React 19 and exposes 
   expect(r.components).toContain("toast");
   const components = r.components.filter((n) => n !== "toast");
   expect(components.sort()).toEqual(exported());
-  expect(components).toHaveLength(49);
+  expect(components).toHaveLength(50);
 });
 
 test("FWK-02 no module of dist without use client imports a client-only name from react", () => {

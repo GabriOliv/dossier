@@ -18,6 +18,7 @@ export const en = {
   Schematic: { name: "Schematic" },
   ProportionDial: { name: "Share" },
   Hierarchy: { name: "Hierarchy" },
+  Figure: { fig: "FIG." },
   Redacted: { name: "Redacted" },
   Readout: { up: "up", down: "down", flat: "no change" },
   StageIcon: { A: "Stage A · Seed", B: "Stage B · Sprout", C: "Stage C · Tree", D: "Stage D · Fruit" },

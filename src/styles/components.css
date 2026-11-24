@@ -123,7 +123,7 @@
 /* Hierarchy */
 .ds-tree { overflow-x: auto; color: var(--ds-ink); }
 .ds-tree ul { position: relative; display: flex; justify-content: center; margin: 0; padding: var(--ds-space-6) 0 0; list-style: none; }
-.ds-tree.ds-tree > ul { padding-top: 0; }
+.ds-tree.ds-tree > ul { padding-top: 0; min-width: max-content; }
 .ds-tree li { position: relative; display: flex; flex-direction: column; align-items: center; padding: var(--ds-space-6) var(--ds-space-2) 0; }
 .ds-tree.ds-tree > ul > li { padding-top: 0; }
 .ds-tree li::before, .ds-tree li::after { content: ''; position: absolute; top: 0; width: 50%; height: var(--ds-space-6); border-top: var(--ds-stroke-hair) solid var(--ds-rule); }
@@ -358,6 +358,37 @@ a.ds-btn.ds-btn-solid:hover { color: var(--ds-on-signal); }
 .ds-btn-loading .ds-spin-cell { width: 6px; height: 6px; }
 .ds-link { color: var(--ds-signal); text-decoration: underline; }
 .ds-link:focus-visible { outline: none; box-shadow: var(--ds-focus-ring); }
+
+/* Hierarchy layouts, Figure */
+.ds-tree.ds-tree-lr ul { flex-direction: column; padding: 0 0 0 var(--ds-space-6); }
+.ds-tree.ds-tree-lr li { flex-direction: row; padding: var(--ds-space-2) 0 var(--ds-space-2) var(--ds-space-6); }
+.ds-tree.ds-tree-lr > ul, .ds-tree.ds-tree-lr > ul > li { padding: 0; }
+.ds-tree.ds-tree-lr li::before, .ds-tree.ds-tree-lr li::after { left: 0; right: auto; width: var(--ds-space-6); height: 50%; border-top: 0; border-left: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-tree.ds-tree-lr li::before { top: 0; }
+.ds-tree.ds-tree-lr li::after { top: 50%; border-top: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-tree.ds-tree-lr li:first-child::before { border-left: 0; }
+.ds-tree.ds-tree-lr li:last-child::after { border-left: 0; border-top: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-tree.ds-tree-lr ul ul::before { top: 50%; left: 0; width: var(--ds-space-6); height: 0; border-left: 0; border-top: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-tree.ds-tree-folder ul { display: block; padding: 0 0 0 var(--ds-space-6); }
+.ds-tree.ds-tree-folder li { align-items: flex-start; padding: var(--ds-space-2) 0 0; }
+.ds-tree.ds-tree-folder > ul, .ds-tree.ds-tree-folder > ul > li { padding: 0; }
+.ds-tree.ds-tree-folder li::before, .ds-tree.ds-tree-folder ul ul::before, .ds-tree.ds-tree-folder li:last-child::after { display: none; }
+.ds-tree.ds-tree-folder li::after { top: 0; bottom: 0; left: calc(var(--ds-space-6) / -2); width: 0; height: auto; border-top: 0; border-left: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-tree.ds-tree-folder .ds-tree-node { position: relative; }
+.ds-tree.ds-tree-folder ul ul .ds-tree-node::before { content: ''; position: absolute; box-sizing: border-box; top: calc(-1 * (var(--ds-space-2) + var(--ds-stroke-hair))); bottom: 50%; left: calc(var(--ds-space-6) / -2 - var(--ds-stroke-hair)); width: calc(var(--ds-space-6) / 2); border-left: var(--ds-stroke-hair) solid var(--ds-rule); border-bottom: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-fig { margin: 0; color: var(--ds-ink); }
+.ds-fig-legend { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: var(--ds-space-4); margin-bottom: var(--ds-space-1); padding-bottom: var(--ds-space-2); border-bottom: var(--ds-stroke-rule) solid var(--ds-rule); color: var(--ds-ink-muted); text-transform: uppercase; }
+.ds-fig img { display: block; width: 100%; }
+.ds-fig > p { margin: 0; }
+.ds-fig > figcaption { margin-top: var(--ds-space-2); font: var(--ds-text-body); color: var(--ds-ink); }
+
+/* Timeline vertical: the axis runs down at the left, each event to its right, the pointer at the bottom. */
+.ds-timeline-vertical { flex-direction: column; }
+.ds-timeline-vertical .ds-tl-item { position: relative; padding: 0 0 var(--ds-space-4) var(--ds-space-6); }
+.ds-timeline-vertical .ds-tl-axis { position: absolute; top: 0; bottom: 0; left: 6px; height: auto; margin: 0; border-top: 0; border-left: var(--ds-stroke-hair) solid var(--ds-rule); }
+.ds-timeline-vertical .ds-tl-mark { top: 4px; left: -5px; }
+.ds-timeline-vertical .ds-tl-on .ds-tl-mark { top: 2px; left: -7px; }
+.ds-timeline-vertical .ds-tl-item:last-child .ds-tl-axis::after { top: auto; right: auto; bottom: 0; left: -5px; border: 4.5px solid transparent; border-top: 8px solid var(--ds-rule); border-bottom: 0; }
 
 /* Uppercase: the texts Dossier uppercased in JS are uppercased here, so the DOM keeps their case for screen readers and copy. */
 .ds-header-code, .ds-header-kicker, .ds-header-metatext, .ds-running-title, .ds-running-code, .ds-running-kicker, .ds-running-meta { text-transform: uppercase; }
@@ -629,5 +660,44 @@ html:has(.ds-dialog:modal) { overflow: hidden; }
   .ds-fields .ds-field {
     grid-template-columns: 1fr;
     gap: var(--ds-space-1);
+  }
+  /* Comparison sets its column count inline, so only !important stacks the columns. */
+  .ds-compare {
+    grid-template-columns: 1fr !important;
+  }
+  /* Not in Dossier: the Timeline is vertical, as with orientation="vertical" (the Timeline vertical block). */
+  .ds-timeline {
+    flex-direction: column;
+  }
+  .ds-timeline .ds-tl-item {
+    position: relative;
+    padding: 0 0 var(--ds-space-4) var(--ds-space-6);
+  }
+  .ds-timeline .ds-tl-axis {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    height: auto;
+    margin: 0;
+    border-top: 0;
+    border-left: var(--ds-stroke-hair) solid var(--ds-rule);
+  }
+  .ds-timeline .ds-tl-mark {
+    top: 4px;
+    left: -5px;
+  }
+  .ds-timeline .ds-tl-on .ds-tl-mark {
+    top: 2px;
+    left: -7px;
+  }
+  .ds-timeline .ds-tl-item:last-child .ds-tl-axis::after {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: -5px;
+    border: 4.5px solid transparent;
+    border-top: 8px solid var(--ds-rule);
+    border-bottom: 0;
   }
 }

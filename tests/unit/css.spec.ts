@@ -33,7 +33,7 @@ const EDITS: [string, string][] = [
   [".ds-sch-on-text {", ".ds-sch-text.ds-sch-on-text {"],
   [".ds-fields-2 {", ".ds-fields.ds-fields-2 {"],
   [".ds-field-term {", ".ds-field .ds-field-term {"],
-  [".ds-tree > ul { padding-top: 0; }", ".ds-tree.ds-tree > ul { padding-top: 0; }"],
+  [".ds-tree > ul { padding-top: 0; }", ".ds-tree.ds-tree > ul { padding-top: 0; min-width: max-content; }"],
   [".ds-tree > ul > li { padding-top: 0; }", ".ds-tree.ds-tree > ul > li { padding-top: 0; }"],
   [".ds-tree-root {", ".ds-tree-node.ds-tree-root:not(.ds-tree-on) {"],
   [".ds-tree-root .ds-tree-code {", ".ds-tree-root:not(.ds-tree-on) .ds-tree-code {"],
@@ -95,12 +95,16 @@ test("CSS-01 components.css is bundle.css without page-wide and demo rules, clas
   const overlays = own.match(/\/\* Dialog, Popover, Tooltip, Menu \*\/\n(?:[^\n]+\n)+\n/)![0];
   const disclosure = own.match(/\/\* Tabs, Accordion, Pagination \*\/\n(?:[^\n]+\n)+\n/)![0];
   const feedback = own.match(/\/\* Spinner, Skeleton, Stack, Grid, Divider, Icon, Toaster \*\/\n(?:[^\n]+\n)+\n/)![0];
+  const layouts = own.match(/\/\* Hierarchy layouts, Figure \*\/\n(?:[^\n]+\n)+\n/)![0];
+  const timeline = own.match(/\/\* Timeline vertical:[^\n]*\n(?:[^\n]+\n)+\n/)![0];
   const rest = own
     .replace(shield, "")
     .replace(primitives, "")
     .replace(overlays, "")
     .replace(disclosure, "")
     .replace(feedback, "")
+    .replace(layouts, "")
+    .replace(timeline, "")
     .replace(upper, "")
     .replace(forced, "")
     .replace(forms, "")

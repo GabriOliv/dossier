@@ -33,7 +33,8 @@ const preview: Preview = {
   },
   initialGlobals: { theme: "paper" },
   decorators: [withTheme],
-  parameters: { layout: "fullscreen", controls: { expanded: true } },
+  // codePanel: a Code tab beside Controls whose snippet follows the current args, with a copy button.
+  parameters: { layout: "fullscreen", controls: { expanded: true }, docs: { codePanel: true } },
 };
 
 export default preview;

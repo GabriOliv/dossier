@@ -31,6 +31,7 @@ export const samples = {
       { ring: 3, angle: 120, label: "edge" },
     ],
   },
+  Figure: { n: 1, title: "Plate", meta: "Rev A" },
   Hierarchy: { root: { label: "Root", code: "R-0", children: [{ label: "Leaf", active: true }, { label: "Leaf 2" }] } },
   Quote: { children: "Quality is a habit.", source: "Field report", code: "FILE 0427" },
   Footnotes: { notes: [{ text: "First note." }, { id: "B", text: "Second note." }] },

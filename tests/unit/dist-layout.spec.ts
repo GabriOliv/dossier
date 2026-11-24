@@ -36,7 +36,7 @@ test("FWK-10 dist has one file per module of src", () => {
 test("FWK-11 dist/index.js imports each component from its own file and holds no component body", () => {
   const index = read("dist/index.js");
   const exported = [...read("src/index.ts").matchAll(/from "\.\/components\/(\w+)"/g)].map((m) => m[1]);
-  expect(exported).toHaveLength(49);
+  expect(exported).toHaveLength(50);
   for (const name of exported) expect(index, name).toMatch(new RegExp(`from "\\./components/${name}\\.js"`));
   const code = index.replace(/^\/\/# sourceMappingURL=.*$/m, "");
   for (const line of code.split("\n").filter((l) => l.trim()))

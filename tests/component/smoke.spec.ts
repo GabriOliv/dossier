@@ -12,6 +12,7 @@ const ROOTS: Record<string, string> = {
   FieldList: ".ds-fields",
   Schematic: "svg.ds-schematic",
   Hierarchy: ".ds-tree",
+  Figure: ".ds-fig",
   Quote: ".ds-quote",
   Footnotes: ".ds-notes",
   StatusFlag: ".ds-flag",
@@ -92,7 +93,7 @@ test.beforeEach(() => test.setTimeout(120_000));
 
 test("GAL-01 sections equal the function exports of dist/index.js", async ({ page }) => {
   const exported = await libraryExports();
-  expect(exported).toHaveLength(49);
+  expect(exported).toHaveLength(50);
   await openAll(page, "paper");
   for (const name of exported)
     expect.soft(await page.locator(`section[data-component="${name}"]`).count(), `${name} has one section`).toBe(1);

@@ -11,6 +11,8 @@ Evenly spaced events on one axis that ends in a pointer: a position above, a mar
 
 Pass `events` in order, each with `at` (the position, as text), a `label`, and optionally a `note` and `active`. The spacing is even, not proportional, and three to six events read best.
 
+`orientation="vertical"` runs the axis down, with each event to its right, for a narrow column. Below 640 px the Timeline is vertical whatever `orientation` says.
+
 ```tsx
 import { Timeline } from "@gabrioliv/dossier";
 

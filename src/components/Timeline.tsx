@@ -14,6 +14,8 @@ export interface TimelineEvent {
 interface TimelineOwnProps {
   /** Events in order, spaced evenly. 3–6 reads best. */
   events: TimelineEvent[];
+  /** "horizontal" (default) or "vertical": the axis runs down, each event to its right. Below 640 px it is vertical. */
+  orientation?: "horizontal" | "vertical";
   className?: string;
 }
 
@@ -21,11 +23,15 @@ export type TimelineProps = TimelineOwnProps & NativeProps<"ol", TimelineOwnProp
 
 /** Port of Dossier's Timeline: evenly spaced events on one axis ending in a pointer. */
 export const Timeline = forwardRef<HTMLOListElement, TimelineProps>(function Timeline(
-  { events, className, ...rest },
+  { events, orientation, className, ...rest },
   ref,
 ) {
   return (
-    <ol ref={ref} className={cls("ds-timeline", className)} {...rest}>
+    <ol
+      ref={ref}
+      className={cls("ds-timeline", orientation === "vertical" && "ds-timeline-vertical", className)}
+      {...rest}
+    >
       {(events || []).map((e, i) => (
         <li key={i} className={cls("ds-tl-item", e.active && "ds-tl-on")}>
           <span className="ds-t-label ds-tl-at">{e.at}</span>

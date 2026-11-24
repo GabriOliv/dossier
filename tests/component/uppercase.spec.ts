@@ -100,8 +100,9 @@ test("I18N-21 an element child of a Tag or a StatusFlag keeps its own case, as D
   ]);
 });
 
-/** The sections added after visual-tests (primitives-actions-forms, primitives-overlays, primitives-disclosure, primitives-feedback-layout): VIS-04, PRM-06, OVL-08, DIS-07 and FBL-07 hold their references. */
+/** The sections added after visual-tests (primitives-actions-forms, primitives-overlays, primitives-disclosure, primitives-feedback-layout, tree-overflow-garden-port): VIS-04, PRM-06, OVL-08, DIS-07 and FBL-07 hold their references. */
 const ADDED = [
+  "Figure",
   "Button",
   "IconButton",
   "Link",
@@ -140,6 +141,10 @@ test("I18N-22 the screenshot references are the ones visual-tests made: the capt
   // the older record being:
   // as re-recorded once with each section captured alone,
   // and with the three phone TestRunReport captures after the DataHeader title wraps (FBL-36),
-  // and with the three phone Contents captures after an item became the index and one column.
-  expect(hash.digest("hex")).toBe("ba8833fec7ae9b2105b478d4bafe38c0c529f5681c007f858d13b67b3b2e06e7");
+  // and with the three phone Contents captures after an item became the index and one column,
+  // and with the three phone Hierarchy captures after a wide tree starts at its left edge (TREE-01),
+  // and with the six Hierarchy captures after the left-right and folder variants joined the section,
+  // and with the three phone Comparison captures after the columns stack below 640px,
+  // and with the three phone Timeline captures after the axis turns vertical below 640px.
+  expect(hash.digest("hex")).toBe("01adcfebbe177c526e1dd2bbd1ca5d36ee1270fe1995c838c014712315449d4d");
 });

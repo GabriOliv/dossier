@@ -746,6 +746,42 @@ for (const mode of MODES) {
 }
 
 for (const mode of MODES) {
+  test(`BRG-01 the quadrants of a quadrantChart fill with panel (${mode})`, async ({ page }) => {
+    await openDoc(page, "/charts", mode);
+    const svg = page.locator('.docusaurus-mermaid-container svg[aria-roledescription="quadrantChart"]');
+    await svg.waitFor();
+    const fills = await svg.locator(".quadrant rect").evaluateAll((els) => els.map((e) => getComputedStyle(e).fill));
+    expect(fills).toEqual(Array(4).fill(rgb(TOKENS[mode].panel)));
+  });
+
+  test(`BRG-02 the background of an xychart fills with paper (${mode})`, async ({ page }) => {
+    await openDoc(page, "/charts", mode);
+    const svg = page.locator('.docusaurus-mermaid-container svg[aria-roledescription="xychart"]');
+    await svg.waitFor();
+    await expect(svg.locator(".background")).toHaveCSS("fill", rgb(TOKENS[mode].paper));
+  });
+
+  test(`BRG-03 the axis paths of an xychart stroke in ink (${mode})`, async ({ page }) => {
+    await openDoc(page, "/charts", mode);
+    const svg = page.locator('.docusaurus-mermaid-container svg[aria-roledescription="xychart"]');
+    await svg.waitFor();
+    const strokes = await svg.evaluate((el) =>
+      [...el.querySelectorAll("path")].filter((p) => !p.closest(".plot")).map((p) => getComputedStyle(p).stroke),
+    );
+    expect(strokes.length).toBeGreaterThan(1);
+    for (const s of strokes) expect(s).toBe(rgb(TOKENS[mode].ink));
+  });
+
+  test(`BRG-04 the line of an xychart strokes in signal (${mode})`, async ({ page }) => {
+    await openDoc(page, "/charts", mode);
+    const svg = page.locator('.docusaurus-mermaid-container svg[aria-roledescription="xychart"]');
+    await svg.waitFor();
+    const strokes = await svg.locator(".plot path").evaluateAll((els) => els.map((e) => getComputedStyle(e).stroke));
+    expect(strokes).toEqual([rgb(TOKENS[mode].signal)]);
+  });
+}
+
+for (const mode of MODES) {
   test(`BRIDGE-05 code and Mermaid diagrams use the token palette (${mode})`, async ({ page }) => {
     const c = TOKENS[mode];
     await openDoc(page, "/markdown", mode);

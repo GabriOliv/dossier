@@ -18,6 +18,7 @@ export const ptBR = {
   Schematic: { name: "Esquema" },
   ProportionDial: { name: "Proporção" },
   Hierarchy: { name: "Hierarquia" },
+  Figure: { fig: "FIG." },
   Redacted: { name: "Ocultado" },
   Readout: { up: "alta", down: "baixa", flat: "sem mudança" },
   StageIcon: { A: "Estágio A · Semente", B: "Estágio B · Broto", C: "Estágio C · Árvore", D: "Estágio D · Fruto" },

@@ -20,3 +20,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+export const LeftRight: Story = { args: { layout: "left-right" } };
+export const Folder: Story = { args: { layout: "folder" } };

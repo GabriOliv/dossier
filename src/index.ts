@@ -6,6 +6,7 @@ export { DataTable, type DataTableColumn, type DataTableProps } from "./componen
 export { FieldList, type Field, type FieldListProps } from "./components/FieldList";
 export { Schematic, type SchematicNode, type SchematicProps } from "./components/Schematic";
 export { Hierarchy, type HierarchyNode, type HierarchyProps } from "./components/Hierarchy";
+export { Figure, type FigureProps } from "./components/Figure";
 export { Quote, type QuoteProps } from "./components/Quote";
 export { Footnotes, type Footnote, type FootnotesProps } from "./components/Footnotes";
 export { StatusFlag, type CheckResult, type StatusFlagProps } from "./components/StatusFlag";

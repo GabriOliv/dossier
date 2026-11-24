@@ -377,6 +377,30 @@ svg[id^="mermaid-svg"] foreignObject * {
   color: var(--ds-ink) !important;
 }
 
+/* quadrantChart: the quadrants in panel, not the yellow of the base theme. */
+svg[id^="mermaid-svg"] .quadrant rect {
+  fill: var(--ds-panel) !important;
+}
+
+/* xychart: the ground in paper, the axes in ink and the plotted line in signal. */
+svg[id^="mermaid-svg"][aria-roledescription="xychart"] .background {
+  fill: var(--ds-paper) !important;
+}
+
+svg[id^="mermaid-svg"][aria-roledescription="xychart"] path {
+  stroke: var(--ds-ink) !important;
+}
+
+svg[id^="mermaid-svg"][aria-roledescription="xychart"] .plot path {
+  stroke: var(--ds-signal) !important;
+}
+
+/* KaTeX: a display formula wider than the column scrolls inside its own block, not the page. */
+html[data-theme] .markdown .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 /* Chrome of the Docusaurus theme in the Dossier rules (CHROME-01 to CHROME-09 and CHROME-12 of the Garden). The
    selectors start with html[data-theme] to win over Infima and the theme's CSS modules. */
 

@@ -40,6 +40,9 @@ export const TranscriptNoInnerHTML: L.TranscriptProps = { lines: [], dangerously
 export const HierarchyAccepts: L.HierarchyProps = { root: null, id: "a", role: "tree", onClick: click };
 // @ts-expect-error dangerouslySetInnerHTML is not a prop
 export const HierarchyNoInnerHTML: L.HierarchyProps = { root: null, dangerouslySetInnerHTML: html };
+export const FigureAccepts: L.FigureProps = { n: 1, title: "F", id: "a", role: "group", onClick: click };
+// @ts-expect-error dangerouslySetInnerHTML is not a prop
+export const FigureNoInnerHTML: L.FigureProps = { n: 1, title: "F", dangerouslySetInnerHTML: html };
 export const ContentsAccepts: L.ContentsProps = { items: [], id: "a", start: 2, "aria-label": "Toc", onClick: click };
 // @ts-expect-error dangerouslySetInnerHTML is not a prop
 export const ContentsNoInnerHTML: L.ContentsProps = { items: [], dangerouslySetInnerHTML: html };
