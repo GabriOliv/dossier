@@ -41,6 +41,9 @@ export const ProportionDialUnknown: L.ProportionDialProps = { value: 1, labels: 
 export const HierarchyLabels: L.HierarchyProps = { root: null, labels: ptBR.Hierarchy };
 // @ts-expect-error unknown label key
 export const HierarchyUnknown: L.HierarchyProps = { root: null, labels: { root: "x" } };
+export const FigureLabels: L.FigureProps = { n: 1, title: "F", labels: ptBR.Figure };
+// @ts-expect-error unknown label key
+export const FigureUnknown: L.FigureProps = { n: 1, title: "F", labels: { plate: "x" } };
 export const RedactedLabels: L.RedactedProps = { length: 2, labels: ptBR.Redacted };
 // @ts-expect-error unknown label key
 export const RedactedUnknown: L.RedactedProps = { length: 2, labels: { hidden: "x" } };

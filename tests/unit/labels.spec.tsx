@@ -93,6 +93,7 @@ export const ROWS: Row[] = [
   },
   { name: "ProportionDial", render: (l) => <lib.ProportionDial value={40} labels={l} />, keys: ["name"] },
   { name: "Hierarchy", render: (l) => <lib.Hierarchy root={{ label: "R" }} labels={l} />, keys: ["name"] },
+  { name: "Figure", render: (l) => <lib.Figure n={1} title="T" labels={l} />, keys: ["fig"] },
   { name: "Redacted", render: (l) => <lib.Redacted labels={l} />, keys: ["name"] },
   ...(["up", "down", "flat"] as const).map(
     (trend): Row => ({
@@ -146,6 +147,8 @@ const hasWord = (html: string, word: string) =>
 const set = (locale: Locale, name: keyof Locale) => locale[name] as Record<string, string>;
 /** Every English value of the table, of every component. */
 const ALL_EN = Object.entries(en).flatMap(([name, keys]) => Object.entries(keys).map(([k, v]) => [`${name}.${k}`, v]));
+/** Keys whose text is the same word in both languages, so a pt-BR render shows it too: the user kept "FIG." in pt-BR. */
+const SAME_IN_BOTH = ["Figure.fig"];
 /**
  * Each place key `k` fills reads its English text: swapping `k` for a marker takes away exactly one English text per
  * marker, so the English text sits where the key goes ("limit" inside "Within limit" stays).
@@ -162,7 +165,13 @@ test("I18N-01 with its ptBR labels each component shows every ptBR text of the c
   for (const row of ROWS) {
     const out = html(row, set(ptBR, row.name));
     for (const k of row.keys) expect(out, `${row.name}.${k}`).toContain(set(ptBR, row.name)[k]);
-    for (const [k, v] of ALL_EN) expect(hasWord(out, v), `${row.name}: ${k} (en)`).toBe(false);
+    for (const [k, v] of ALL_EN.filter(([k]) => !SAME_IN_BOTH.includes(k)))
+      expect(hasWord(out, v), `${row.name}: ${k} (en)`).toBe(false);
+  }
+  // The exception holds only while the two texts are the same.
+  for (const k of SAME_IN_BOTH) {
+    const [name, key] = k.split(".") as [keyof Locale, string];
+    expect(set(ptBR, name)[key], k).toBe(set(en, name)[key]);
   }
 });
 

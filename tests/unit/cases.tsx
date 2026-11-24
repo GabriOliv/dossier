@@ -177,6 +177,16 @@ export const CASES: Record<string, [string, object][]> = {
     ],
     ["empty note is omitted", { events: [{ at: "T0", label: "A", note: "" }] }],
     ["no events", { events: [] }],
+    [
+      "orientation vertical",
+      {
+        events: [
+          { at: "Cycle 1", label: "Survey" },
+          { at: "Cycle 10", label: "Relay", active: true },
+        ],
+        orientation: "vertical",
+      },
+    ],
   ],
   Dimension: [
     ["defaults: length 240, label from length", {}],

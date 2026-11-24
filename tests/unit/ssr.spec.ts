@@ -48,7 +48,7 @@ for (const [label, react19, major] of [
     const r = run(react19);
     expect(r.version.startsWith(major)).toBe(true);
     expect(r.labeledErrors).toEqual({});
-    expect(Object.keys(r.labeled)).toHaveLength(24);
+    expect(Object.keys(r.labeled)).toHaveLength(25);
     expect(r.labeled.Redacted).toContain('aria-label="Ocultado"');
     expect(r.labeled.Readout).not.toContain("labels=");
   });

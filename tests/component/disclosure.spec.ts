@@ -139,16 +139,22 @@ test("ACC-06 the browser opens a closed item when find in page reaches text insi
   await openStory(page, "Accordion", "paper");
   expect(await isOpen()).toBe(false);
   await expect(page.getByText("The order leaves in two business days.")).toBeHidden();
-  // From another story, a link to the Accordion story with the fragment.
+  // The search runs once, at load: a story renders after it, so the link opens a static copy of the story's markup.
+  const html = await page.evaluate(() => {
+    const doc = document.documentElement.cloneNode(true) as HTMLElement;
+    doc.querySelectorAll("script").forEach((s) => s.remove());
+    return doc.outerHTML;
+  });
+  await page.route("**/acc-06.html", (route) => route.fulfill({ contentType: "text/html", body: html }));
   await openStory(page, "Link", "paper");
-  await page.evaluate((href) => {
+  await page.evaluate(() => {
     const a = document.body.appendChild(document.createElement("a"));
     a.id = "go";
-    a.href = href;
+    a.href = "acc-06.html#:~:text=two%20business%20days";
     a.textContent = "Accordion";
-  }, `iframe.html?id=overview--accordion&viewMode=story&globals=theme:paper#:~:text=two%20business%20days`);
+  });
   await page.click("#go");
-  await page.waitForURL("**/iframe.html?id=overview--accordion*#:~:text=*");
+  await page.waitForURL("**/acc-06.html#:~:text=*");
   await expect.poll(isOpen).toBe(true);
   await expect(page.getByText("The order leaves in two business days.")).toBeVisible();
 });

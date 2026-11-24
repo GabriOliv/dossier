@@ -22,6 +22,7 @@ const CASES_API: [name: string, props: Record<string, unknown>, tag: string, tar
   ["ToleranceBar", { label: "T", value: 1, max: 2 }, "div"],
   ["Transcript", { lines: [{ speaker: "A", text: "hi" }] }, "div"],
   ["Hierarchy", { root: { label: "R" } }, "div"],
+  ["Figure", { n: 1, title: "F" }, "figure"],
   ["Contents", { items: [{ title: "One" }] }, "ol"],
   ["Footnotes", { notes: [{ text: "n" }] }, "ol"],
   ["Timeline", { events: [{ at: "1", label: "a" }] }, "ol"],
