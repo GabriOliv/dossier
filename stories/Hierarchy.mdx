@@ -5,7 +5,7 @@ import * as Stories from "./Hierarchy.stories";
 
 # Hierarchy
 
-A top-down tree: the root on the inverse fill, every other node a square outlined box, joined by orthogonal connectors.
+A tree: the root on the inverse fill, every other node a square outlined box, joined by orthogonal connectors. It hangs top-down, runs left to right, or lists as a folder tree.
 
 ## Usage
 
@@ -27,10 +27,23 @@ import { Hierarchy } from "@gabrioliv/dossier";
 />;
 ```
 
+`layout` picks the geometry; the nodes, fills and names stay the same:
+
+- `"top-down"`, the default: the children hang under their parent, the parent centred over them.
+- `"left-right"`: the children stand in a column to the right of their parent, the parent centred on that column.
+- `"folder"`: one node per row, each child 24 px right of its parent, joined by an elbow from the parent's rail.
+
+```tsx
+<Hierarchy title="Dossier structure" root={root} layout="folder" />
+```
+
+A tree wider than its parent scrolls sideways from its left edge, so every node can be reached.
+
 ## Do and don't
 
 - Do: mark one node `active`, the one the text talks about.
-- Do: keep it to three levels and about twelve nodes. Split a larger structure.
+- Do: keep it to three levels and about twelve nodes in `top-down`. Split a larger structure, or use `folder`, which grows down the page instead of sideways.
+- Do: use `left-right` for a deep tree with few nodes per level.
 - Do: pass a `title` in the language of the page.
 - Don't: use diagonal connectors or rounded boxes; the component draws neither.
 - Don't: build a deep tree for a menu or navigation: it is a diagram, and its nodes are not links.

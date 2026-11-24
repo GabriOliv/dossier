@@ -16,6 +16,7 @@ export interface Locale {
   Schematic: { name: string };
   ProportionDial: { name: string };
   Hierarchy: { name: string };
+  Figure: { fig: string };
   Redacted: { name: string };
   Readout: { up: string; down: string; flat: string };
   StageIcon: { A: string; B: string; C: string; D: string };

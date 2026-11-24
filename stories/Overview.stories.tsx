@@ -53,6 +53,7 @@ export const DataTable: Story = overview("DataTable");
 export const FieldList: Story = overview("FieldList");
 export const Schematic: Story = overview("Schematic");
 export const Hierarchy: Story = overview("Hierarchy");
+export const Figure: Story = overview("Figure");
 export const Quote: Story = overview("Quote");
 export const Footnotes: Story = overview("Footnotes");
 export const StatusFlag: Story = overview("StatusFlag");

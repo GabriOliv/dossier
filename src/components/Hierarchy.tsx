@@ -17,6 +17,11 @@ interface HierarchyOwnProps {
   /** The root renders on the inverse fill. */
   root?: HierarchyNode | null;
   title?: string;
+  /**
+   * `"top-down"` (the default) hangs the children under their parent, `"left-right"` lays them out to its right, and
+   * `"folder"` puts each node on its own row, indented under its parent. Any other value draws the top-down tree.
+   */
+  layout?: "top-down" | "left-right" | "folder";
   /** The accessible name used without `title`, falling back to English: `labels={ptBR.Hierarchy}`. */
   labels?: Partial<Locale["Hierarchy"]>;
   className?: string;
@@ -45,7 +50,7 @@ function TreeNode({ node, depth }: { node: HierarchyNode; depth: number }) {
 
 /** Port of Dossier's Hierarchy: a top-down tree of square nodes with orthogonal connectors. */
 export const Hierarchy = forwardRef<HTMLDivElement, HierarchyProps>(function Hierarchy(
-  { root, title, labels, className, ...rest },
+  { root, title, layout, labels, className, ...rest },
   ref,
 ) {
   if (!root) return null;
@@ -53,7 +58,12 @@ export const Hierarchy = forwardRef<HTMLDivElement, HierarchyProps>(function Hie
     // tabIndex: the tree scrolls sideways on narrow screens, and a keyboard can scroll only what it can focus.
     <div
       ref={ref}
-      className={cls("ds-tree", className)}
+      className={cls(
+        "ds-tree",
+        layout === "left-right" && "ds-tree-lr",
+        layout === "folder" && "ds-tree-folder",
+        className,
+      )}
       aria-label={title || pick(labels?.name, en.Hierarchy.name)}
       tabIndex={0}
       {...rest}

@@ -20,6 +20,7 @@ import {
   Footnotes,
   Grid,
   Hierarchy,
+  Figure,
   Icon,
   IconButton,
   type IconName,
@@ -298,11 +299,47 @@ export const SECTIONS: { name: string; desc: string; body: ReactNode }[] = [
   },
   {
     name: "Hierarchy",
-    desc: "A top-down tree of square nodes with orthogonal connectors.",
+    desc: "A tree of square nodes with orthogonal connectors: top-down, left to right or as a folder tree.",
     body: (
-      <Variant name="root + active node" scroll>
-        <Hierarchy title="Dossier structure" root={tree} />
-      </Variant>
+      <>
+        <Variant name="root + active node" scroll>
+          <Hierarchy title="Dossier structure" root={tree} />
+        </Variant>
+        <Variant name="left-right" scroll>
+          <Hierarchy title="Dossier structure, left to right" root={tree} layout="left-right" />
+        </Variant>
+        <Variant name="folder">
+          <Hierarchy title="Dossier structure, folder tree" root={tree} layout="folder" />
+        </Variant>
+      </>
+    ),
+  },
+  {
+    name: "Figure",
+    desc: "A numbered plate: FIG. NN and the title over a rule, then the image and its caption.",
+    body: (
+      <>
+        <Variant name="legend, meta, image and caption">
+          <Figure n={3} title="Dossier structure" meta="Rev A">
+            <svg
+              viewBox="0 0 320 80"
+              width="320"
+              height="80"
+              role="img"
+              aria-label="Tokens, components and pages in a row, joined by lines"
+            >
+              <rect x="1" y="20" width="88" height="40" fill="none" stroke="currentColor" />
+              <rect x="116" y="20" width="88" height="40" fill="none" stroke="currentColor" />
+              <rect x="231" y="20" width="88" height="40" fill="none" stroke="currentColor" />
+              <path d="M89 40 H116 M204 40 H231" stroke="currentColor" />
+            </svg>
+            <figcaption>Tokens feed the components, and the components the pages.</figcaption>
+          </Figure>
+        </Variant>
+        <Variant name="legend only, three digits">
+          <Figure n={100} title="Legend alone" />
+        </Variant>
+      </>
     ),
   },
   {

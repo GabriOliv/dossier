@@ -1,0 +1,40 @@
+import { Meta, ArgTypes } from "@storybook/addon-docs/blocks";
+import * as Stories from "./Figure.stories";
+
+<Meta of={Stories} />
+
+# Figure
+
+A numbered plate: the legend `FIG. NN — TITLE`, with an optional meta at its right end, over a rule, then the image and its caption.
+
+## Usage
+
+Pass `n`, the figure's number on the page, and `title`. `n` is padded to two digits (`3` reads `FIG. 03`); a longer number shows every digit. `meta` adds a short text at the right end of the legend, such as a revision; without it nothing shows there. The children follow the legend: the image, diagram or table, and an optional `<figcaption>`, set in the body type under it. An `<img>` child fills the width of the figure.
+
+```tsx
+import { Figure } from "@gabrioliv/dossier";
+
+<Figure n={3} title="Dossier structure" meta="Rev A">
+  <img src="/img/structure.svg" alt="Tokens feed the components" />
+  <figcaption>Tokens feed the components, and the components the pages.</figcaption>
+</Figure>;
+```
+
+The number is the caller's: count the figures of the page yourself, or with a remark plugin in a Markdown site.
+
+## Do and don't
+
+- Do: number the figures of a page in order, from 1.
+- Do: give every image its own `alt`; the legend and the caption do not replace it.
+- Do: keep the title short; the legend is uppercase and wraps under narrow widths.
+- Don't: put the figure's explanation in `meta`; it is for a revision or a source code, and the caption takes the sentence.
+
+## Accessibility
+
+The root is a `<figure>`. A `<figcaption>` child names the figure for assistive tech; the legend is a `<div>` read in order before the image. The title is uppercased by CSS, so the DOM keeps its case for screen readers and copy. `labels` changes the prefix: `labels={ptBR.Figure}`.
+
+## Props
+
+The table is generated from the TypeScript types. `ref` and the native attributes of `<figure>` pass through to the root `<figure>`.
+
+<ArgTypes />
